@@ -24,10 +24,10 @@ services:
     container_name: mysql-database
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: CC6tjBh6mkJ8h8PXU7cg8zUx4E6ABFrMQ44EaxU59yfTvYyzWS
+      MYSQL_ROOT_PASSWORD: 123456789
       MYSQL_DATABASE: cinemaDB
-      MYSQL_USER: HzSRs842px7MCXZtfZHVZN6f8
-      MYSQL_PASSWORD: 66JJVzfmsX79uxeJGRf95NevSP2fP9u6e5yBVRQmGUY9jbVg54
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456789
       MYSQL_ALLOW_EMPTY_PASSWORD: no
       MYSQL_SSL_CA: ./docker-config/ssl/mysql-cert.pem
       MYSQL_SSL_CERT: ./docker-config/ssl/mysql-cert.pem
