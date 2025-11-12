@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -59,14 +58,16 @@ public class JwtService {
 	// ------------------------------------------------------------------------------------------------------------
 
 	public String generateToken(UserDetails userDetails) {
-		return generateToken(new HashMap<>(), userDetails);
+		Map<String, Object> extraClaims = new HashMap<>();
+		extraClaims.put("roles", userDetails.getAuthorities());
+		return generateToken(extraClaims, userDetails);
 	}
 
-	public String generateToken(Map<String, Collection<?>> extraClaims, UserDetails userDetails) {
+	public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
 		return buildToken(extraClaims, userDetails, secretKey, expired_time);
 	}
 
-	public String generateRefreshToken(Map<String, Collection<?>> extraClaims, UserDetails userDetails) {
+	public String generateRefreshToken(Map<String, Object> extraClaims, UserDetails userDetails) {
 		return buildToken(extraClaims, userDetails, refreshKey, expired_refresh_time);
 	}
 
@@ -76,16 +77,12 @@ public class JwtService {
 		if (claims != null) {
 			String username = claims.getSubject();
 			Account user = userSER.getRawUserByUsername(username);
-
-			Map<String, Collection<?>> list_roles = new HashMap<>();
-			list_roles.put("roles", user.getAuthorities());
-
-			return this.generateToken(new HashMap<>(), user);
+			return this.generateToken(user);
 		}
 		return null;
 	}
 
-	private String buildToken(Map<String, Collection<?>> extraClaims,
+	private String buildToken(Map<String, Object> extraClaims,
 			UserDetails userDetails, String key, long expiration) {
 		return Jwts
 				.builder()
@@ -214,22 +211,23 @@ public class JwtService {
 
 	public String getAlgorithm(String token) {
 		JSONObject header = getTokenPart(token, 0);
-		if (!header.isEmpty())
+		if (header != null && !header.isEmpty())
 			return header.getString("alg");
 		return null;
 	}
 
 	public Collection<? extends GrantedAuthority> getAuthoritiesFromToken(String token) {
-		JSONObject body = getTokenPart(token, 1);
-		Collection<SimpleGrantedAuthority> auths = new ArrayList<>();
+        Claims claims = extractAllClaims(token, secretKey); 
+        Collection<SimpleGrantedAuthority> auths = new ArrayList<>();
 
-		if (!body.isEmpty()) {
-			JSONArray data = body.getJSONArray("roles");
-			for (int i = 0; i < data.length(); i++) {
-				JSONObject rec = data.getJSONObject(i);
-				auths.add(new SimpleGrantedAuthority((String) rec.get("authority")));
-			}
-		}
-		return auths;
-	}
+        if (claims != null) {
+            List<Map<String, String>> roles = claims.get("roles", List.class);
+            if (roles != null) {
+                for (Map<String, String> role : roles) {
+                    auths.add(new SimpleGrantedAuthority(role.get("authority")));
+                }
+            }
+        }
+        return auths;
+    }
 }

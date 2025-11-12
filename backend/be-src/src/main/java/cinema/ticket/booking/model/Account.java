@@ -23,6 +23,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -30,6 +32,15 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Account", uniqueConstraints = { @UniqueConstraint(columnNames = { "username", "email" })
+})
+@NamedQueries({
+    @NamedQuery(name = "Account.countByIp", query = "SELECT COUNT(a) FROM Account a WHERE a.ip = :ip"),
+    @NamedQuery(name = "Account.getByEmail", query = "SELECT a FROM Account a WHERE a.email = :email"),
+    @NamedQuery(name = "Account.findByUsernameContaining", query = "SELECT a FROM Account a WHERE a.username LIKE :username"),
+    @NamedQuery(name = "Account.getByUsername", query = "SELECT a FROM Account a WHERE a.username = :username"),
+    @NamedQuery(name = "Account.existsByUsername", query = "SELECT COUNT(a) > 0 FROM Account a WHERE a.username = :username"),
+    @NamedQuery(name = "Account.existsByEmail", query = "SELECT COUNT(a) > 0 FROM Account a WHERE a.email = :email"),
+    @NamedQuery(name = "Account.deleteByUsername", query = "DELETE FROM Account a WHERE a.username = :username")
 })
 public class Account implements UserDetails {
 
@@ -42,38 +53,31 @@ public class Account implements UserDetails {
 	private String id;
 
 	@NotBlank
-	@NotNull
 	@Column(name = "username", length = 128, nullable = false)
 	private String username;
 
 	@NotBlank
-	@NotNull
 	@Column(name = "password", nullable = false)
 	private String password;
 
 	@NotBlank
-	@NotNull
 	@Column(name = "fullname", nullable = false)
 	private String fullname;
 
 	@NotBlank
-	@NotNull
 	@Column(name = "address")
 	private String address;
 
 	@NotBlank
-	@NotNull
 	@Email
 	@Column(name = "email", length = 128, nullable = false)
 	private String email;
 
 	@NotBlank
-	@NotNull
 	@Column(name = "phone")
 	private String phone;
 
 	@NotBlank
-	@NotNull
 	@Column(name = "ip")
 	private String ip;
 

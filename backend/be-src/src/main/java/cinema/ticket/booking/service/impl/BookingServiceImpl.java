@@ -7,8 +7,6 @@ import java.util.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.time.ZoneId;
-import java.util.Queue;
-import java.util.LinkedList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,16 +24,13 @@ import cinema.ticket.booking.model.Booking;
 import cinema.ticket.booking.model.CinemaShow;
 import cinema.ticket.booking.model.Payment;
 import cinema.ticket.booking.model.ShowSeat;
-import cinema.ticket.booking.model.SpamUser;
 import cinema.ticket.booking.model.enumModel.BookingStatus;
 import cinema.ticket.booking.model.enumModel.ESeatStatus;
 import cinema.ticket.booking.model.enumModel.PaymentStatus;
-import cinema.ticket.booking.model.enumModel.UserStatus;
 import cinema.ticket.booking.repository.BookingRepository;
 import cinema.ticket.booking.repository.CinemaShowRepository;
 import cinema.ticket.booking.repository.PaymentRepository;
 import cinema.ticket.booking.repository.ShowSeatRepository;
-import cinema.ticket.booking.repository.SpamUserRepository;
 import cinema.ticket.booking.repository.UserRepository;
 import cinema.ticket.booking.request.BookingRequest;
 import cinema.ticket.booking.request.PaymentRequest;
@@ -49,13 +44,9 @@ import cinema.ticket.booking.utils.VNPay;
 @Service
 public class BookingServiceImpl implements BookingService {
 	
-	final private int MAXSPAM = 3; // per user
 	final private int MAX_TICKETS_PER_SHOW = 5; // for per user
 	final private int TIMEOUT = 15; // in minutes
 	final private long CHECK_PENDING_BOOKING_IS_TIMEOUT = 60000; // in miliseconds
-	final private long CHECK_QUEUE_OF_SPAM_USERS = 30000; // in miliseconds
-	
-	Queue<Account> spamUsers = new LinkedList<>();
 	
 	@Autowired 
 	private UserRepository userREPO;
@@ -74,9 +65,6 @@ public class BookingServiceImpl implements BookingService {
 	
 	@Autowired
 	private PaymentRepository paymentREPO;
-	
-	@Autowired
-	private SpamUserRepository spamREPO;
 	
 	@Autowired
 	private PaymentService paymentSER;
@@ -104,20 +92,8 @@ public class BookingServiceImpl implements BookingService {
 	}
 	
 	private void cancleBookingFromID(Booking booking) {
-//		booking.setStatus(BookingStatus.CANCLED);
-//		
-//		for (ShowSeat seat : booking.getSeats()) {
-//			seat.setStatus(ESeatStatus.AVAILABLE);
-//			showSeatREPO.save(seat);
-//		}
-//		
-//		bookingREPO.save(booking);
 		this.setStatusForBookingAndSeats(booking, BookingStatus.CANCLED, ESeatStatus.AVAILABLE);
 	}
-	
-//	private void restoreBooking(Booking booking) {
-//		this.setStatusForBookingAndSeats(booking, BookingStatus.PENDING, ESeatStatus.PENDING);
-//	}
 	
 	private String[] removeDuplicate(List<String> array) {
 		Set<String> set = new HashSet<>(array);
@@ -130,8 +106,6 @@ public class BookingServiceImpl implements BookingService {
 			throw new MyBadRequestException("You can not reverse more than 4 seats at the time.");
 		
 		Account user = userREPO.getByUsername(username).orElseThrow(() -> new MyNotFoundException("User is not found"));
-		if (user.getStatus().equals(UserStatus.BLACKLISTED.name()))
-			throw new MyAccessDeniedException("You are not allowed to book ticket");
 		
 		CinemaShow show = showREPO.findById(bookingReq.getShowId()).orElseThrow(() -> new MyNotFoundException("Show is not found"));
 		int total_tickets_of_user_from_show = bookingREPO.countByShowId(show.getId());
@@ -280,39 +254,9 @@ public class BookingServiceImpl implements BookingService {
 				}
 				else {
 					this.cancleBookingFromID(booking);
-					this.spamUsers.offer(booking.getUser());
 					System.out.println("--> Delete status of booking " + booking.getId());
 				}
 			}
 		}
 	}
-	
-	@Scheduled(fixedDelay = CHECK_QUEUE_OF_SPAM_USERS )
-	public void blacklistUsers() {
-		if (this.spamUsers.size() == 0)
-			return;
-		
-		while (this.spamUsers.size() != 0) {
-			Account user = this.spamUsers.poll();
-			Optional<SpamUser> getSpam = spamREPO.findByUserId(user.getId());
-			
-			if (getSpam.isPresent()) {
-				SpamUser spam = getSpam.get();
-				int times = spam.increase();
-				
-				if (times >= this.MAXSPAM) {
-					user.setStatus(UserStatus.BLACKLISTED);
-					userSER.saveUser(user);
-				}
-				spamREPO.save(spam);
-			}
-			else {
-				SpamUser spam = new SpamUser(user);
-				spamREPO.save(spam);
-			}
-		}
-	}
 }
-
-
-

@@ -31,7 +31,7 @@ $("#modal-user-delete").click(async () => {
     if (!result.isConfirmed) 
         return;
 
-    let response = await PenguRequestAPI( 'DELETE','api/user/delete?username=' + encodeURI(username), {},  {},  true) .then(r => r.json()).catch(error => {console.log(error); return false})
+    let response = await PenguRequestAPI( 'DELETE','api/users/delete?username=' + encodeURI(username), {},  {},  true) .then(r => r.json()).catch(error => {console.log(error); return false})
     if (!response)
         return
 
@@ -49,7 +49,7 @@ $("#modal-user-delete").click(async () => {
 $("#modal-user-giveadmin").click(async () => {
     let username = $("#user-modal-container #user-name").text()
 
-    let response = await PenguRequestAPI( 'GET','api/user/giveadmin?username=' + encodeURI(username), {},  {},  true) .then(r => r.json()).catch(error => {console.log(error); return false})
+    let response = await PenguRequestAPI( 'GET','api/users/giveadmin?username=' + encodeURI(username), {},  {},  true) .then(r => r.json()).catch(error => {console.log(error); return false})
     if (!response)
         return
 
@@ -67,7 +67,7 @@ $("#modal-user-giveadmin").click(async () => {
 $("#modal-user-removeadmin").click(async () => {
     let username = $("#user-modal-container #user-name").text()
 
-    let response = await PenguRequestAPI( 'GET','api/user/removeadmin?username=' + encodeURI(username), {},  {},  true) .then(r => r.json()).catch(error => {console.log(error); return false})
+    let response = await PenguRequestAPI( 'GET','api/users/removeadmin?username=' + encodeURI(username), {},  {},  true) .then(r => r.json()).catch(error => {console.log(error); return false})
     if (!response)
         return
 
@@ -83,7 +83,7 @@ $("#modal-user-removeadmin").click(async () => {
 })
 
 async function GetList() {  
-    let list = await PenguRequestAPI( 'GET','api/user/getall', {},  {},  true) .then(r => r.json()).catch(error => {console.log(error); return false})
+    let list = await PenguRequestAPI( 'GET','api/users/getall', {},  {},  true) .then(r => r.json()).catch(error => {console.log(error); return false})
     if (list)
         movieList = list;
 

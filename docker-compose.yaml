@@ -9,7 +9,7 @@ services:
     ports:
       - 80:80
     networks:
-      - frontend_net
+      - backend_net
 
   admin-app:
     container_name: admin-app
@@ -18,7 +18,7 @@ services:
     ports:
       - 81:80
     networks:
-      - admin_net
+      - backend_net
 
   db:
     container_name: mysql-database
@@ -52,6 +52,7 @@ services:
       - DB_NAME=cinemaDB
       - DB_USER=root
       - DB_PASSWORD=123456789
+      - LOGGING_LEVEL_ROOT=DEBUG  # Enable debug logging
     networks:
       - backend_net
     extra_hosts:
@@ -77,17 +78,3 @@ networks:
     ipam:
       config:
         - subnet: 192.168.0.0/24
-
-  frontend_net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.168.0.0/24
-  
-  admin_net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 10.10.0.0/24
-
-# default-src 'none'; script-src 'self'; connect-src 'self' *.coderlod.xyz; img-src * 'self' data: https:; frame-ancestors 'self'; form-action 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;

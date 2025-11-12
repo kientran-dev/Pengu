@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Host: db:3306
--- Generation Time: Jun 25, 2023 at 11:57 PM
--- Server version: 8.0.33
--- PHP Version: 8.1.17
+-- Máy chủ: db:3306
+-- Thời gian đã tạo: Th10 10, 2025 lúc 04:07 AM
+-- Phiên bản máy phục vụ: 9.4.0
+-- Phiên bản PHP: 8.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cinemaDB`
+-- Cơ sở dữ liệu: `cinemaDB`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Cấu trúc bảng cho bảng `account`
 --
 
 CREATE TABLE `account` (
@@ -42,12 +42,12 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `account`
+-- Đang đổ dữ liệu cho bảng `account`
 --
 
 INSERT INTO `account` (`id`, `address`, `create_at`, `email`, `fullname`, `ip`, `password`, `phone`, `status`, `update_at`, `username`) VALUES
-('04767f9e-2fbe4a11-1684c93d', '213/324 asdsa', '2023-06-19 11:55:43.130000', 'vD@gmail.com', 'I Am User 2', '23.4.3.6', '$2a$10$w3zSJPc.jls3dbA0xSNb7eE9NQpfYv9cKgT7W7.G8KM3MqOLaPdt2', '0129323', 'ACTIVE', '2023-06-19 11:55:43.130000', 'user_2'),
-('562db9be-1e0c9cc6-66569a1b', '213/324 asdsa', '2023-06-19 11:55:42.868000', 'vA@gmail.com', 'I Am Super Admin', '1.2.3.4', '$2a$10$rWu91eFVqRkXOdu8ybe3/e7jAWC7GOJlq/nGr2hTzyh7zHBkcqBcG', '0122323', 'ACTIVE', '2023-06-19 11:55:42.868000', 'super_admin.1234'),
+('04767f9e-2fbe4a11-1684c93d', '213/324 asdsa', '2023-06-19 11:55:43.130000', 'vD@gmail.com', 'I Am User 2', '23.4.3.6', '$2a$10$w3zSJPc.jls3dbA0xSNb7eE9NQpfYv9cKgT7W7.G8KM3MqOLaPdt2', '0129323', 'BLACKLIST', '2025-10-29 19:03:12.495000', 'user_2'),
+('562db9be-1e0c9cc6-66569a1b', '213/324 asdsa', '2023-06-19 11:55:42.868000', 'vA@gmail.com', 'I Am Super Admin', '1.2.3.4', '$2a$10$rWu91eFVqRkXOdu8ybe3/e7jAWC7GOJlq/nGr2hTzyh7zHBkcqBcG', '0122323', 'ACTIVE', '2025-11-09 23:52:51.049000', 'super_admin.1234'),
 ('7540f518-84b36801-ec034014', '141/21 street number 7, Go Vap', '2023-06-26 06:51:02.271000', 'nguyenductan04202@gmail.com', 'Nguyễn Đức Tấn', '1.2.3.4', '$2a$10$VwamNFng4LgHPof6obHw6.JHFEFOYTfsL1OzCt3DqgQmJPXNnLvIO', '0923142408', 'ACTIVE', '2023-06-26 06:51:02.271000', 'avart'),
 ('baf537e3-ee782072-6f273b97', '213/324 asdsa', '2023-06-19 11:55:42.971000', 'vB@gmail.com', 'I Am Admin', '4.5.6.7', '$2a$10$i9Cd5i5fwLhCIO9xd.u4oOP/k6B1mYMSuS8c1GV3LdZokcuZK4OFa', '0124323', 'ACTIVE', '2023-06-19 11:55:42.971000', 'admin.1234'),
 ('fa19dcbd-241797c7-b83f36c5', '213/324 asdsa', '2023-06-19 11:55:43.052000', 'vC@gmail.com', 'I Am User 1', '23.42.54.42', '$2a$10$gpll.buK1FlpPLBLkrDUyeVpWfzqvuchjfmCg.xvmT3CZupPzSwCK', '0126323', 'ACTIVE', '2023-06-19 11:55:43.052000', 'user_1');
@@ -55,7 +55,7 @@ INSERT INTO `account` (`id`, `address`, `create_at`, `email`, `fullname`, `ip`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account_roles`
+-- Cấu trúc bảng cho bảng `account_roles`
 --
 
 CREATE TABLE `account_roles` (
@@ -64,7 +64,7 @@ CREATE TABLE `account_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `account_roles`
+-- Đang đổ dữ liệu cho bảng `account_roles`
 --
 
 INSERT INTO `account_roles` (`account_id`, `roles_id`) VALUES
@@ -80,7 +80,7 @@ INSERT INTO `account_roles` (`account_id`, `roles_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account_temp`
+-- Cấu trúc bảng cho bảng `account_temp`
 --
 
 CREATE TABLE `account_temp` (
@@ -100,7 +100,7 @@ CREATE TABLE `account_temp` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account_temp_seq`
+-- Cấu trúc bảng cho bảng `account_temp_seq`
 --
 
 CREATE TABLE `account_temp_seq` (
@@ -108,7 +108,7 @@ CREATE TABLE `account_temp_seq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `account_temp_seq`
+-- Đang đổ dữ liệu cho bảng `account_temp_seq`
 --
 
 INSERT INTO `account_temp_seq` (`next_val`) VALUES
@@ -117,7 +117,7 @@ INSERT INTO `account_temp_seq` (`next_val`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `booking`
+-- Cấu trúc bảng cho bảng `booking`
 --
 
 CREATE TABLE `booking` (
@@ -130,16 +130,22 @@ CREATE TABLE `booking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `booking`
+-- Đang đổ dữ liệu cho bảng `booking`
 --
 
 INSERT INTO `booking` (`id`, `create_at`, `status`, `update_at`, `show_id`, `user_id`) VALUES
-('76027d91-63cf320f-4f35d314', '2023-06-26 06:52:15.047000', 'BOOKED', '2023-06-26 06:54:11.632000', '9ec7e849-190e222e-de378f6a', '7540f518-84b36801-ec034014');
+('031fa892-fb6f90e9-2c9e5d84', '2025-10-09 19:10:32.425000', 'CANCLED', '2025-10-09 19:26:52.144000', '0c591085-01d67658-65dd19df', '04767f9e-2fbe4a11-1684c93d'),
+('1da959f6-31348d04-32f42d05', '2025-11-09 23:37:31.129000', 'CANCLED', '2025-11-09 23:52:50.664000', '49bff82b-5212cbd4-2bb51ab5', '562db9be-1e0c9cc6-66569a1b'),
+('2063e256-af65aa80-eaa6ed27', '2025-11-09 23:27:15.323000', 'CANCLED', '2025-11-09 23:42:48.363000', '5682ad59-1c54857b-7b257361', '562db9be-1e0c9cc6-66569a1b'),
+('47bf3dab-97f2e350-dc5fc9c2', '2025-10-09 19:17:14.576000', 'CANCLED', '2025-10-09 20:09:00.362000', '719b41d4-07cf3ce5-794cb046', '04767f9e-2fbe4a11-1684c93d'),
+('76027d91-63cf320f-4f35d314', '2023-06-26 06:52:15.047000', 'BOOKED', '2023-06-26 06:54:11.632000', '9ec7e849-190e222e-de378f6a', '7540f518-84b36801-ec034014'),
+('a4cfde00-4e2d0f82-b2d5d630', '2025-10-29 18:47:36.711000', 'CANCLED', '2025-10-29 19:03:12.355000', 'bba69e0b-82df5939-21a13bcc', '04767f9e-2fbe4a11-1684c93d'),
+('ae3189b0-b8dbb242-050ac343', '2025-11-09 23:15:45.750000', 'CANCLED', '2025-11-09 23:31:47.784000', '719b41d4-07cf3ce5-794cb046', '562db9be-1e0c9cc6-66569a1b');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `booking_seats`
+-- Cấu trúc bảng cho bảng `booking_seats`
 --
 
 CREATE TABLE `booking_seats` (
@@ -148,17 +154,23 @@ CREATE TABLE `booking_seats` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `booking_seats`
+-- Đang đổ dữ liệu cho bảng `booking_seats`
 --
 
 INSERT INTO `booking_seats` (`booking_id`, `seats_id`) VALUES
 ('76027d91-63cf320f-4f35d314', '4RD62LCqDP'),
-('76027d91-63cf320f-4f35d314', '1vjhQQUkZz');
+('76027d91-63cf320f-4f35d314', '1vjhQQUkZz'),
+('031fa892-fb6f90e9-2c9e5d84', 'Net1P0A1sP'),
+('47bf3dab-97f2e350-dc5fc9c2', 'v2XBl7enUg'),
+('a4cfde00-4e2d0f82-b2d5d630', 'MrsgUyOjrZ'),
+('ae3189b0-b8dbb242-050ac343', 'ZQHoS5n8Un'),
+('2063e256-af65aa80-eaa6ed27', 'Q7GcMi3lMT'),
+('1da959f6-31348d04-32f42d05', 'OjK2Vk77rd');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cinema_hall`
+-- Cấu trúc bảng cho bảng `cinema_hall`
 --
 
 CREATE TABLE `cinema_hall` (
@@ -172,7 +184,7 @@ CREATE TABLE `cinema_hall` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `cinema_hall`
+-- Đang đổ dữ liệu cho bảng `cinema_hall`
 --
 
 INSERT INTO `cinema_hall` (`id`, `capacity`, `create_at`, `name`, `total_col`, `total_row`, `update_at`) VALUES
@@ -184,7 +196,7 @@ INSERT INTO `cinema_hall` (`id`, `capacity`, `create_at`, `name`, `total_col`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cinema_seat`
+-- Cấu trúc bảng cho bảng `cinema_seat`
 --
 
 CREATE TABLE `cinema_seat` (
@@ -201,7 +213,7 @@ CREATE TABLE `cinema_seat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `cinema_seat`
+-- Đang đổ dữ liệu cho bảng `cinema_seat`
 --
 
 INSERT INTO `cinema_seat` (`id`, `col_index`, `create_at`, `name`, `price`, `row_index`, `seat_type`, `status`, `update_at`, `cinemahall_id`) VALUES
@@ -369,7 +381,7 @@ INSERT INTO `cinema_seat` (`id`, `col_index`, `create_at`, `name`, `price`, `row
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cinema_show`
+-- Cấu trúc bảng cho bảng `cinema_show`
 --
 
 CREATE TABLE `cinema_show` (
@@ -383,7 +395,7 @@ CREATE TABLE `cinema_show` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `cinema_show`
+-- Đang đổ dữ liệu cho bảng `cinema_show`
 --
 
 INSERT INTO `cinema_show` (`id`, `create_at`, `end_time`, `start_time`, `update_at`, `cinema_hall_id`, `movie_id`) VALUES
@@ -422,7 +434,7 @@ INSERT INTO `cinema_show` (`id`, `create_at`, `end_time`, `start_time`, `update_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
+-- Cấu trúc bảng cho bảng `comment`
 --
 
 CREATE TABLE `comment` (
@@ -438,7 +450,7 @@ CREATE TABLE `comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `comment`
+-- Đang đổ dữ liệu cho bảng `comment`
 --
 
 INSERT INTO `comment` (`id`, `comment`, `create_at`, `disliked`, `liked`, `rated`, `update_at`, `movie_id`, `user_id`) VALUES
@@ -647,7 +659,7 @@ INSERT INTO `comment` (`id`, `comment`, `create_at`, `disliked`, `liked`, `rated
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genre`
+-- Cấu trúc bảng cho bảng `genre`
 --
 
 CREATE TABLE `genre` (
@@ -658,7 +670,7 @@ CREATE TABLE `genre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `genre`
+-- Đang đổ dữ liệu cho bảng `genre`
 --
 
 INSERT INTO `genre` (`id`, `created_at`, `genre`, `last_updated`) VALUES
@@ -682,7 +694,7 @@ INSERT INTO `genre` (`id`, `created_at`, `genre`, `last_updated`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movie`
+-- Cấu trúc bảng cho bảng `movie`
 --
 
 CREATE TABLE `movie` (
@@ -702,18 +714,18 @@ CREATE TABLE `movie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `movie`
+-- Đang đổ dữ liệu cho bảng `movie`
 --
 
 INSERT INTO `movie` (`id`, `actors`, `country`, `created_at`, `description`, `duration_in_mins`, `image`, `language`, `large_image`, `last_updated`, `release_date`, `title`, `trailer`) VALUES
-(1, 'Chris Pratt, Zoe Saldana, Dave Bautista, Karen Gillan, Pom Klementieff', 'US', '2023-06-19 11:57:19.338000', 'Nhóm Vệ binh dải Ngân Hà sau khi chia tay Thor và Gamora, đã mua lại xứ Knowhere từ chủ cũ Tivan, rồi thành lập trụ sở chính của họ ở đây.[a] Không lâu sau đó, họ bị tấn công bởi Adam Warlock, kẻ mạnh nhất được tạo ra bởi nữ hoàng Sovereign Ayesha. Bởi vì trong phần 2, cha con Peter Quill đã đánh tan tành phi đội tàu chiến của Ayesha, nên mụ thù dai và đã giành một chiếc kén từ bộ sưu tập Tivan và nhận nuôi đứa bé sinh ra từ đó, đặt tên Adam Warlock và lợi dụng Adam làm bảo kê.', 149, 'https://cdn.discordapp.com/attachments/1058632154696921108/1105736293549346856/129aeeb6-6ae6-4b4b-b4e1-5f38dd1e9bc6.png', 'VN', 'https://cdn.discordapp.com/attachments/1058632154696921108/1120198666817380402/photo-1-1540018246468599888897.png', '2023-06-19 11:57:19.338000', '03/05/2023', 'Vệ Binh Dải Ngân Hà 3', 'https://www.youtube.com/watch?v=u3V5KDHRQvk'),
-(2, 'Thái Hoà, Thu Trang', 'US', '2023-06-19 11:57:19.374000', 'Lấy cảm hứng từ web drama Chuyện Xóm Tui, phiên bản điện ảnh sẽ mang một màu sắc hoàn toàn khác: hài hước hơn, gần gũi và nhiều cảm xúc hơn Bộ phim là câu chuyện của Nhót - người phụ nữ “chưa kịp già” đã sắp bị mãn kinh, vội vàng đi tìm chồng. Nhưng sâu thẳm trong cô, là khao khát muốn có một đứa con và luôn muốn hàn gắn với người cha suốt ngày say xỉn của mình.', 112, 'https://cdn.discordapp.com/attachments/1058632154696921108/1105736308749508658/tFMjE2A.png', 'VN', 'https://cdn.discordapp.com/attachments/1058632154696921108/1120199748780044379/339440745_953868245642419_1190126796390971936_n.png', '2023-06-19 11:57:19.374000', '28/04/2023', 'Con Nhót Mót Chồng', 'https://www.youtube.com/watch?v=Zu2z-SY3hCk'),
-(3, 'Pachrapa Chaichua, Pongsak Pongsuwan, Ananda Everingham, Rusameekae Fagerlund, Napapa Thantrakul', 'US', '2023-06-19 11:57:19.395000', 'Dựa trên truyền thuyết về nàng Nak, không xuất hiện trong lịch sử - Tid Noi là câu chuyện khai thác về một nhân vật mới trong mối quan hệ giữa Pee Mak và Mae Nak. Khác với suy đoán về một chuyện tình tay ba ngang trái, Tid Noi đơn thuần là anh bạn hàng xóm mang trong mình tình yêu đơn phương thuần khiết dành cho cô gái nhà bên là Nak.', 104, 'https://cdn.discordapp.com/attachments/1058632154696921108/1120200232853057607/tinh-nguoi-duyen-ma-ngoai-truyen-1094241.png', 'VN', 'https://cdn.discordapp.com/attachments/1058632154696921108/1120199976304267294/maxresdefault.png', '2023-06-19 11:57:19.395000', '05/05/2023', 'Tình Người Duyên Ma: Ngoại Truyện', 'https://www.youtube.com/watch?v=6oztXW8xqHk'),
-(4, 'Olivia Cooke, Kenneth Branagh, William Shatner, Laurie Holden, Kevin Dennis', 'US', '2023-06-19 11:57:19.412000', 'Cô Bé Cứu Hoả (tên tiếng Anh: Fireheart) đưa người xem bước vào hành trình phiêu lưu kỳ thú của Georgia Nolan - một cô bé thông minh, nhiệt huyết với ước mơ trở thành lính cứu hoả như ba mình. Tuy nhiên, năm 1932 tại New York, phụ nữ không được phép làm công việc này. Nhưng cơ hội “vàng” đã đến khi Georgia nảy ra ý định cải trang thành Joe - một chàng trai vụng về gia nhập đội cứu hoả do chính ba mình thành lập. Vừa phải bảo vệ danh tính thật, vừa phải dấn thân vào phi vụ mạo hiểm: Giải cứu những người lính cứu hoả của thành phố đã lần lượt biến mất trong ngọn lửa bí ẩn thiêu rụi Nhà hát Broadway, liệu Georgia có dũng cảm vượt qua tất cả và thành công?', 92, 'https://cdn.discordapp.com/attachments/1058632154696921108/1105736407181426698/co-be-cuu-hoa.png', 'VN', 'https://cdn.discordapp.com/attachments/1058632154696921108/1120200473014698004/maxresdefault.png', '2023-06-19 11:57:19.412000', '12/05/2023', 'Cô Bé Cứu Hỏa', 'https://www.youtube.com/watch?v=3suZMzK8Uu4'),
-(5, 'Kim Bo-ra, Kim Jae-hyun, Shin So-yul', 'US', '2023-06-19 11:57:19.425000', 'Lời đồn ma ám về nhà ga Oksu ngày càng nhiều khi những vụ án kinh hoàng liên tục xảy ra. Một đường ray cũ kỹ, một chiếc giếng bỏ hoang, những con số gây ám ảnh hay những vết thương kỳ dị trên thi thể người xấu số... Tất cả dẫn đến một bí mật đau lòng bị chôn vùi nhiều năm trước.', 80, 'https://cdn.discordapp.com/attachments/1058632154696921108/1105736488135696424/kisagari_poster.png', 'VN', 'https://cdn.discordapp.com/attachments/1058632154696921108/1120200686429290596/maxresdefault.png', '2023-06-19 11:57:19.425000', '28/04/2023', 'Trạm Tàu Ma', 'https://www.youtube.com/watch?v=gHeWP9R6-eU'),
-(6, 'Vasiliy Rovenskiy', 'US', '2023-06-19 11:57:19.440000', 'Câu chuyện xoay quanh tình bạn của chú mèo Vincent và chú chuột Maurice. Vincent vừa nhận được công việc bảo vệ kiệt tác tranh Mona Lisa trong một viện bảo tàng, còn Maurice lại có niềm đam mê gặm nhấm bức tranh này. Mọi chuyện phức tạp hơn khi có người cũng đang nung nấu ý định cướp lấy tuyệt tác Mona Lisa. Liệu Vincent và đồng đội của mình có thể cứu lấy những kiệt tác của Davinci và bảo vệ danh cho bảo tàng không?', 80, 'https://cdn.discordapp.com/attachments/1058632154696921108/1105736559338192896/meo-vie-ao-tag.png', 'VN', 'https://cdn.discordapp.com/attachments/1058632154696921108/1120200976020815942/maxresdefault.png', '2023-06-19 11:57:19.440000', '28/04/2023', 'Mèo Siêu Quậy Ở Viện Bảo Tàng', 'https://www.youtube.com/watch?v=8luiie842wA'),
-(7, 'Jake Gyllenhaal, Dar Salim, Antony Starr, Alexander Ludwig, Emily Beecham', 'US', '2023-06-19 11:57:19.457000', 'Trong nhiệm vụ cuối cùng ở Afghanistan, Trung sĩ John Kinley cùng đội với phiên dịch viên bản địa Ahmed. Khi đơn vị của họ bị phục kích, Kinley và Ahmed là 2 người sống sót duy nhất. Bị kẻ địch truy đuổi, Ahmed liều mạng đưa Kinley đang bị thương băng qua nhiều dặm đường địa hình khắc nghiệt đến nơi an toàn. Trở về Mỹ, Kinley biết rằng Ahmed và gia đình không dc cấp giấy thông hành tới Mỹ như đã hứa. Quyết tâm bảo vệ bạn mình và đền ơn cứu mạng, Kinley trở lại chiến trường để giúp Ahmed và gia đình trước khi lực lượng phiến quân phát hiện ra họ.', 123, 'https://cdn.discordapp.com/attachments/1058632154696921108/1106239014870204547/poster_payoff_khe_uoc_12.png', 'VN', 'https://cdn.discordapp.com/attachments/1058632154696921108/1120201367785570415/maxresdefault.png', '2023-06-19 11:57:19.457000', '21/04/2023', 'Khế Ước', 'https://www.youtube.com/watch?v=02PPMPArNEQ'),
-(8, 'Park Sung-woong, Lee Yi-kyung, Yeom Hye-ran, Oh Dal-Su, Choi Min-soo', 'US', '2023-06-19 11:57:19.472000', 'Phim Đầu Gấu Đụng Đầu Đất dựa trên câu chuyện thần thoại nổi tiếng tại Hàn Quốc về hai chú gấu sinh đôi hoá thành người sau khi ăn tỏi và ngải cứu trong 100 ngày. Chú gấu ăn tỏi trở thành Na Woong-nam, được một cặp vợ chồng nhà khoa học mang về nuôi nấng, tuy chỉ mới 25 tuổi nhưng lại sở hữu “giao diện” của một ông chú 52 với cái “đầu đất” ngây thơ, hiền lành. Trong khi đó, chú gấu ăn ngải cứu trở thành “đầu gấu” Lee Jeong-hak, được một tên trùm tổ chức tội phạm mang về nuôi và bị lợi dụng như một món “vũ khí” phòng vệ. Trong một tình huống bất đắc dĩ, Na Woong-nam đã trực tiếp đối đầu cùng anh em song sinh Lee Jeong-hak để ngăn chặn một vụ khủng bố virus có tầm lây lan mạnh. Sức mạnh của loài gấu bộc phát sẽ đẩy cuộc đụng độ của cặp gấu song sinh hoá người đi đến hồi kết nào?', 98, 'https://cdn.discordapp.com/attachments/1058632154696921108/1105736697163026512/dau-gau-gap-dau-dat.png', 'VN', '', '2023-06-19 11:57:19.472000', '21/04/2023', 'Đầu Gấu Gặp Đầu Đất', 'https://www.youtube.com/watch?v=nPSGk6ZInrg'),
+(1, 'Chris Pratt, Zoe Saldana, Dave Bautista, Karen Gillan, Pom Klementieff', 'US', '2023-06-19 11:57:19.338000', 'Nhóm Vệ binh dải Ngân Hà sau khi chia tay Thor và Gamora, đã mua lại xứ Knowhere từ chủ cũ Tivan, rồi thành lập trụ sở chính của họ ở đây.[a] Không lâu sau đó, họ bị tấn công bởi Adam Warlock, kẻ mạnh nhất được tạo ra bởi nữ hoàng Sovereign Ayesha. Bởi vì trong phần 2, cha con Peter Quill đã đánh tan tành phi đội tàu chiến của Ayesha, nên mụ thù dai và đã giành một chiếc kén từ bộ sưu tập Tivan và nhận nuôi đứa bé sinh ra từ đó, đặt tên Adam Warlock và lợi dụng Adam làm bảo kê.', 149, 'https://media.themoviedb.org/t/p/w440_and_h660_face/Ak5hAxorxMpxKoVw5e3kGfxs7sY.jpg', 'VN', 'https://media.themoviedb.org/t/p/w440_and_h660_face/yTU09hV4bXAuvk0ovgnNN2xGVX9.jpg', '2023-06-19 11:57:19.338000', '03/05/2023', 'Vệ Binh Dải Ngân Hà 3', 'https://www.youtube.com/watch?v=u3V5KDHRQvk'),
+(2, 'Thái Hoà, Thu Trang', 'US', '2023-06-19 11:57:19.374000', 'Lấy cảm hứng từ web drama Chuyện Xóm Tui, phiên bản điện ảnh sẽ mang một màu sắc hoàn toàn khác: hài hước hơn, gần gũi và nhiều cảm xúc hơn Bộ phim là câu chuyện của Nhót - người phụ nữ “chưa kịp già” đã sắp bị mãn kinh, vội vàng đi tìm chồng. Nhưng sâu thẳm trong cô, là khao khát muốn có một đứa con và luôn muốn hàn gắn với người cha suốt ngày say xỉn của mình.', 112, 'https://media.themoviedb.org/t/p/w440_and_h660_face/9o6cDuYaopRDJhSoMHaTB2jRul.jpg', 'VN', 'https://media.themoviedb.org/t/p/w440_and_h660_face/9o6cDuYaopRDJhSoMHaTB2jRul.jpg', '2023-06-19 11:57:19.374000', '28/04/2023', 'Con Nhót Mót Chồng', 'https://www.youtube.com/watch?v=Zu2z-SY3hCk'),
+(3, 'Pachrapa Chaichua, Pongsak Pongsuwan, Ananda Everingham, Rusameekae Fagerlund, Napapa Thantrakul', 'US', '2023-06-19 11:57:19.395000', 'Dựa trên truyền thuyết về nàng Nak, không xuất hiện trong lịch sử - Tid Noi là câu chuyện khai thác về một nhân vật mới trong mối quan hệ giữa Pee Mak và Mae Nak. Khác với suy đoán về một chuyện tình tay ba ngang trái, Tid Noi đơn thuần là anh bạn hàng xóm mang trong mình tình yêu đơn phương thuần khiết dành cho cô gái nhà bên là Nak.', 104, 'https://media.themoviedb.org/t/p/w440_and_h660_face/6dl14aQ4mwqBu5LPEI2Ewirc5p.jpg', 'VN', 'https://cdn.discordapp.com/attachments/1058632154696921108/1120199976304267294/maxresdefault.png', '2023-06-19 11:57:19.395000', '05/05/2023', 'Tình Người Duyên Ma: Ngoại Truyện', 'https://www.youtube.com/watch?v=6oztXW8xqHk'),
+(4, 'Olivia Cooke, Kenneth Branagh, William Shatner, Laurie Holden, Kevin Dennis', 'US', '2023-06-19 11:57:19.412000', 'Cô Bé Cứu Hoả (tên tiếng Anh: Fireheart) đưa người xem bước vào hành trình phiêu lưu kỳ thú của Georgia Nolan - một cô bé thông minh, nhiệt huyết với ước mơ trở thành lính cứu hoả như ba mình. Tuy nhiên, năm 1932 tại New York, phụ nữ không được phép làm công việc này. Nhưng cơ hội “vàng” đã đến khi Georgia nảy ra ý định cải trang thành Joe - một chàng trai vụng về gia nhập đội cứu hoả do chính ba mình thành lập. Vừa phải bảo vệ danh tính thật, vừa phải dấn thân vào phi vụ mạo hiểm: Giải cứu những người lính cứu hoả của thành phố đã lần lượt biến mất trong ngọn lửa bí ẩn thiêu rụi Nhà hát Broadway, liệu Georgia có dũng cảm vượt qua tất cả và thành công?', 92, 'https://media.themoviedb.org/t/p/w440_and_h660_face/yOdjQduJAD8XfUPi6MIMbbki1n.jpg', 'VN', 'https://cdn.discordapp.com/attachments/1058632154696921108/1120200473014698004/maxresdefault.png', '2023-06-19 11:57:19.412000', '12/05/2023', 'Cô Bé Cứu Hỏa', 'https://www.youtube.com/watch?v=3suZMzK8Uu4'),
+(5, 'Kim Bo-ra, Kim Jae-hyun, Shin So-yul', 'US', '2023-06-19 11:57:19.425000', 'Lời đồn ma ám về nhà ga Oksu ngày càng nhiều khi những vụ án kinh hoàng liên tục xảy ra. Một đường ray cũ kỹ, một chiếc giếng bỏ hoang, những con số gây ám ảnh hay những vết thương kỳ dị trên thi thể người xấu số... Tất cả dẫn đến một bí mật đau lòng bị chôn vùi nhiều năm trước.', 80, 'https://media.themoviedb.org/t/p/w440_and_h660_face/ubg2syyndN0fR2dWmpcBcpgIY9O.jpg', 'VN', 'https://cdn.discordapp.com/attachments/1058632154696921108/1120200686429290596/maxresdefault.png', '2023-06-19 11:57:19.425000', '28/04/2023', 'Trạm Tàu Ma', 'https://www.youtube.com/watch?v=gHeWP9R6-eU'),
+(6, 'Vasiliy Rovenskiy', 'US', '2023-06-19 11:57:19.440000', 'Câu chuyện xoay quanh tình bạn của chú mèo Vincent và chú chuột Maurice. Vincent vừa nhận được công việc bảo vệ kiệt tác tranh Mona Lisa trong một viện bảo tàng, còn Maurice lại có niềm đam mê gặm nhấm bức tranh này. Mọi chuyện phức tạp hơn khi có người cũng đang nung nấu ý định cướp lấy tuyệt tác Mona Lisa. Liệu Vincent và đồng đội của mình có thể cứu lấy những kiệt tác của Davinci và bảo vệ danh cho bảo tàng không?', 80, 'https://media.themoviedb.org/t/p/w440_and_h660_face/usWWy8zq2XKGnBVsVbSW0bLPIti.jpg', 'VN', 'https://media.themoviedb.org/t/p/w440_and_h660_face/usWWy8zq2XKGnBVsVbSW0bLPIti.jpg', '2023-06-19 11:57:19.440000', '28/04/2023', 'Mèo Siêu Quậy Ở Viện Bảo Tàng', 'https://www.youtube.com/watch?v=8luiie842wA'),
+(7, 'Jake Gyllenhaal, Dar Salim, Antony Starr, Alexander Ludwig, Emily Beecham', 'US', '2023-06-19 11:57:19.457000', 'Trong nhiệm vụ cuối cùng ở Afghanistan, Trung sĩ John Kinley cùng đội với phiên dịch viên bản địa Ahmed. Khi đơn vị của họ bị phục kích, Kinley và Ahmed là 2 người sống sót duy nhất. Bị kẻ địch truy đuổi, Ahmed liều mạng đưa Kinley đang bị thương băng qua nhiều dặm đường địa hình khắc nghiệt đến nơi an toàn. Trở về Mỹ, Kinley biết rằng Ahmed và gia đình không dc cấp giấy thông hành tới Mỹ như đã hứa. Quyết tâm bảo vệ bạn mình và đền ơn cứu mạng, Kinley trở lại chiến trường để giúp Ahmed và gia đình trước khi lực lượng phiến quân phát hiện ra họ.', 123, 'https://media.themoviedb.org/t/p/w440_and_h660_face/hX7TIUVm0lQOloQAyMENCVWarVU.jpg', 'VN', 'https://media.themoviedb.org/t/p/w440_and_h660_face/hX7TIUVm0lQOloQAyMENCVWarVU.jpg', '2023-06-19 11:57:19.457000', '21/04/2023', 'Khế Ước', 'https://www.youtube.com/watch?v=02PPMPArNEQ'),
+(8, 'Park Sung-woong, Lee Yi-kyung, Yeom Hye-ran, Oh Dal-Su, Choi Min-soo', 'US', '2023-06-19 11:57:19.472000', 'Phim Đầu Gấu Đụng Đầu Đất dựa trên câu chuyện thần thoại nổi tiếng tại Hàn Quốc về hai chú gấu sinh đôi hoá thành người sau khi ăn tỏi và ngải cứu trong 100 ngày. Chú gấu ăn tỏi trở thành Na Woong-nam, được một cặp vợ chồng nhà khoa học mang về nuôi nấng, tuy chỉ mới 25 tuổi nhưng lại sở hữu “giao diện” của một ông chú 52 với cái “đầu đất” ngây thơ, hiền lành. Trong khi đó, chú gấu ăn ngải cứu trở thành “đầu gấu” Lee Jeong-hak, được một tên trùm tổ chức tội phạm mang về nuôi và bị lợi dụng như một món “vũ khí” phòng vệ. Trong một tình huống bất đắc dĩ, Na Woong-nam đã trực tiếp đối đầu cùng anh em song sinh Lee Jeong-hak để ngăn chặn một vụ khủng bố virus có tầm lây lan mạnh. Sức mạnh của loài gấu bộc phát sẽ đẩy cuộc đụng độ của cặp gấu song sinh hoá người đi đến hồi kết nào?', 98, 'https://media.themoviedb.org/t/p/w440_and_h660_face/1j9euKOxSdejDiKwPbUfO1CZH0u.jpg', 'VN', 'https://media.themoviedb.org/t/p/w440_and_h660_face/1j9euKOxSdejDiKwPbUfO1CZH0u.jpg', '2023-06-19 11:57:19.472000', '21/04/2023', 'Đầu Gấu Gặp Đầu Đất', 'https://www.youtube.com/watch?v=nPSGk6ZInrg'),
 (9, 'John Francis Daley, Jonathan M. Goldstein', 'US', '2023-06-19 11:57:19.489000', 'Theo chân một tên trộm quyến rũ và một nhóm những kẻ bịp bợm nghiệp dư thực hiện vụ trộm sử thi nhằm lấy lại một di vật đã mất, nhưng mọi thứ trở nên nguy hiểm khó lường hơn bao giờ hết khi họ đã chạm trán nhầm người. Ngục Tối Và Rồng: Danh Dự Của Kẻ Trộm mang thế giới huyền ảo của trò chơi nhập vai huyền thoại lên màn ảnh rộng bằng một cuộc phiêu lưu tràn ngập các màn hành động đã mắt cùng màu sắc hài hước, vui nhộn.', 134, 'https://cdn.discordapp.com/attachments/1058632154696921108/1105736771150549103/700x1000___2.png', 'VN', 'https://cdn.discordapp.com/attachments/1058632154696921108/1120201832120197140/Dungeons-Dragons-3423d.png', '2023-06-19 11:57:19.489000', '21/04/2023', 'Ngục Tối Và Rồng: Danh Dự Của Kẻ Trộm', 'https://www.youtube.com/watch?v=IiMinixSXII'),
 (10, 'Chris Pratt, Anya Taylor-Joy, Charlie Day, Jack Black, Keegan-Michael Key', 'US', '2023-06-19 11:57:19.509000', 'Đây là bộ phim chuyển thể thứ ba của thương hiệu này, sau bộ phim hoạt hình Nhật Bản Super Mario Bros.: Nhiệm vụ vĩ đại giải cứu công chúa Peach! (1986) và bộ phim điện ảnh người đóng Super Mario Bros. (1993). Do Aaron Horvath và Michael Jelenic làm đạo diễn, Pierre Leduc và Fabien Polack làm đồng đạo diễn và được Matthew Fogel chắp bút phần biên kịch, bộ phim có dàn diễn viên lồng tiếng bao gồm Chris Pratt, Anya Taylor-Joy, Charlie Day, Jack Black, Keegan-Michael Key, Seth Rogen, Fred Armisen, Sebastian Maniscalco, Charles Martinet và Kevin Michael Richardson. Tác phẩm theo chân hai anh em mang tên Mario và Luigi, hai anh thợ sửa ống nước người Mỹ gốc Ý được chuyển đến một thế giới khác và bị vướng vào trận chiến giữa Vương quốc Nấm, do Công chúa Peach lãnh đạo và Koopas, do Bowser lãnh đạo.', 93, 'https://cdn.discordapp.com/attachments/1058632154696921108/1105736836598485082/1200wx1800h-1-1680765880-poster.png', 'VN', 'https://cdn.discordapp.com/attachments/1058632154696921108/1120202072546082926/maxresdefault.png', '2023-06-19 11:57:19.509000', '07/04/2023', 'Anh Em Super Mario', 'https://www.youtube.com/watch?v=TnGl01FkMMo'),
 (11, 'Penelope Sangiorgi, Rocco Marazzita, Lucia Caporaso, Daniele De Martino, Chiara Casolari', 'US', '2023-06-19 11:57:19.526000', 'Sau cái chết của cha, Emma (Penelope Sangiorgi) vội vã bay từ New York về quê nhà ở Ý để lo hậu sự. Trong thời gian diễn ra tang lễ, Emma ở một mình trong căn nhà mà cha mẹ để lại. Lúc này, cô bị buộc phải đối mặt với một thực thể tà ác có khả năng kết nối thông qua một chiếc radio bị nguyền rủa. Để sống sót và bảo vệ những người mình yêu thương, Emma phải tìm ra bí mật đen tối ẩn sau chiếc radio ma quỷ kia…', 93, 'https://cdn.discordapp.com/attachments/1058632154696921108/1105736900960079973/Am-Vuc-Chet-Sound-of-Silence-2023-poster.png', 'VN', 'https://cdn.discordapp.com/attachments/1058632154696921108/1120202427300327505/xem-phim-am-vuc-chet.png', '2023-06-19 11:57:19.526000', '21/04/2023', 'Âm Vực Chết', 'https://www.youtube.com/watch?v=239gO3anEwE'),
@@ -742,7 +754,7 @@ INSERT INTO `movie` (`id`, `actors`, `country`, `created_at`, `description`, `du
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movie_genre`
+-- Cấu trúc bảng cho bảng `movie_genre`
 --
 
 CREATE TABLE `movie_genre` (
@@ -751,7 +763,7 @@ CREATE TABLE `movie_genre` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `movie_genre`
+-- Đang đổ dữ liệu cho bảng `movie_genre`
 --
 
 INSERT INTO `movie_genre` (`movie_id`, `genre_id`) VALUES
@@ -848,7 +860,7 @@ INSERT INTO `movie_genre` (`movie_id`, `genre_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment`
+-- Cấu trúc bảng cho bảng `payment`
 --
 
 CREATE TABLE `payment` (
@@ -861,16 +873,19 @@ CREATE TABLE `payment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `payment`
+-- Đang đổ dữ liệu cho bảng `payment`
 --
 
 INSERT INTO `payment` (`id`, `amount`, `create_at`, `status`, `update_at`, `booking_id`) VALUES
+('5af9c168-aca3bb9e-8ac4b2b4', 10000, '2025-10-29 18:47:39.523000', 'PENDING', '2025-10-29 18:47:39.523000', 'a4cfde00-4e2d0f82-b2d5d630'),
+('6c9cf20d-91d51c4a-5c74b264', 10000, '2025-11-09 23:15:49.102000', 'PENDING', '2025-11-09 23:15:49.102000', 'ae3189b0-b8dbb242-050ac343'),
+('88801575-62a3d8a8-8460cd45', 10000, '2025-10-09 19:10:41.242000', 'PENDING', '2025-10-09 19:10:41.242000', '031fa892-fb6f90e9-2c9e5d84'),
 ('f1d2859f-7086d6a9-5bed308f', 20000, '2023-06-26 06:52:24.176000', 'PAID', '2023-06-26 06:53:20.094000', '76027d91-63cf320f-4f35d314');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Cấu trúc bảng cho bảng `role`
 --
 
 CREATE TABLE `role` (
@@ -879,7 +894,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `role`
+-- Đang đổ dữ liệu cho bảng `role`
 --
 
 INSERT INTO `role` (`id`, `name`) VALUES
@@ -890,7 +905,7 @@ INSERT INTO `role` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role_seq`
+-- Cấu trúc bảng cho bảng `role_seq`
 --
 
 CREATE TABLE `role_seq` (
@@ -898,7 +913,7 @@ CREATE TABLE `role_seq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `role_seq`
+-- Đang đổ dữ liệu cho bảng `role_seq`
 --
 
 INSERT INTO `role_seq` (`next_val`) VALUES
@@ -907,7 +922,7 @@ INSERT INTO `role_seq` (`next_val`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `show_seat`
+-- Cấu trúc bảng cho bảng `show_seat`
 --
 
 CREATE TABLE `show_seat` (
@@ -920,7 +935,7 @@ CREATE TABLE `show_seat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `show_seat`
+-- Đang đổ dữ liệu cho bảng `show_seat`
 --
 
 INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_id`, `show_id`) VALUES
@@ -1649,7 +1664,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('mQjjAZcuqY', '2023-06-19 11:58:54.959000', 'AVAILABLE', '2023-06-19 11:58:54.959000', 85, '3366b2d8-914c4cdd-dd19921e'),
 ('MQQzGHHCgF', '2023-06-19 11:58:57.094000', 'AVAILABLE', '2023-06-19 11:58:57.094000', 52, '243863a7-c6674692-e1f80a99'),
 ('mrkPizSw5e', '2023-06-19 11:58:56.686000', 'AVAILABLE', '2023-06-19 11:58:56.686000', 8, '1253d416-1461a365-45f8c445'),
-('MrsgUyOjrZ', '2023-06-19 11:58:54.471000', 'AVAILABLE', '2023-06-19 11:58:54.471000', 129, 'bba69e0b-82df5939-21a13bcc'),
+('MrsgUyOjrZ', '2023-06-19 11:58:54.471000', 'AVAILABLE', '2025-10-29 19:03:12.287000', 129, 'bba69e0b-82df5939-21a13bcc'),
 ('mRxfYFOUOt', '2023-06-19 11:58:59.278000', 'AVAILABLE', '2023-06-19 11:58:59.278000', 49, '81ac355e-7f992d9d-5cdfd666'),
 ('MSOhOwXV2q', '2023-06-19 11:58:59.033000', 'AVAILABLE', '2023-06-19 11:58:59.033000', 116, '8ea0f565-e5aa3367-d72511a6'),
 ('mU54ovtmGp', '2023-06-19 11:58:56.726000', 'AVAILABLE', '2023-06-19 11:58:56.726000', 16, '1253d416-1461a365-45f8c445'),
@@ -1665,7 +1680,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('n7U6ZHDsX1', '2023-06-19 11:58:58.672000', 'AVAILABLE', '2023-06-19 11:58:58.672000', 77, '42334790-513e778b-d54e8923'),
 ('NbsSrdn6fJ', '2023-06-19 11:58:56.544000', 'AVAILABLE', '2023-06-19 11:58:56.544000', 98, 'a38986be-920b64bf-147258bc'),
 ('NbUSe94gaM', '2023-06-19 11:58:58.237000', 'AVAILABLE', '2023-06-19 11:58:58.237000', 33, '6c099fa9-34b6b048-22457468'),
-('Net1P0A1sP', '2023-06-19 11:58:56.898000', 'AVAILABLE', '2023-06-19 11:58:56.898000', 126, '0c591085-01d67658-65dd19df'),
+('Net1P0A1sP', '2023-06-19 11:58:56.898000', 'AVAILABLE', '2025-10-09 19:26:52.107000', 126, '0c591085-01d67658-65dd19df'),
 ('net9O2c2gP', '2023-06-19 11:58:56.191000', 'AVAILABLE', '2023-06-19 11:58:56.191000', 13, '719b41d4-07cf3ce5-794cb046'),
 ('NHiYNiCBzk', '2023-06-19 11:58:55.445000', 'AVAILABLE', '2023-06-19 11:58:55.445000', 41, '66bf2624-fb3bb5fa-210bed10'),
 ('nhXnwOQWYM', '2023-06-19 11:58:55.676000', 'AVAILABLE', '2023-06-19 11:58:55.676000', 13, '10dc60e3-8630f0f2-4e69201a'),
@@ -1710,7 +1725,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('ogMEiEBKE3', '2023-06-19 11:58:55.141000', 'AVAILABLE', '2023-06-19 11:58:55.141000', 10, '61d2f5d8-15400daa-3f1fa87a'),
 ('ohVMHW9VSY', '2023-06-19 11:58:57.640000', 'AVAILABLE', '2023-06-19 11:58:57.640000', 48, 'a2698bad-675973aa-182444c2'),
 ('OiKmH3mPYb', '2023-06-19 11:58:57.618000', 'AVAILABLE', '2023-06-19 11:58:57.618000', 45, 'a2698bad-675973aa-182444c2'),
-('OjK2Vk77rd', '2023-06-19 11:58:54.831000', 'AVAILABLE', '2023-06-19 11:58:54.831000', 134, '49bff82b-5212cbd4-2bb51ab5'),
+('OjK2Vk77rd', '2023-06-19 11:58:54.831000', 'AVAILABLE', '2025-11-09 23:52:50.624000', 134, '49bff82b-5212cbd4-2bb51ab5'),
 ('okbl6EWyey', '2023-06-19 11:58:54.165000', 'AVAILABLE', '2023-06-19 11:58:54.165000', 101, '33c9b15c-f26b7368-dbb825a3'),
 ('OMFUa19hFd', '2023-06-19 11:58:56.742000', 'AVAILABLE', '2023-06-19 11:58:56.742000', 20, '1253d416-1461a365-45f8c445'),
 ('oOEOz1ASpJ', '2023-06-19 11:58:54.531000', 'AVAILABLE', '2023-06-19 11:58:54.531000', 144, 'bba69e0b-82df5939-21a13bcc'),
@@ -1768,7 +1783,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('Q1HAr7A7bG', '2023-06-19 11:58:58.620000', 'AVAILABLE', '2023-06-19 11:58:58.620000', 65, '42334790-513e778b-d54e8923'),
 ('q2ngLeHH3r', '2023-06-19 11:58:56.595000', 'AVAILABLE', '2023-06-19 11:58:56.595000', 110, 'a38986be-920b64bf-147258bc'),
 ('q3xPjDzZiV', '2023-06-19 11:58:55.375000', 'AVAILABLE', '2023-06-19 11:58:55.375000', 66, '2e9977a7-e5770b06-eacbd3c3'),
-('Q7GcMi3lMT', '2023-06-19 11:58:58.799000', 'AVAILABLE', '2023-06-19 11:58:58.799000', 143, '5682ad59-1c54857b-7b257361'),
+('Q7GcMi3lMT', '2023-06-19 11:58:58.799000', 'AVAILABLE', '2025-11-09 23:42:48.335000', 143, '5682ad59-1c54857b-7b257361'),
 ('qA0MgxBLrw', '2023-06-19 11:58:54.926000', 'AVAILABLE', '2023-06-19 11:58:54.926000', 159, '49bff82b-5212cbd4-2bb51ab5'),
 ('QAv67PSR7o', '2023-06-19 11:58:57.625000', 'AVAILABLE', '2023-06-19 11:58:57.625000', 46, 'a2698bad-675973aa-182444c2'),
 ('QbRewNdggH', '2023-06-19 11:58:56.242000', 'AVAILABLE', '2023-06-19 11:58:56.242000', 27, '719b41d4-07cf3ce5-794cb046'),
@@ -1950,7 +1965,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('v1CZxY9ZRb', '2023-06-19 11:58:57.226000', 'AVAILABLE', '2023-06-19 11:58:57.226000', 123, 'a12c8eec-d852c20a-11213a08'),
 ('V2eQGWkiwW', '2023-06-19 11:58:55.159000', 'AVAILABLE', '2023-06-19 11:58:55.159000', 15, '61d2f5d8-15400daa-3f1fa87a'),
 ('V2h8iI26Jl', '2023-06-19 11:58:57.296000', 'AVAILABLE', '2023-06-19 11:58:57.296000', 141, 'a12c8eec-d852c20a-11213a08'),
-('v2XBl7enUg', '2023-06-19 11:58:56.245000', 'AVAILABLE', '2023-06-19 11:58:56.245000', 28, '719b41d4-07cf3ce5-794cb046'),
+('v2XBl7enUg', '2023-06-19 11:58:56.245000', 'AVAILABLE', '2025-10-09 20:09:00.330000', 28, '719b41d4-07cf3ce5-794cb046'),
 ('V7EF4bMJ8e', '2023-06-19 11:58:55.508000', 'AVAILABLE', '2023-06-19 11:58:55.508000', 57, '66bf2624-fb3bb5fa-210bed10'),
 ('v7pbpV54ak', '2023-06-19 11:58:59.424000', 'AVAILABLE', '2023-06-19 11:58:59.424000', 2, '53343824-597887ef-e43f61be'),
 ('V8Jsycvbvc', '2023-06-19 11:58:55.608000', 'AVAILABLE', '2023-06-19 11:58:55.608000', 78, '66bf2624-fb3bb5fa-210bed10'),
@@ -2153,7 +2168,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('zQ4wHCFUeS', '2023-06-19 11:58:56.750000', 'AVAILABLE', '2023-06-19 11:58:56.750000', 22, '1253d416-1461a365-45f8c445'),
 ('Zq6RJxFDwQ', '2023-06-19 11:58:58.532000', 'AVAILABLE', '2023-06-19 11:58:58.532000', 45, '42334790-513e778b-d54e8923'),
 ('ZqcOcBg9B9', '2023-06-19 11:58:55.539000', 'AVAILABLE', '2023-06-19 11:58:55.539000', 62, '66bf2624-fb3bb5fa-210bed10'),
-('ZQHoS5n8Un', '2023-06-19 11:58:56.187000', 'AVAILABLE', '2023-06-19 11:58:56.187000', 12, '719b41d4-07cf3ce5-794cb046'),
+('ZQHoS5n8Un', '2023-06-19 11:58:56.187000', 'AVAILABLE', '2025-11-09 23:31:47.701000', 12, '719b41d4-07cf3ce5-794cb046'),
 ('Zt2yJ9ada9', '2023-06-19 11:58:56.524000', 'AVAILABLE', '2023-06-19 11:58:56.524000', 93, 'a38986be-920b64bf-147258bc'),
 ('zTfGqrxwKQ', '2023-06-19 11:58:58.344000', 'AVAILABLE', '2023-06-19 11:58:58.344000', 130, '9b5ee46d-26e93707-d9784912'),
 ('ztMZ6tHk2M', '2023-06-19 11:58:55.549000', 'AVAILABLE', '2023-06-19 11:58:55.549000', 64, '66bf2624-fb3bb5fa-210bed10'),
@@ -2171,7 +2186,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `spam_user`
+-- Cấu trúc bảng cho bảng `spam_user`
 --
 
 CREATE TABLE `spam_user` (
@@ -2181,10 +2196,18 @@ CREATE TABLE `spam_user` (
   `user_id` varchar(26) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `spam_user`
+--
+
+INSERT INTO `spam_user` (`id`, `spam_times`, `update_at`, `user_id`) VALUES
+('8fb1b65b-c2d4555e-183dd6be', 3, '2025-10-29 19:03:12.517000', '04767f9e-2fbe4a11-1684c93d'),
+('c9f8c57a-3d6d1c5a-569f708e', 3, '2025-11-09 23:52:51.075000', '562db9be-1e0c9cc6-66569a1b');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `token`
+-- Cấu trúc bảng cho bảng `token`
 --
 
 CREATE TABLE `token` (
@@ -2195,39 +2218,41 @@ CREATE TABLE `token` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `token`
+-- Đang đổ dữ liệu cho bảng `token`
 --
 
 INSERT INTO `token` (`id`, `access_token`, `refresh_token`, `user_id`) VALUES
+('544c3a88-9b981a6e-3431c500', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoCHapq+rVAhqKU1XvDoWE4szFdPNEoXP5umIO7uOoZ+bHrmfNTttz4caouH0987En+FSUJ/VlWIFdUEhF0DTjdhti1ouU53eWy4/ldbVSkVPvhdgAiiNzhNRQ1SJ4T2GdD4GUcunXJBAoU7S+TJTasYgwaIzi8OZhoDArOvpT3NntRwuwibyZ8uYqJ0F43/CN6oibHntLwWcJLjcbnLDaAn7+sxKIE15cuL8g+GHz3WcLlJkUR1JH4aZFXJcqBc/ZwSyJTet9cJbfBARIEVAxVzYuiT1l36/E2Vm0DV/7JdzvMW1VQL2hKfamZMvouEZI1OqaaYdyhH8HZQ2MRABb5PkpID/MYpnzYnzftNZom/2fw/hwH+Kdn1XG5UAEaFO0q9Odvcqkwe4MImuoGFqpl5zDFGSf+0cxok7shc2W/2HJgPfWUtkAg0efUNtqAoJy6l3ZjV8cPIWI9U6tQTvsb75z9wz+Z1sZhiUnaGotCg/euo3coud9gk99YtzLbWhEV2AN2Omu1U/SIRzY+JF9ZtDiILFuiq8=', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoAnG42+vALALCeQ3JFZSU7pDEXo1MtkHPpmAnn6ivYZ+Hqk3gTsxe/YOou31zyqokqFSpDbRhX45NeV9J1jfvJQd2xJD+2mWu3JD1YZ1bvHXS/tsjiyBD6d1l8jAERmuVPoizONeoWioqWYiQWrKsoa8URY7I/uNGtTwgTqAsyfbtdhz0psmgqbgbFEBuyeqx/bWbO2BPp0MSNAkt8IqkD3DlwSrgEBYBodMs9l/mxXhSufd5XCtI0IFoJpYhHOb8ySeyS8hNRrzmIB4CCnFZcmUAyR8l3fnHsXXWAXejNpzTSxtPTuOXGNaqM8SYpxJLzJPHGLh+hEwGdjKAUT1T5fkODxXTWZfZaUvQo5MWrt+b1rlsENe8shbs9X0PW2++q5Xf6sWWyv4AAEqMO0Cpo6T9axn5njlLoHO+hJuQuiKb2/7/QuJsnUa5cY1/DJA/wUfOrRkiF7qKqVquM0jPW695nDDAWAAUqxgFE1gXd1Svh6z9v7pvsSMlfamdIkRrVk4B0vXaumvqGhyEp8d1LPHpVt8R654nJTvIDxwNh2VWAoAo9Xk31Ua3nRmYrtILdI+HQCxS8+ecBA==', '04767f9e-2fbe4a11-1684c93d'),
+('a106b95d-2452f77c-6b22f3d6', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoCHapq+rVAhrBVD/7G76Sks3TcIhEmkKcq2AO5uCvZNidgnToT9xd282vr3Jw3og/tleEBb1kcahJeFRBiTXRAwZ1xIj923Wu0pDyWM0vvnuX6IUtoRdh1fIY/xd4P1yYKpirWqCuXCozet2AcL6kmbQKa4zFpv5xqh8vP40E4PKPXyGVm8Dp0P1afABB+qqQ8I/IPH9MtkcRLx4Pzp2/JXO1nBHjES89m8FziE3hyjYghadxZVEpjq4KBLcaULHX7DWgVeVBSK/COSdTEwQ0Myo9vBJa38H/01GrA2OJEs2qWTgxY6iPM9WmM9bmojBP956XCJxg+m0PeCyDQi1S9PoDBi/PO5/5cWCvxNJ9iK3R3NV7KMu9mAfg4V13cHj9oYme5eCllMJNCF+UJFOAuqaUOA/+4DpH01vm+/TGjWjAxqL6TNQ+r3LAYpkMHoUNynLjvHgfYoq/qFqJRg6mHORlmh77Gg00rBEiHEA/SAn+s5Pttt1Sng05QPHNH3xIXlIW8+yFtHTEBBWF69B9IsH4Lbgi7KkhNSLLDRlegWARKYQc', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoAnG42+vALALCeQ3JFZSU7pDEXo1MtkHPpmAnn6ivYZ+Hqk3gTsxe/YOou2U487U4t0HyAqxKZY5QUXZFmTfBF1x37Yu+zGmqzJLcU8dPjlSW+vUBiSNt/dRh2zMAaFKVf6O2dauscyoUWbSaeLan4MIBM+zZ2f189xorWpxS966oeyyV5+SBpNsCYwxCpeuT47ydOwxtrXkCCD4Y7Y2bB0/WlxuddDoan8g2/GWfzWBSkKRvaip8xIl3AJ92O+DszXy2ed5fULHLO0RLO1NTQh8YzD1C9KrD5nXbfnLxDfuubzwxYu6lEqesG+eslRUwyL7YDqdS10AcRnfcSH9U/rwqKQ7kVqj7T0Twmv4ZufDN9/R/Hc64rwD8wksyDw39qNSAns+Bwek+BGmdZGehhbiXEz7ogidi0Az4heCxnXr34crWcfYOpmSPY9gPEKAz8Xb6gkcaNZ68qXauNAXAWZ5wix7NZF8zsyMRQWQjQR3LkIfpqL9ury1maKD4MWMbVlAU0+KwumXTHy2/1+1dIN/PCPoizro0QieJTx8BvGxzZrgS138300iVpXqem4g1CoGgYA1MhdrxfEWKvJ+jYwZ9LBGJeQE=', '562db9be-1e0c9cc6-66569a1b'),
 ('ea70bb3b-276c22c5-12e6a688', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoC3DMmu/5EhmNZ1TKHoSm/ZXocIBNmXP65mQOxLmzZpa5sXWXKcAH4uaouxpt3LEktH2XDa5nW6hNeXFGmR74D0Zyw62m8XKyk5DiT8BPnn7f+csNwCBAx85y7g1DQnuzMaCIcaqvczYUWJq8M53F/qMIZ9bS2b5v3QJOaIM70PKMfSqW5sjh3dAofXdCwdrc3Z2EDXdctmEaIg06mITbcnDFvirhbkEYoP0CiHbgoG1VoYxAYykp06FVK74bUdeSlAzpaNVWKaHVGTJNKVNtdRErlBdhxeblrmuYKQX/H/TwWBw0efD4QKvUMvSFiB47/5bPOJNG7kMCexbHTD9//+xrGx/ofpPQRlrpwPZnjq6z6vdEG5Wvm1W45VtxVEfFu9ze6tPY0+gbJn6WIVOS66TcbwSUuz84hVXY4dim4XXG16nuQpk73nWtBYBZHokK+EH9qUs+I46CrVe1NxnKBLAS8Rz1byI1hSgxHVYSbBCvgLLUittphBJuSqXsGwt4S0x7/t+DoUuWIBab1eB0Zte6O94t/502BTr2LyBAulNtJr8UyW8Pumifo2aRuJgtDZmBfBwl/cv5NHOIy/66QWJlZBnZUQ==', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoAnG42+vALALCeQ3JFZSU7pDEXo1MtkHPpmAnn6ivYZ+Hqk3gTsxe/YOouG07yaok/lCpM65JZaQVVHZvmDTRIQZ11Iz92HWYlpH1XJhkrFzM+NsJwSF9191m8iAARWu4cMCyfM2jR1MgIbKXb7/+gKMuZ47vrOdI4j8WVrsgxPa8ViyKh7m6r8U8N1FqzPeHwofEDQBegEsgOUgbxbm/I2O2gQW4FVUQx+gLykbQ3EVXvbVPel5p34l0MYIdHvHh9C+/dt5QYoKCAkFuHWZCeRp6rDJeytrexFmdLHyyVPDLS2dsTMryFqaiMuK2hR9zyuHKFOYCnFAfVQmwYR1n/dxvECrsN/a4HnHu3dcflvWp3bVFGeuFvVTV4hkEfmi0lJy6pJWI1/U9LzjfG2Sbv6fiJjPchgp5zBPTleOfilL10cnqaJ8Y30XDWZ5uW5wswEnRqkkBed6p302qHDnNQpgOizj3TyM6jzMmYno4bift5Yf55Odxpy5lf+XOKhQabD8tx9+9kUrQPgfZ5stPZfnGEOkd4v0EFDPvDiZlzUJjF8ZK3WMv42aZnlzNptg3Fq+3aDgl1c4=', '7540f518-84b36801-ec034014');
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `account`
+-- Chỉ mục cho bảng `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UKigmh1otf9m20dj0fblcfismwt` (`username`,`email`);
 
 --
--- Indexes for table `account_roles`
+-- Chỉ mục cho bảng `account_roles`
 --
 ALTER TABLE `account_roles`
   ADD KEY `FK70s9enq5d1oywl7v8vis5ke5w` (`roles_id`),
   ADD KEY `FKtp61eta5i06bug3w1qr6286uf` (`account_id`);
 
 --
--- Indexes for table `account_temp`
+-- Chỉ mục cho bảng `account_temp`
 --
 ALTER TABLE `account_temp`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UKib5953fd7xdaocxdnw70ps78p` (`username`,`email`);
 
 --
--- Indexes for table `booking`
+-- Chỉ mục cho bảng `booking`
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`id`),
@@ -2235,28 +2260,28 @@ ALTER TABLE `booking`
   ADD KEY `FKsx5vxi7ox6ss3udb20motr3b5` (`user_id`);
 
 --
--- Indexes for table `booking_seats`
+-- Chỉ mục cho bảng `booking_seats`
 --
 ALTER TABLE `booking_seats`
   ADD KEY `FKl40e41jsn0gds92yihw1khgan` (`seats_id`),
   ADD KEY `FKiafqjbiteckjb95679jbqwona` (`booking_id`);
 
 --
--- Indexes for table `cinema_hall`
+-- Chỉ mục cho bảng `cinema_hall`
 --
 ALTER TABLE `cinema_hall`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UKt2y542bb02p0yyc7vjrve3egq` (`name`);
 
 --
--- Indexes for table `cinema_seat`
+-- Chỉ mục cho bảng `cinema_seat`
 --
 ALTER TABLE `cinema_seat`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK5w9hs8k9ucvwukhb939nybsew` (`cinemahall_id`);
 
 --
--- Indexes for table `cinema_show`
+-- Chỉ mục cho bảng `cinema_show`
 --
 ALTER TABLE `cinema_show`
   ADD PRIMARY KEY (`id`),
@@ -2264,7 +2289,7 @@ ALTER TABLE `cinema_show`
   ADD KEY `FKn39s5216u9gxkw3h3odvc531n` (`movie_id`);
 
 --
--- Indexes for table `comment`
+-- Chỉ mục cho bảng `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
@@ -2272,42 +2297,42 @@ ALTER TABLE `comment`
   ADD KEY `FKn84216vj612qs1eg5goe6n2lj` (`user_id`);
 
 --
--- Indexes for table `genre`
+-- Chỉ mục cho bảng `genre`
 --
 ALTER TABLE `genre`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UKbut3uv73xmomvw1eovcuvmp0n` (`genre`,`id`);
 
 --
--- Indexes for table `movie`
+-- Chỉ mục cho bảng `movie`
 --
 ALTER TABLE `movie`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UKkrjn66vkw3ljss4b1dre6fh42` (`title`,`id`);
 
 --
--- Indexes for table `movie_genre`
+-- Chỉ mục cho bảng `movie_genre`
 --
 ALTER TABLE `movie_genre`
   ADD KEY `FK86p3roa187k12avqfl28klp1q` (`genre_id`),
   ADD KEY `FKp6vjabv2e2435at1hnuxg64yv` (`movie_id`);
 
 --
--- Indexes for table `payment`
+-- Chỉ mục cho bảng `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FKqewrl4xrv9eiad6eab3aoja65` (`booking_id`);
 
 --
--- Indexes for table `role`
+-- Chỉ mục cho bảng `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `UK8sewwnpamngi6b1dwaa88askk` (`name`);
 
 --
--- Indexes for table `show_seat`
+-- Chỉ mục cho bảng `show_seat`
 --
 ALTER TABLE `show_seat`
   ADD PRIMARY KEY (`id`),
@@ -2315,114 +2340,114 @@ ALTER TABLE `show_seat`
   ADD KEY `FKiy4ciakwup12wqhalym9gibqe` (`show_id`);
 
 --
--- Indexes for table `spam_user`
+-- Chỉ mục cho bảng `spam_user`
 --
 ALTER TABLE `spam_user`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FKlju5m05cupqrofn0h5cxqf0fa` (`user_id`);
 
 --
--- Indexes for table `token`
+-- Chỉ mục cho bảng `token`
 --
 ALTER TABLE `token`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FKcmaeto5oi5o878gndh99ryn8q` (`user_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `cinema_seat`
+-- AUTO_INCREMENT cho bảng `cinema_seat`
 --
 ALTER TABLE `cinema_seat`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 
 --
--- AUTO_INCREMENT for table `genre`
+-- AUTO_INCREMENT cho bảng `genre`
 --
 ALTER TABLE `genre`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `movie`
+-- AUTO_INCREMENT cho bảng `movie`
 --
 ALTER TABLE `movie`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- Constraints for dumped tables
+-- Ràng buộc đối với các bảng kết xuất
 --
 
 --
--- Constraints for table `account_roles`
+-- Ràng buộc cho bảng `account_roles`
 --
 ALTER TABLE `account_roles`
   ADD CONSTRAINT `FK70s9enq5d1oywl7v8vis5ke5w` FOREIGN KEY (`roles_id`) REFERENCES `role` (`id`),
   ADD CONSTRAINT `FKtp61eta5i06bug3w1qr6286uf` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`);
 
 --
--- Constraints for table `booking`
+-- Ràng buộc cho bảng `booking`
 --
 ALTER TABLE `booking`
   ADD CONSTRAINT `FKp55px829kiwjglwaj12kw22vx` FOREIGN KEY (`show_id`) REFERENCES `cinema_show` (`id`),
   ADD CONSTRAINT `FKsx5vxi7ox6ss3udb20motr3b5` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`);
 
 --
--- Constraints for table `booking_seats`
+-- Ràng buộc cho bảng `booking_seats`
 --
 ALTER TABLE `booking_seats`
   ADD CONSTRAINT `FKiafqjbiteckjb95679jbqwona` FOREIGN KEY (`booking_id`) REFERENCES `booking` (`id`),
   ADD CONSTRAINT `FKl40e41jsn0gds92yihw1khgan` FOREIGN KEY (`seats_id`) REFERENCES `show_seat` (`id`);
 
 --
--- Constraints for table `cinema_seat`
+-- Ràng buộc cho bảng `cinema_seat`
 --
 ALTER TABLE `cinema_seat`
   ADD CONSTRAINT `FK5w9hs8k9ucvwukhb939nybsew` FOREIGN KEY (`cinemahall_id`) REFERENCES `cinema_hall` (`id`);
 
 --
--- Constraints for table `cinema_show`
+-- Ràng buộc cho bảng `cinema_show`
 --
 ALTER TABLE `cinema_show`
   ADD CONSTRAINT `FK4f9b292igihvnhtki8hu8s4gp` FOREIGN KEY (`cinema_hall_id`) REFERENCES `cinema_hall` (`id`),
   ADD CONSTRAINT `FKn39s5216u9gxkw3h3odvc531n` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`);
 
 --
--- Constraints for table `comment`
+-- Ràng buộc cho bảng `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `FKj6owqni09n6r5rspfx1xtfu23` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`),
   ADD CONSTRAINT `FKn84216vj612qs1eg5goe6n2lj` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`);
 
 --
--- Constraints for table `movie_genre`
+-- Ràng buộc cho bảng `movie_genre`
 --
 ALTER TABLE `movie_genre`
   ADD CONSTRAINT `FK86p3roa187k12avqfl28klp1q` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`id`),
   ADD CONSTRAINT `FKp6vjabv2e2435at1hnuxg64yv` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`);
 
 --
--- Constraints for table `payment`
+-- Ràng buộc cho bảng `payment`
 --
 ALTER TABLE `payment`
   ADD CONSTRAINT `FKqewrl4xrv9eiad6eab3aoja65` FOREIGN KEY (`booking_id`) REFERENCES `booking` (`id`);
 
 --
--- Constraints for table `show_seat`
+-- Ràng buộc cho bảng `show_seat`
 --
 ALTER TABLE `show_seat`
   ADD CONSTRAINT `FKiy4ciakwup12wqhalym9gibqe` FOREIGN KEY (`show_id`) REFERENCES `cinema_show` (`id`),
   ADD CONSTRAINT `FKnet31xfrflvyr2mv56tyixieq` FOREIGN KEY (`cinema_seat_id`) REFERENCES `cinema_seat` (`id`);
 
 --
--- Constraints for table `spam_user`
+-- Ràng buộc cho bảng `spam_user`
 --
 ALTER TABLE `spam_user`
   ADD CONSTRAINT `FKlju5m05cupqrofn0h5cxqf0fa` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`);
 
 --
--- Constraints for table `token`
+-- Ràng buộc cho bảng `token`
 --
 ALTER TABLE `token`
   ADD CONSTRAINT `FKcmaeto5oi5o878gndh99ryn8q` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`);

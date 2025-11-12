@@ -50,24 +50,12 @@ $(".account-form").on( "submit", async function( event ) {
         return Swal.fire("Có lỗi xảy ra vui lòng thử lại.");
     }
 
-    //Not thing may be success
-    // await Swal.fire({
-    //     icon: 'success',
-    //     title: 'Đăng nhập thành công'
-    // })
-
     SetToken(res.token)
-    // Redirect to /login
-    let redirect = getParam('redirect')
-    if (redirect) {
-        console.log(redirect)
-        let redirectURL = new URL(redirect);
-        let originURL = new URL(window.location.href);
-        if (redirectURL.origin === originURL.origin) 
-            return window.location.href= redirect
-        
-    }
     
-
-    window.location.href = ('/')
+    let redirect = getParam('redirect');
+    if (redirect && redirect !== 'null' && redirect.startsWith(window.location.origin)) {
+        window.location.href = redirect;
+    } else {
+        window.location.href = '/';
+    }
 });

@@ -64,7 +64,6 @@ cinema\ticket\booking\repository\CinemaHallRepository.class
 cinema\ticket\booking\repository\RoleRepository.class
 cinema\ticket\booking\service\impl\CinemaHallImpl.class
 cinema\ticket\booking\service\MovieService.class
-cinema\ticket\booking\repository\SpamUserRepository.class
 cinema\ticket\booking\config\ApplicationConfig.class
 cinema\ticket\booking\utils\Base64util.class
 cinema\ticket\booking\utils\CustomUUIDGenerator.class
@@ -101,7 +100,6 @@ cinema\ticket\booking\security\InputValidationFilter.class
 cinema\ticket\booking\controller\HomeController.class
 cinema\ticket\booking\response\ShowSeatResponse.class
 cinema\ticket\booking\repository\ShowSeatRepository.class
-cinema\ticket\booking\model\SpamUser.class
 cinema\ticket\booking\exception\GlobalExceptionController.class
 cinema\ticket\booking\repository\UserRepository.class
 cinema\ticket\booking\controller\PaymentController.class

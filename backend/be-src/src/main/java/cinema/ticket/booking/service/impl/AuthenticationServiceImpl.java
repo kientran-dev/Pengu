@@ -80,15 +80,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	private Queue<EmailResponse> mailQueue = new LinkedList<>();
 
 	private List<String> createTokens(String rawIP, Account user, AuthenJWTokenResponse data, boolean isUpdate) {
-		Collection<String> ip = new ArrayList<String>();
-		ip.add(rawIP);
-		Map<String, Collection<?>> ip_addr = new HashMap<>();
-		ip_addr.put("ip_addr", ip);
+		// Changed to Map<String, Object> to match the new method signature in JwtService
+		Map<String, Object> ip_addr = new HashMap<>();
+		ip_addr.put("ip_addr", rawIP);
 
-		Map<String, Collection<?>> list_roles = new HashMap<>();
-		list_roles.put("roles", user.getAuthorities());
-
-		String accessToken = jwtService.generateToken(list_roles, user);
+		// The generateToken method now adds roles by itself, so we don't need to add them here.
+		String accessToken = jwtService.generateToken(user);
 		String refreshToken = jwtService.generateRefreshToken(ip_addr, user);
 		JWTToken save = null;
 
@@ -221,11 +218,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 	@Scheduled(fixedDelay = 1)
 	public void sendVerifyMail() {
-		while (this.mailQueue.size() != 0) {
-			EmailResponse data = this.mailQueue.poll();
-			System.out.println("Sending to mail " + data.getMail());
-			emailSER.sendMail(data.getMail(), data.getSubject(), data.getContent());
-			System.out.println("=====> Done");
-		}
-	}
+        while (!mailQueue.isEmpty()) {
+            EmailResponse data = mailQueue.poll();
+            try {
+                System.out.println("Sending to mail " + data.getMail());
+                emailSER.sendMail(data.getMail(), data.getSubject(), data.getContent());
+                System.out.println("=====> Done");
+            } catch (Exception e) {
+                // Log the error instead of letting it crash the application
+                System.err.println("Failed to send email to " + data.getMail() + ": " + e.getMessage());
+                // Optionally, you could re-queue the email or move it to a dead-letter queue
+            }
+        }
+    }
 }
