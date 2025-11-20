@@ -68,13 +68,20 @@ public class PaymentServiceImpl implements PaymentService {
 
 		Payment payment = new Payment(booking, price);
 		Payment save = paymentREPO.save(payment);
-		
+
+		String bankCode = request.getPaymentType();
+
+		// Validate và set mặc định
+		if (bankCode == null || bankCode.trim().isEmpty()) {
+			bankCode = "VNPAY"; // Để người dùng chọn ngân hàng trên trang VNPay
+		}
+
 		String res = "none";
 		try {
-			res = VNPay.createPay(payment, request.getPaymentType(), ip_addr);
+			res = VNPay.createPay(payment, bankCode, ip_addr);
 		} catch (Exception e) {
 			payment.setStatus(PaymentStatus.CANCLED);
-			System.out.println(e.toString());
+			System.out.println("Lỗi tạo thanh toán: " + e.toString());
 		}
 
 		save = paymentREPO.save(save);
@@ -96,6 +103,13 @@ public class PaymentServiceImpl implements PaymentService {
 	public MyApiResponse verifyPayment(String username, String payment_id) {
 		Payment payment = paymentREPO.findById(payment_id).orElseThrow(() -> new MyNotFoundException("Payment ID not found"));
 		String userOfpayment = payment.getBooking().getUser().getUsername();
+		// --- THÊM ĐOẠN DEBUG NÀY ---
+		System.out.println("=== DEBUG VERIFY PAYMENT ===");
+		System.out.println("Payment ID: " + payment_id);
+		System.out.println("User đang login (Token): " + username);
+		System.out.println("User tạo đơn (Database): " + userOfpayment);
+		System.out.println("Kết quả so sánh: " + username.equals(userOfpayment));
+		System.out.println("============================");
 		if (username.equals(userOfpayment)) {
 			if (payment.getStatus() != PaymentStatus.PENDING)
 				return new MyApiResponse("This ticket have been already paid or canceled before.");
@@ -121,6 +135,8 @@ public class PaymentServiceImpl implements PaymentService {
 		}
 
 		throw new MyNotFoundException("Payment ID not found");
+
+
 	}
 	
 	@Override

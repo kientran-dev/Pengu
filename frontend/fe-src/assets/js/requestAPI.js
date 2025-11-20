@@ -39,7 +39,7 @@ const PenguRequestAPI = async function (method = 'GET', path = 'api', _opti = {}
     }
 
     
-    headers.append('Authorication', 'Bearer ' + GetToken());
+    headers.append('Authorization', 'Bearer ' + GetToken());
   }
 
   let response = await fetch(url,options)
@@ -74,7 +74,7 @@ const TokenIsVaild = async function() {
   if (Date.now() - lastCheckToken > TimeCheckAgainToken) {
     // Check Expire of token
     let headers = new Headers();
-    headers.append('Authorication', 'Bearer ' + GetToken());
+    headers.append('Authorization', 'Bearer ' + GetToken());
     
     let options =  {
       method: 'GET',

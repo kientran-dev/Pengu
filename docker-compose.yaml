@@ -52,12 +52,11 @@ services:
       - DB_NAME=cinemaDB
       - DB_USER=root
       - DB_PASSWORD=123456789
-      - LOGGING_LEVEL_ROOT=DEBUG  # Enable debug logging
     networks:
       - backend_net
     extra_hosts:
       - "smtp.googlemail.com:64.233.189.16"
-      - "sandbox.vnpayment.vn:14.160.87.124"
+      - "sandbox.vnpayment.vn:113.185.41.89"
 
   phpmyadmin:
     container_name: php-my-admin-app

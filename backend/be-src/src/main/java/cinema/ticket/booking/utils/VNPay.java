@@ -33,14 +33,11 @@ public class VNPay extends HttpServlet {
 
     private static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     private static String vnp_Version = "2.1.0";
-    private static String vnp_TmnCode = "064H1LVP";
-    private static String vnp_HashSecret = "AEQQSYJOSEUTZRKRSQSLXXVLIASCSNXM";
+    private static String vnp_TmnCode = "K2HAGWZO";
+    private static String vnp_HashSecret = "F51NP6JCH16I0X6S584KR9CNJFZPTN5J";
     // private static String vnp_Returnurl = "https://coderlod.xyz/order-complete";
     private static String vnp_Returnurl = "http://localhost/order-complete";
     private static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
-
-    // @Autowired
-    // private static PaymentRepository paymentREPO;
 
     public static String createPay(Payment payment, String bankCode, String ip_addr)
             throws ServletException, IOException {
@@ -58,18 +55,19 @@ public class VNPay extends HttpServlet {
         vnp_Params.put("vnp_CurrCode", "VND");
         vnp_Params.put("vnp_OrderType", "other");
 
-        if (bankCode != "VNPAY") {
-            vnp_Params.put("vnp_BankCode", bankCode);
+        // SỬA PHẦN NÀY
+        if (bankCode != null && !bankCode.trim().isEmpty() && !bankCode.equalsIgnoreCase("VNPAY")) {
+            vnp_Params.put("vnp_BankCode", bankCode.trim());
         }
+        // Nếu không truyền hoặc truyền "VNPAY" thì để người dùng chọn trên trang VNPay
 
         vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
-        vnp_Params.put("vnp_OrderInfo", "Thanh toan ve xem phim Pengu TPHCM - Don hang: " + vnp_TxnRef);
-
+        vnp_Params.put("vnp_OrderInfo", "Thanh toan ve xem phim - Don hang: " + vnp_TxnRef);
         vnp_Params.put("vnp_Locale", "vn");
         vnp_Params.put("vnp_ReturnUrl", vnp_Returnurl);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
-        Calendar cld = Calendar.getInstance();
+        Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
         cld.setTime(payment.getCreateAt());
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         String vnp_CreateDate = formatter.format(cld.getTime());
@@ -79,29 +77,39 @@ public class VNPay extends HttpServlet {
         String vnp_ExpireDate = formatter.format(cld.getTime());
         vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
 
-        List fieldNames = new ArrayList(vnp_Params.keySet());
+        // --- ĐOẠN SỬA LỖI ---
+        List<String> fieldNames = new ArrayList<>(vnp_Params.keySet());
         Collections.sort(fieldNames);
         StringBuilder hashData = new StringBuilder();
         StringBuilder query = new StringBuilder();
-        Iterator itr = fieldNames.iterator();
+        Iterator<String> itr = fieldNames.iterator();
+
         while (itr.hasNext()) {
-            String fieldName = (String) itr.next();
-            String fieldValue = (String) vnp_Params.get(fieldName);
+            String fieldName = itr.next();
+            String fieldValue = vnp_Params.get(fieldName);
             if ((fieldValue != null) && (fieldValue.length() > 0)) {
-                // Build hash data
-                hashData.append(fieldName);
+                // Chuẩn bị dữ liệu mã hóa
+                String encodedField = URLEncoder.encode(fieldName, StandardCharsets.US_ASCII.toString());
+                String encodedValue = URLEncoder.encode(fieldValue, StandardCharsets.US_ASCII.toString());
+
+                // Build hash data (SỬA: Phải encode cả dữ liệu đưa vào hash)
+                hashData.append(encodedField);
                 hashData.append('=');
-                hashData.append(URLEncoder.encode(fieldValue, StandardCharsets.US_ASCII.toString()));
+                hashData.append(encodedValue);
+
                 // Build query
-                query.append(URLEncoder.encode(fieldName, StandardCharsets.US_ASCII.toString()));
+                query.append(encodedField);
                 query.append('=');
-                query.append(URLEncoder.encode(fieldValue, StandardCharsets.US_ASCII.toString()));
+                query.append(encodedValue);
+
                 if (itr.hasNext()) {
                     query.append('&');
                     hashData.append('&');
                 }
             }
         }
+        // --------------------
+
         String queryUrl = query.toString();
         String vnp_SecureHash = hmacSHA512(vnp_HashSecret, hashData.toString());
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
@@ -128,12 +136,7 @@ public class VNPay extends HttpServlet {
         cld.setTime(payment.getCreateAt());
         String vnp_TransDate = formatter.format(cld.getTime());
 
-        String vnp_IpAddr = "0.0.0.0";
-
-        try (final DatagramSocket socket = new DatagramSocket()) {
-            socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
-            vnp_IpAddr = socket.getLocalAddress().getHostAddress();
-        }
+        String vnp_IpAddr = "127.0.0.1"; // Use a stable IP address
 
         JsonObject vnp_Params = new JsonObject();
 
@@ -143,7 +146,6 @@ public class VNPay extends HttpServlet {
         vnp_Params.addProperty("vnp_TmnCode", vnp_TmnCode);
         vnp_Params.addProperty("vnp_TxnRef", vnp_TxnRef);
         vnp_Params.addProperty("vnp_OrderInfo", vnp_OrderInfo);
-        // vnp_Params.put("vnp_TransactionNo", vnp_TransactionNo);
         vnp_Params.addProperty("vnp_TransactionDate", vnp_TransDate);
         vnp_Params.addProperty("vnp_CreateDate", vnp_CreateDate);
         vnp_Params.addProperty("vnp_IpAddr", vnp_IpAddr);
@@ -160,56 +162,43 @@ public class VNPay extends HttpServlet {
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json");
         con.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.writeBytes(vnp_Params.toString());
-        wr.flush();
-        wr.close();
-
-        // int responseCode = con.getResponseCode();
-        // System.out.println("nSending 'POST' request to URL : " + url);
-        // System.out.println("Post Data : " + vnp_Params);
-        // System.out.println("Response Code : " + responseCode);
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String output;
-        StringBuffer response = new StringBuffer();
-        while ((output = in.readLine()) != null) {
-            response.append(output);
+        try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
+            wr.writeBytes(vnp_Params.toString());
+            wr.flush();
         }
-        in.close();
-        System.out.println(response.toString());
+
+        StringBuilder response = new StringBuilder();
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()))) {
+            String output;
+            while ((output = in.readLine()) != null) {
+                response.append(output);
+            }
+        }
+        
+        System.out.println("VNPAY Response: " + response.toString());
 
         JSONObject json = new JSONObject(response.toString());
-        System.out.println(json.toString());
 
-        String res_ResponseCode = (String) json.get("vnp_ResponseCode");
-        String res_TxnRef = (String) json.get("vnp_TxnRef");
-        String res_Message = (String) json.get("vnp_Message");
-        Double res_Amount = Double.valueOf((String) json.get("vnp_Amount")) / 100;
-        String res_TransactionType = (String) json.get("vnp_TransactionType");
-        String res_TransactionStatus = (String) json.get("vnp_TransactionStatus");
+        String res_ResponseCode = json.optString("vnp_ResponseCode");
+        if (!"00".equals(res_ResponseCode)) {
+            return 1; // General error
+        }
 
-        System.out.println(res_Message);
+        String res_TransactionStatus = json.optString("vnp_TransactionStatus");
+        if ("00".equals(res_TransactionStatus)) {
+             // Additional checks for security
+            String res_TxnRef = json.optString("vnp_TxnRef");
+            double res_Amount = json.optDouble("vnp_Amount") / 100;
 
-        if (!res_ResponseCode.equals("00")) // Response Code invaild
-            return 1;
-
-        if (!res_TxnRef.equals(payment.getId())) // Payment ID not equal
-            return 1;
-
-        if (res_Amount != payment.getAmount()) // Amount payment not equal
-            return 2;
-
-        if (!res_TransactionType.equals("01")) // Transaction Type invaild
-            return 2;
-
-        if (res_TransactionStatus.equals("01")) // Transaction is pending
-            return 1;
-
-        if (!res_TransactionStatus.equals("00")) // Transaction Status invaild
-            return 2;
-
-        return 0;
+            if (!res_TxnRef.equals(payment.getId()) || res_Amount != payment.getAmount()) {
+                return 2; // Data mismatch, potential fraud
+            }
+            return 0; // Success
+        } else if ("01".equals(res_TransactionStatus) || "02".equals(res_TransactionStatus)) {
+            return 1; // Pending
+        } else {
+            return 2; // Canceled or failed
+        }
     }
 
     private static String hmacSHA512(final String key, final String data) {
@@ -236,6 +225,6 @@ public class VNPay extends HttpServlet {
     }
 
     private static String getRandomID(int min, int max) {
-        return String.valueOf((Math.random() * (max - min)) + min);
+        return String.valueOf((int) ((Math.random() * (max - min)) + min));
     }
 }
