@@ -1,9 +1,12 @@
 # Use a lightweight Java 17 runtime image instead of a full Maven image
 FROM eclipse-temurin:17-jre-alpine
 
+RUN apk add --no-cache tzdata ca-certificates
+
+# 2. Thiết lập Timezone
 ENV TZ=Asia/Ho_Chi_Minh
-# Use && to combine RUN commands for better layer caching
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# -------------------
 
 WORKDIR /app
 
@@ -22,4 +25,4 @@ USER rest-app
 EXPOSE 9595
 
 # Run the application
-CMD ["java", "-jar", "./restful-api-app.jar"]
+CMD ["java", "-Djava.net.preferIPv4Stack=true", "-jar", "./restful-api-app.jar"]

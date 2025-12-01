@@ -26,17 +26,17 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123456789
       MYSQL_DATABASE: cinemaDB
-      MYSQL_ALLOW_EMPTY_PASSWORD: no
-      MYSQL_SSL_CA: ./docker-config/ssl/mysql-cert.pem
-      MYSQL_SSL_CERT: ./docker-config/ssl/mysql-cert.pem
-      MYSQL_SSL_KEY: ./docker-config/ssl/mysql-key.pem
     volumes:
       - ./docker-config/sql/cinema.sql:/docker-entrypoint-initdb.d/cinema.sql
+      - mysql_data:/var/lib/mysql #Mount volume để không mất dữ liệu khi restart
     restart: always
     networks:
       - backend_net
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   restful-app:
     container_name: backend-app
@@ -52,11 +52,9 @@ services:
       - DB_NAME=cinemaDB
       - DB_USER=root
       - DB_PASSWORD=123456789
+      - TZ=Asia/Ho_Chi_Minh
     networks:
       - backend_net
-    extra_hosts:
-      - "smtp.googlemail.com:64.233.189.16"
-      - "sandbox.vnpayment.vn:113.185.41.89"
 
   phpmyadmin:
     container_name: php-my-admin-app
@@ -74,6 +72,6 @@ services:
 networks:
   backend_net:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 192.168.0.0/24
+
+volumes:
+  mysql_data: # Định nghĩa volume bền vững

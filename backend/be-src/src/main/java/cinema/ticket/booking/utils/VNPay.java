@@ -115,6 +115,13 @@ public class VNPay extends HttpServlet {
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = vnp_PayUrl + "?" + queryUrl;
 
+        URL url = new URL(vnp_apiUrl);
+
+// --- THÊM DÒNG NÀY ---
+        System.out.println("DEBUG VNPAY URL: " + vnp_apiUrl);
+// --------------------
+
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
         return paymentUrl;
     }
 

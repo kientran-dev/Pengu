@@ -2,6 +2,9 @@ package cinema.ticket.booking.controller;
 
 import java.security.Principal;
 
+import cinema.ticket.booking.model.Payment;
+import cinema.ticket.booking.repository.PaymentRepository;
+import cinema.ticket.booking.utils.VNPay;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -94,4 +97,5 @@ public class PaymentController {
 	public ResponseEntity<?> getHash(@Valid @RequestBody HashRequest data) {
 		return ResponseEntity.ok().body(paymentSER.createHash(data));
 	}
+
 }

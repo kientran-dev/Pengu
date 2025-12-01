@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: db:3306
--- Thời gian đã tạo: Th10 10, 2025 lúc 04:07 AM
--- Phiên bản máy phục vụ: 9.4.0
--- Phiên bản PHP: 8.2.27
+-- Thời gian đã tạo: Th12 01, 2025 lúc 08:22 PM
+-- Phiên bản máy phục vụ: 9.1.0
+-- Phiên bản PHP: 8.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 -- Cấu trúc bảng cho bảng `account`
 --
 
+DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account` (
   `id` varchar(26) NOT NULL,
   `address` varchar(255) NOT NULL,
@@ -46,9 +47,9 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `address`, `create_at`, `email`, `fullname`, `ip`, `password`, `phone`, `status`, `update_at`, `username`) VALUES
-('04767f9e-2fbe4a11-1684c93d', '213/324 asdsa', '2023-06-19 11:55:43.130000', 'vD@gmail.com', 'I Am User 2', '23.4.3.6', '$2a$10$w3zSJPc.jls3dbA0xSNb7eE9NQpfYv9cKgT7W7.G8KM3MqOLaPdt2', '0129323', 'BLACKLIST', '2025-10-29 19:03:12.495000', 'user_2'),
+('04767f9e-2fbe4a11-1684c93d', '213/324 asdsa', '2023-06-19 11:55:43.130000', 'trantrungkiena1k51nl@gmail.com', 'I Am User 2', '23.4.3.6', '$2a$10$w3zSJPc.jls3dbA0xSNb7eE9NQpfYv9cKgT7W7.G8KM3MqOLaPdt2', '0129323', 'ACTIVE', '2025-10-29 19:03:12.495000', 'user_2'),
 ('562db9be-1e0c9cc6-66569a1b', '213/324 asdsa', '2023-06-19 11:55:42.868000', 'vA@gmail.com', 'I Am Super Admin', '1.2.3.4', '$2a$10$rWu91eFVqRkXOdu8ybe3/e7jAWC7GOJlq/nGr2hTzyh7zHBkcqBcG', '0122323', 'ACTIVE', '2025-11-09 23:52:51.049000', 'super_admin.1234'),
-('7540f518-84b36801-ec034014', '141/21 street number 7, Go Vap', '2023-06-26 06:51:02.271000', 'nguyenductan04202@gmail.com', 'Nguyễn Đức Tấn', '1.2.3.4', '$2a$10$VwamNFng4LgHPof6obHw6.JHFEFOYTfsL1OzCt3DqgQmJPXNnLvIO', '0923142408', 'ACTIVE', '2023-06-26 06:51:02.271000', 'avart'),
+('7540f518-84b36801-ec034014', '113 Le Duc Tho Street, Tu Liem District, Ha Noi, Viet Nam', '2023-06-26 06:51:02.271000', 'trantrungkiena1k51nl@gmail.com', 'Trần Trung Kiên', '1.2.3.4', '$2a$10$VwamNFng4LgHPof6obHw6.JHFEFOYTfsL1OzCt3DqgQmJPXNnLvIO', '0923142408', 'ACTIVE', '2023-06-26 06:51:02.271000', 'avart'),
 ('baf537e3-ee782072-6f273b97', '213/324 asdsa', '2023-06-19 11:55:42.971000', 'vB@gmail.com', 'I Am Admin', '4.5.6.7', '$2a$10$i9Cd5i5fwLhCIO9xd.u4oOP/k6B1mYMSuS8c1GV3LdZokcuZK4OFa', '0124323', 'ACTIVE', '2023-06-19 11:55:42.971000', 'admin.1234'),
 ('fa19dcbd-241797c7-b83f36c5', '213/324 asdsa', '2023-06-19 11:55:43.052000', 'vC@gmail.com', 'I Am User 1', '23.42.54.42', '$2a$10$gpll.buK1FlpPLBLkrDUyeVpWfzqvuchjfmCg.xvmT3CZupPzSwCK', '0126323', 'ACTIVE', '2023-06-19 11:55:43.052000', 'user_1');
 
@@ -58,6 +59,7 @@ INSERT INTO `account` (`id`, `address`, `create_at`, `email`, `fullname`, `ip`, 
 -- Cấu trúc bảng cho bảng `account_roles`
 --
 
+DROP TABLE IF EXISTS `account_roles`;
 CREATE TABLE `account_roles` (
   `account_id` varchar(26) NOT NULL,
   `roles_id` bigint NOT NULL
@@ -83,6 +85,7 @@ INSERT INTO `account_roles` (`account_id`, `roles_id`) VALUES
 -- Cấu trúc bảng cho bảng `account_temp`
 --
 
+DROP TABLE IF EXISTS `account_temp`;
 CREATE TABLE `account_temp` (
   `id` bigint NOT NULL,
   `address` varchar(255) NOT NULL,
@@ -103,6 +106,7 @@ CREATE TABLE `account_temp` (
 -- Cấu trúc bảng cho bảng `account_temp_seq`
 --
 
+DROP TABLE IF EXISTS `account_temp_seq`;
 CREATE TABLE `account_temp_seq` (
   `next_val` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -120,6 +124,7 @@ INSERT INTO `account_temp_seq` (`next_val`) VALUES
 -- Cấu trúc bảng cho bảng `booking`
 --
 
+DROP TABLE IF EXISTS `booking`;
 CREATE TABLE `booking` (
   `id` varchar(26) NOT NULL,
   `create_at` datetime(6) NOT NULL,
@@ -135,12 +140,15 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`id`, `create_at`, `status`, `update_at`, `show_id`, `user_id`) VALUES
 ('031fa892-fb6f90e9-2c9e5d84', '2025-10-09 19:10:32.425000', 'CANCLED', '2025-10-09 19:26:52.144000', '0c591085-01d67658-65dd19df', '04767f9e-2fbe4a11-1684c93d'),
+('15eeda98-4317e8ed-15742eb0', '2025-12-02 02:55:12.605000', 'BOOKED', '2025-12-02 02:56:39.304000', '681eef78-56f9e7e6-4ad01caf', '04767f9e-2fbe4a11-1684c93d'),
 ('1da959f6-31348d04-32f42d05', '2025-11-09 23:37:31.129000', 'CANCLED', '2025-11-09 23:52:50.664000', '49bff82b-5212cbd4-2bb51ab5', '562db9be-1e0c9cc6-66569a1b'),
 ('2063e256-af65aa80-eaa6ed27', '2025-11-09 23:27:15.323000', 'CANCLED', '2025-11-09 23:42:48.363000', '5682ad59-1c54857b-7b257361', '562db9be-1e0c9cc6-66569a1b'),
 ('47bf3dab-97f2e350-dc5fc9c2', '2025-10-09 19:17:14.576000', 'CANCLED', '2025-10-09 20:09:00.362000', '719b41d4-07cf3ce5-794cb046', '04767f9e-2fbe4a11-1684c93d'),
 ('76027d91-63cf320f-4f35d314', '2023-06-26 06:52:15.047000', 'BOOKED', '2023-06-26 06:54:11.632000', '9ec7e849-190e222e-de378f6a', '7540f518-84b36801-ec034014'),
 ('a4cfde00-4e2d0f82-b2d5d630', '2025-10-29 18:47:36.711000', 'CANCLED', '2025-10-29 19:03:12.355000', 'bba69e0b-82df5939-21a13bcc', '04767f9e-2fbe4a11-1684c93d'),
-('ae3189b0-b8dbb242-050ac343', '2025-11-09 23:15:45.750000', 'CANCLED', '2025-11-09 23:31:47.784000', '719b41d4-07cf3ce5-794cb046', '562db9be-1e0c9cc6-66569a1b');
+('a861615b-6bad8846-c340c85f', '2025-12-02 03:12:19.656000', 'BOOKED', '2025-12-02 03:13:45.835000', 'bba69e0b-82df5939-21a13bcc', '04767f9e-2fbe4a11-1684c93d'),
+('ae3189b0-b8dbb242-050ac343', '2025-11-09 23:15:45.750000', 'CANCLED', '2025-11-09 23:31:47.784000', '719b41d4-07cf3ce5-794cb046', '562db9be-1e0c9cc6-66569a1b'),
+('dacc8677-6d386144-173d0e27', '2025-12-02 03:18:19.731000', 'BOOKED', '2025-12-02 03:19:58.027000', 'd419322a-028817a7-fdfc00b4', '04767f9e-2fbe4a11-1684c93d');
 
 -- --------------------------------------------------------
 
@@ -148,6 +156,7 @@ INSERT INTO `booking` (`id`, `create_at`, `status`, `update_at`, `show_id`, `use
 -- Cấu trúc bảng cho bảng `booking_seats`
 --
 
+DROP TABLE IF EXISTS `booking_seats`;
 CREATE TABLE `booking_seats` (
   `booking_id` varchar(26) NOT NULL,
   `seats_id` varchar(26) NOT NULL
@@ -165,7 +174,15 @@ INSERT INTO `booking_seats` (`booking_id`, `seats_id`) VALUES
 ('a4cfde00-4e2d0f82-b2d5d630', 'MrsgUyOjrZ'),
 ('ae3189b0-b8dbb242-050ac343', 'ZQHoS5n8Un'),
 ('2063e256-af65aa80-eaa6ed27', 'Q7GcMi3lMT'),
-('1da959f6-31348d04-32f42d05', 'OjK2Vk77rd');
+('1da959f6-31348d04-32f42d05', 'OjK2Vk77rd'),
+('15eeda98-4317e8ed-15742eb0', 'CLlhyRaV7d'),
+('15eeda98-4317e8ed-15742eb0', 'DbeMSgvhHm'),
+('a861615b-6bad8846-c340c85f', 'shrSiV4xof'),
+('a861615b-6bad8846-c340c85f', 'oUsWvBrQ9Y'),
+('dacc8677-6d386144-173d0e27', 'LKzdsZRXXD'),
+('dacc8677-6d386144-173d0e27', 'Ji0SYmXLdd'),
+('dacc8677-6d386144-173d0e27', 'rqXXN5JefE'),
+('dacc8677-6d386144-173d0e27', 'cxlghqfpq3');
 
 -- --------------------------------------------------------
 
@@ -173,6 +190,7 @@ INSERT INTO `booking_seats` (`booking_id`, `seats_id`) VALUES
 -- Cấu trúc bảng cho bảng `cinema_hall`
 --
 
+DROP TABLE IF EXISTS `cinema_hall`;
 CREATE TABLE `cinema_hall` (
   `id` varchar(26) NOT NULL,
   `capacity` int NOT NULL,
@@ -199,6 +217,7 @@ INSERT INTO `cinema_hall` (`id`, `capacity`, `create_at`, `name`, `total_col`, `
 -- Cấu trúc bảng cho bảng `cinema_seat`
 --
 
+DROP TABLE IF EXISTS `cinema_seat`;
 CREATE TABLE `cinema_seat` (
   `id` bigint NOT NULL,
   `col_index` int DEFAULT NULL,
@@ -384,6 +403,7 @@ INSERT INTO `cinema_seat` (`id`, `col_index`, `create_at`, `name`, `price`, `row
 -- Cấu trúc bảng cho bảng `cinema_show`
 --
 
+DROP TABLE IF EXISTS `cinema_show`;
 CREATE TABLE `cinema_show` (
   `id` varchar(26) NOT NULL,
   `create_at` datetime(6) NOT NULL,
@@ -437,6 +457,7 @@ INSERT INTO `cinema_show` (`id`, `create_at`, `end_time`, `start_time`, `update_
 -- Cấu trúc bảng cho bảng `comment`
 --
 
+DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `id` varchar(26) NOT NULL,
   `comment` varchar(255) NOT NULL,
@@ -662,6 +683,7 @@ INSERT INTO `comment` (`id`, `comment`, `create_at`, `disliked`, `liked`, `rated
 -- Cấu trúc bảng cho bảng `genre`
 --
 
+DROP TABLE IF EXISTS `genre`;
 CREATE TABLE `genre` (
   `id` bigint NOT NULL,
   `created_at` datetime(6) DEFAULT NULL,
@@ -697,6 +719,7 @@ INSERT INTO `genre` (`id`, `created_at`, `genre`, `last_updated`) VALUES
 -- Cấu trúc bảng cho bảng `movie`
 --
 
+DROP TABLE IF EXISTS `movie`;
 CREATE TABLE `movie` (
   `id` bigint NOT NULL,
   `actors` varchar(255) DEFAULT NULL,
@@ -757,6 +780,7 @@ INSERT INTO `movie` (`id`, `actors`, `country`, `created_at`, `description`, `du
 -- Cấu trúc bảng cho bảng `movie_genre`
 --
 
+DROP TABLE IF EXISTS `movie_genre`;
 CREATE TABLE `movie_genre` (
   `movie_id` bigint NOT NULL,
   `genre_id` bigint NOT NULL
@@ -863,6 +887,7 @@ INSERT INTO `movie_genre` (`movie_id`, `genre_id`) VALUES
 -- Cấu trúc bảng cho bảng `payment`
 --
 
+DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
   `id` varchar(26) NOT NULL,
   `amount` double DEFAULT NULL,
@@ -877,9 +902,12 @@ CREATE TABLE `payment` (
 --
 
 INSERT INTO `payment` (`id`, `amount`, `create_at`, `status`, `update_at`, `booking_id`) VALUES
+('29a49a7d-6cf9b2da-0b066ca5', 40000, '2025-12-02 03:18:21.229000', 'PAID', '2025-12-02 03:19:14.796000', 'dacc8677-6d386144-173d0e27'),
 ('5af9c168-aca3bb9e-8ac4b2b4', 10000, '2025-10-29 18:47:39.523000', 'PENDING', '2025-10-29 18:47:39.523000', 'a4cfde00-4e2d0f82-b2d5d630'),
 ('6c9cf20d-91d51c4a-5c74b264', 10000, '2025-11-09 23:15:49.102000', 'PENDING', '2025-11-09 23:15:49.102000', 'ae3189b0-b8dbb242-050ac343'),
+('6f497489-ec063ff7-426e1f1e', 20000, '2025-12-02 03:12:21.523000', 'PAID', '2025-12-02 03:12:50.256000', 'a861615b-6bad8846-c340c85f'),
 ('88801575-62a3d8a8-8460cd45', 10000, '2025-10-09 19:10:41.242000', 'PENDING', '2025-10-09 19:10:41.242000', '031fa892-fb6f90e9-2c9e5d84'),
+('e41eeb7c-897aa836-63813bfb', 20000, '2025-12-02 02:55:14.083000', 'PAID', '2025-12-02 02:55:42.073000', '15eeda98-4317e8ed-15742eb0'),
 ('f1d2859f-7086d6a9-5bed308f', 20000, '2023-06-26 06:52:24.176000', 'PAID', '2023-06-26 06:53:20.094000', '76027d91-63cf320f-4f35d314');
 
 -- --------------------------------------------------------
@@ -888,6 +916,7 @@ INSERT INTO `payment` (`id`, `amount`, `create_at`, `status`, `update_at`, `book
 -- Cấu trúc bảng cho bảng `role`
 --
 
+DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `id` bigint NOT NULL,
   `name` varchar(255) DEFAULT NULL
@@ -908,6 +937,7 @@ INSERT INTO `role` (`id`, `name`) VALUES
 -- Cấu trúc bảng cho bảng `role_seq`
 --
 
+DROP TABLE IF EXISTS `role_seq`;
 CREATE TABLE `role_seq` (
   `next_val` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -925,6 +955,7 @@ INSERT INTO `role_seq` (`next_val`) VALUES
 -- Cấu trúc bảng cho bảng `show_seat`
 --
 
+DROP TABLE IF EXISTS `show_seat`;
 CREATE TABLE `show_seat` (
   `id` varchar(26) NOT NULL,
   `create_at` datetime(6) NOT NULL,
@@ -1239,7 +1270,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('CJkGscivGP', '2023-06-19 11:58:55.789000', 'AVAILABLE', '2023-06-19 11:58:55.789000', 40, '10dc60e3-8630f0f2-4e69201a'),
 ('CkcfzM7GlZ', '2023-06-19 11:58:59.449000', 'AVAILABLE', '2023-06-19 11:58:59.449000', 8, '53343824-597887ef-e43f61be'),
 ('cLBM9k2VeR', '2023-06-19 11:58:59.112000', 'AVAILABLE', '2023-06-19 11:58:59.112000', 13, '681eef78-56f9e7e6-4ad01caf'),
-('CLlhyRaV7d', '2023-06-19 11:58:59.103000', 'AVAILABLE', '2023-06-19 11:58:59.103000', 11, '681eef78-56f9e7e6-4ad01caf'),
+('CLlhyRaV7d', '2023-06-19 11:58:59.103000', 'BOOKED', '2025-12-02 02:56:39.336000', 11, '681eef78-56f9e7e6-4ad01caf'),
 ('cLU4uAQUne', '2023-06-19 11:58:54.980000', 'AVAILABLE', '2023-06-19 11:58:54.980000', 91, '3366b2d8-914c4cdd-dd19921e'),
 ('clxdguQV28', '2023-06-19 11:58:54.872000', 'AVAILABLE', '2023-06-19 11:58:54.872000', 145, '49bff82b-5212cbd4-2bb51ab5'),
 ('cNwk8gB111', '2023-06-19 11:58:54.197000', 'AVAILABLE', '2023-06-19 11:58:54.197000', 108, '33c9b15c-f26b7368-dbb825a3'),
@@ -1252,7 +1283,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('CSUu4Zod4x', '2023-06-19 11:58:53.916000', 'AVAILABLE', '2023-06-19 11:58:53.916000', 45, 'c21543d4-3f2474b3-b8f7484d'),
 ('CuCL2Ohauo', '2023-06-19 11:58:57.481000', 'AVAILABLE', '2023-06-19 11:58:57.481000', 66, '9ec7e849-190e222e-de378f6a'),
 ('CX66tM5Ms4', '2023-06-19 11:58:55.726000', 'AVAILABLE', '2023-06-19 11:58:55.726000', 25, '10dc60e3-8630f0f2-4e69201a'),
-('cxlghqfpq3', '2023-06-19 11:58:56.055000', 'AVAILABLE', '2023-06-19 11:58:56.055000', 100, 'd419322a-028817a7-fdfc00b4'),
+('cxlghqfpq3', '2023-06-19 11:58:56.055000', 'BOOKED', '2025-12-02 03:19:58.077000', 100, 'd419322a-028817a7-fdfc00b4'),
 ('cXWAoa4mJZ', '2023-06-19 11:58:55.942000', 'AVAILABLE', '2023-06-19 11:58:55.942000', 153, '25d7d885-39cdc7e1-6aaabf75'),
 ('cxWtzN3xDw', '2023-06-19 11:58:56.949000', 'AVAILABLE', '2023-06-19 11:58:56.949000', 139, '0c591085-01d67658-65dd19df'),
 ('cynenGwbwX', '2023-06-19 11:58:59.024000', 'AVAILABLE', '2023-06-19 11:58:59.024000', 114, '8ea0f565-e5aa3367-d72511a6'),
@@ -1265,7 +1296,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('d8cdPxGMxP', '2023-06-19 11:58:58.374000', 'AVAILABLE', '2023-06-19 11:58:58.374000', 136, '9b5ee46d-26e93707-d9784912'),
 ('DaZp2JVoYY', '2023-06-19 11:58:55.582000', 'AVAILABLE', '2023-06-19 11:58:55.582000', 72, '66bf2624-fb3bb5fa-210bed10'),
 ('Db9hfLXSCi', '2023-06-19 11:58:57.023000', 'AVAILABLE', '2023-06-19 11:58:57.023000', 156, '0c591085-01d67658-65dd19df'),
-('DbeMSgvhHm', '2023-06-19 11:58:59.126000', 'AVAILABLE', '2023-06-19 11:58:59.126000', 16, '681eef78-56f9e7e6-4ad01caf'),
+('DbeMSgvhHm', '2023-06-19 11:58:59.126000', 'BOOKED', '2025-12-02 02:56:39.350000', 16, '681eef78-56f9e7e6-4ad01caf'),
 ('dBk1jL0iED', '2023-06-19 11:58:55.018000', 'AVAILABLE', '2023-06-19 11:58:55.018000', 101, '3366b2d8-914c4cdd-dd19921e'),
 ('DCceECbDtI', '2023-06-19 11:58:56.273000', 'AVAILABLE', '2023-06-19 11:58:56.273000', 35, '719b41d4-07cf3ce5-794cb046'),
 ('dD4XZG6jwv', '2023-06-19 11:58:58.391000', 'AVAILABLE', '2023-06-19 11:58:58.391000', 139, '9b5ee46d-26e93707-d9784912'),
@@ -1530,7 +1561,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('JFpAhcM1pk', '2023-06-19 11:58:55.705000', 'AVAILABLE', '2023-06-19 11:58:55.705000', 20, '10dc60e3-8630f0f2-4e69201a'),
 ('JfUQgnnrGH', '2023-06-19 11:58:55.485000', 'AVAILABLE', '2023-06-19 11:58:55.485000', 51, '66bf2624-fb3bb5fa-210bed10'),
 ('JHPXIaxHRR', '2023-06-19 11:58:58.266000', 'AVAILABLE', '2023-06-19 11:58:58.266000', 39, '6c099fa9-34b6b048-22457468'),
-('Ji0SYmXLdd', '2023-06-19 11:58:56.065000', 'AVAILABLE', '2023-06-19 11:58:56.065000', 103, 'd419322a-028817a7-fdfc00b4'),
+('Ji0SYmXLdd', '2023-06-19 11:58:56.065000', 'BOOKED', '2025-12-02 03:19:58.053000', 103, 'd419322a-028817a7-fdfc00b4'),
 ('JiLEEtQp6G', '2023-06-19 11:58:54.693000', 'AVAILABLE', '2023-06-19 11:58:54.693000', 61, 'ed73b77c-cdda79ae-b32ba801'),
 ('jjFhZEutEu', '2023-06-19 11:58:58.486000', 'AVAILABLE', '2023-06-19 11:58:58.486000', 154, '9b5ee46d-26e93707-d9784912'),
 ('JJLLT16aos', '2023-06-19 11:58:56.449000', 'AVAILABLE', '2023-06-19 11:58:56.449000', 78, '9c93fcf6-4ee7aba9-9824ff4d'),
@@ -1614,7 +1645,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('LiJXbSJytp', '2023-06-19 11:58:54.631000', 'AVAILABLE', '2023-06-19 11:58:54.631000', 45, 'ed73b77c-cdda79ae-b32ba801'),
 ('LJKX0nr0YH', '2023-06-19 11:58:54.962000', 'AVAILABLE', '2023-06-19 11:58:54.962000', 86, '3366b2d8-914c4cdd-dd19921e'),
 ('lkM8Ki918A', '2023-06-19 11:58:59.324000', 'AVAILABLE', '2023-06-19 11:58:59.324000', 60, '81ac355e-7f992d9d-5cdfd666'),
-('LKzdsZRXXD', '2023-06-19 11:58:56.089000', 'AVAILABLE', '2023-06-19 11:58:56.089000', 110, 'd419322a-028817a7-fdfc00b4'),
+('LKzdsZRXXD', '2023-06-19 11:58:56.089000', 'BOOKED', '2025-12-02 03:19:58.041000', 110, 'd419322a-028817a7-fdfc00b4'),
 ('lLOuF6VQsx', '2023-06-19 11:58:53.962000', 'AVAILABLE', '2023-06-19 11:58:53.962000', 56, 'c21543d4-3f2474b3-b8f7484d'),
 ('lmC3c5eWf7', '2023-06-19 11:58:57.060000', 'AVAILABLE', '2023-06-19 11:58:57.060000', 43, '243863a7-c6674692-e1f80a99'),
 ('lnRI6eRpeV', '2023-06-19 11:58:58.921000', 'AVAILABLE', '2023-06-19 11:58:58.921000', 90, '8ea0f565-e5aa3367-d72511a6'),
@@ -1735,7 +1766,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('ORpMMPCoZz', '2023-06-19 11:58:59.181000', 'AVAILABLE', '2023-06-19 11:58:59.181000', 29, '681eef78-56f9e7e6-4ad01caf'),
 ('oTLrFOtn0Q', '2023-06-19 11:58:55.275000', 'AVAILABLE', '2023-06-19 11:58:55.275000', 42, '2e9977a7-e5770b06-eacbd3c3'),
 ('oTXjKOHMon', '2023-06-19 11:58:55.650000', 'AVAILABLE', '2023-06-19 11:58:55.650000', 6, '10dc60e3-8630f0f2-4e69201a'),
-('oUsWvBrQ9Y', '2023-06-19 11:58:54.453000', 'AVAILABLE', '2023-06-19 11:58:54.453000', 124, 'bba69e0b-82df5939-21a13bcc'),
+('oUsWvBrQ9Y', '2023-06-19 11:58:54.453000', 'BOOKED', '2025-12-02 03:13:45.873000', 124, 'bba69e0b-82df5939-21a13bcc'),
 ('OVcjwEvxRl', '2023-06-19 11:58:56.197000', 'AVAILABLE', '2023-06-19 11:58:56.197000', 15, '719b41d4-07cf3ce5-794cb046'),
 ('oVWbFLKKnd', '2023-06-19 11:58:55.011000', 'AVAILABLE', '2023-06-19 11:58:55.011000', 99, '3366b2d8-914c4cdd-dd19921e'),
 ('OwFZx0r0QN', '2023-06-19 11:58:57.003000', 'AVAILABLE', '2023-06-19 11:58:57.003000', 151, '0c591085-01d67658-65dd19df'),
@@ -1836,7 +1867,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('RPbKLjpO4p', '2023-06-19 11:58:56.253000', 'AVAILABLE', '2023-06-19 11:58:56.253000', 30, '719b41d4-07cf3ce5-794cb046'),
 ('rqbSUA0KTG', '2023-06-19 11:58:53.980000', 'AVAILABLE', '2023-06-19 11:58:53.980000', 61, 'c21543d4-3f2474b3-b8f7484d'),
 ('rQjoNQUpm2', '2023-06-19 11:58:58.100000', 'AVAILABLE', '2023-06-19 11:58:58.100000', 6, '6c099fa9-34b6b048-22457468'),
-('rqXXN5JefE', '2023-06-19 11:58:56.051000', 'AVAILABLE', '2023-06-19 11:58:56.051000', 99, 'd419322a-028817a7-fdfc00b4'),
+('rqXXN5JefE', '2023-06-19 11:58:56.051000', 'BOOKED', '2025-12-02 03:19:58.065000', 99, 'd419322a-028817a7-fdfc00b4'),
 ('rqYeOPEMO8', '2023-06-19 11:58:55.877000', 'AVAILABLE', '2023-06-19 11:58:55.877000', 138, '25d7d885-39cdc7e1-6aaabf75'),
 ('Rr32Q22kWh', '2023-06-19 11:58:58.647000', 'AVAILABLE', '2023-06-19 11:58:58.647000', 71, '42334790-513e778b-d54e8923'),
 ('rU9DU14jCE', '2023-06-19 11:58:57.809000', 'AVAILABLE', '2023-06-19 11:58:57.809000', 70, 'a2698bad-675973aa-182444c2'),
@@ -1859,7 +1890,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 ('SFr5nX2UB1', '2023-06-19 11:58:56.331000', 'AVAILABLE', '2023-06-19 11:58:56.331000', 48, '9c93fcf6-4ee7aba9-9824ff4d'),
 ('SfwYftJXCP', '2023-06-19 11:58:58.913000', 'AVAILABLE', '2023-06-19 11:58:58.913000', 88, '8ea0f565-e5aa3367-d72511a6'),
 ('Sh0Y5zz26e', '2023-06-19 11:58:57.314000', 'AVAILABLE', '2023-06-19 11:58:57.314000', 145, 'a12c8eec-d852c20a-11213a08'),
-('shrSiV4xof', '2023-06-19 11:58:54.500000', 'AVAILABLE', '2023-06-19 11:58:54.500000', 136, 'bba69e0b-82df5939-21a13bcc'),
+('shrSiV4xof', '2023-06-19 11:58:54.500000', 'BOOKED', '2025-12-02 03:13:45.856000', 136, 'bba69e0b-82df5939-21a13bcc'),
 ('SHX2NJuIdf', '2023-06-19 11:58:54.331000', 'AVAILABLE', '2023-06-19 11:58:54.331000', 15, '294022bf-3dcd2d6e-26e74c77'),
 ('SHzDxEKQr0', '2023-06-19 11:58:56.662000', 'AVAILABLE', '2023-06-19 11:58:56.662000', 3, '1253d416-1461a365-45f8c445'),
 ('SIKVVKj0wI', '2023-06-19 11:58:59.006000', 'AVAILABLE', '2023-06-19 11:58:59.006000', 110, '8ea0f565-e5aa3367-d72511a6'),
@@ -2189,6 +2220,7 @@ INSERT INTO `show_seat` (`id`, `create_at`, `status`, `update_at`, `cinema_seat_
 -- Cấu trúc bảng cho bảng `spam_user`
 --
 
+DROP TABLE IF EXISTS `spam_user`;
 CREATE TABLE `spam_user` (
   `id` varchar(26) NOT NULL,
   `spam_times` int NOT NULL,
@@ -2210,6 +2242,7 @@ INSERT INTO `spam_user` (`id`, `spam_times`, `update_at`, `user_id`) VALUES
 -- Cấu trúc bảng cho bảng `token`
 --
 
+DROP TABLE IF EXISTS `token`;
 CREATE TABLE `token` (
   `id` varchar(26) NOT NULL,
   `access_token` varchar(3000) NOT NULL,
@@ -2222,7 +2255,7 @@ CREATE TABLE `token` (
 --
 
 INSERT INTO `token` (`id`, `access_token`, `refresh_token`, `user_id`) VALUES
-('544c3a88-9b981a6e-3431c500', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoCHapq+rVAhqKU1XvDoWE4szFdPNEoXP5umIO7uOoZ+bHrmfNTttz4caouH0987En+FSUJ/VlWIFdUEhF0DTjdhti1ouU53eWy4/ldbVSkVPvhdgAiiNzhNRQ1SJ4T2GdD4GUcunXJBAoU7S+TJTasYgwaIzi8OZhoDArOvpT3NntRwuwibyZ8uYqJ0F43/CN6oibHntLwWcJLjcbnLDaAn7+sxKIE15cuL8g+GHz3WcLlJkUR1JH4aZFXJcqBc/ZwSyJTet9cJbfBARIEVAxVzYuiT1l36/E2Vm0DV/7JdzvMW1VQL2hKfamZMvouEZI1OqaaYdyhH8HZQ2MRABb5PkpID/MYpnzYnzftNZom/2fw/hwH+Kdn1XG5UAEaFO0q9Odvcqkwe4MImuoGFqpl5zDFGSf+0cxok7shc2W/2HJgPfWUtkAg0efUNtqAoJy6l3ZjV8cPIWI9U6tQTvsb75z9wz+Z1sZhiUnaGotCg/euo3coud9gk99YtzLbWhEV2AN2Omu1U/SIRzY+JF9ZtDiILFuiq8=', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoAnG42+vALALCeQ3JFZSU7pDEXo1MtkHPpmAnn6ivYZ+Hqk3gTsxe/YOou31zyqokqFSpDbRhX45NeV9J1jfvJQd2xJD+2mWu3JD1YZ1bvHXS/tsjiyBD6d1l8jAERmuVPoizONeoWioqWYiQWrKsoa8URY7I/uNGtTwgTqAsyfbtdhz0psmgqbgbFEBuyeqx/bWbO2BPp0MSNAkt8IqkD3DlwSrgEBYBodMs9l/mxXhSufd5XCtI0IFoJpYhHOb8ySeyS8hNRrzmIB4CCnFZcmUAyR8l3fnHsXXWAXejNpzTSxtPTuOXGNaqM8SYpxJLzJPHGLh+hEwGdjKAUT1T5fkODxXTWZfZaUvQo5MWrt+b1rlsENe8shbs9X0PW2++q5Xf6sWWyv4AAEqMO0Cpo6T9axn5njlLoHO+hJuQuiKb2/7/QuJsnUa5cY1/DJA/wUfOrRkiF7qKqVquM0jPW695nDDAWAAUqxgFE1gXd1Svh6z9v7pvsSMlfamdIkRrVk4B0vXaumvqGhyEp8d1LPHpVt8R654nJTvIDxwNh2VWAoAo9Xk31Ua3nRmYrtILdI+HQCxS8+ecBA==', '04767f9e-2fbe4a11-1684c93d'),
+('544c3a88-9b981a6e-3431c500', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoC3DMmu/5EhmNZ1TKHoSm/ZXocIBNmXP65mQOxLmzZpa5sXWXKcAH4uaouxpt3LEktH2XDa5nW6gUfi5WmSLBD1x37Yu+zGmqzJLcU8dPjkyX+uUrxiN9+dRh2zMAaFKVf6O2dauvTT4aW5qKd7b64MIALNrnrNAa7AwcbZcvx/CcUhStsPSipMM2OlZFx6Si2+upMkVHhGkbO00N5YGrPVewnzmBbwoHwdpr9FXwpmUfsft1T291hIJuBo0dXOeSkA2TZ6pfN7/2GBR1SH5uOBIghz4kw/be1Auaf36rVMbYcxxccMqxL+u6HszynUN50qzXObt9yQ4+dxWYShRYgMUXFhnSR6fPGx/nv/x4la+ZsfpsCe+2iDbF/n0JAVLrspa4tZiZie47e2iWAnzU5J/LJRTdl0JBsGzbouaHgUvMwMWuFsQLu1WdUNZYIKgYxQTjgnYmeIy/0lSERjbMYIN7pCWAeFcBjR8rcncWQSL0nY6qts95jBIlDfPrKn95B14V5/eTrQzgChaBzJBDB9q8IKUi5OVRJDf2GCNct05FMYBK0mJy3UCTg2e5vq4OKYOnWhZd2tn5dDeK2MXnGFdqXyfvBCc=', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoAnG42+vALALCeQ3WHpCqyNzFXfBNtEHppmA34qOvY+HFukrnSdxZ4s+7jWFv3ZsnvVCtKK9McasTUEhj0jT/H0106qq52FiMzIfufoNIjnLd+csVwiNT+d1mzCRNbUDyBJePYPW2bgtWdK+AVKKlu5UmdsjN1MtzrwMqQZogw6+SZxCAmviw2PwnAVYR/MWs+I2kPnMVmF0gWU8hmozWDnPymjyeaj8BwMc31n7o6kMsmft/enNP3apjJep+I8ub9ROUKMNAcPH+GjZ2SGdIaCo2tS1R/tCQ022mDgX4XsHRYQFJRby2PvaCN+OPmCBmq+nxDY5T9FAyIQG1YD5gzN8SMATPbKS+YH2qtst26diuye96bM2YqS+68EswX1rV0pCAs9ao6c0UDnmxC1yhiYnObyTqrx9FuFblvOXFgH7k4tHdddk0vWGkRYN3XI0W21fQy3NaeKCB4067PTH5XZZx8QDyWCQHvRsTTnAqVgjN7a/Ji+hAozdlXd6ZOXRxQW47wYiYuUrtfy+DrMdHNcH7E8Mjybw1PUPKRGNqnUJxYME/+lMF72WGtWCx/qtIA9W9fQRE', '04767f9e-2fbe4a11-1684c93d'),
 ('a106b95d-2452f77c-6b22f3d6', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoCHapq+rVAhrBVD/7G76Sks3TcIhEmkKcq2AO5uCvZNidgnToT9xd282vr3Jw3og/tleEBb1kcahJeFRBiTXRAwZ1xIj923Wu0pDyWM0vvnuX6IUtoRdh1fIY/xd4P1yYKpirWqCuXCozet2AcL6kmbQKa4zFpv5xqh8vP40E4PKPXyGVm8Dp0P1afABB+qqQ8I/IPH9MtkcRLx4Pzp2/JXO1nBHjES89m8FziE3hyjYghadxZVEpjq4KBLcaULHX7DWgVeVBSK/COSdTEwQ0Myo9vBJa38H/01GrA2OJEs2qWTgxY6iPM9WmM9bmojBP956XCJxg+m0PeCyDQi1S9PoDBi/PO5/5cWCvxNJ9iK3R3NV7KMu9mAfg4V13cHj9oYme5eCllMJNCF+UJFOAuqaUOA/+4DpH01vm+/TGjWjAxqL6TNQ+r3LAYpkMHoUNynLjvHgfYoq/qFqJRg6mHORlmh77Gg00rBEiHEA/SAn+s5Pttt1Sng05QPHNH3xIXlIW8+yFtHTEBBWF69B9IsH4Lbgi7KkhNSLLDRlegWARKYQc', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoAnG42+vALALCeQ3JFZSU7pDEXo1MtkHPpmAnn6ivYZ+Hqk3gTsxe/YOou2U487U4t0HyAqxKZY5QUXZFmTfBF1x37Yu+zGmqzJLcU8dPjlSW+vUBiSNt/dRh2zMAaFKVf6O2dauscyoUWbSaeLan4MIBM+zZ2f189xorWpxS966oeyyV5+SBpNsCYwxCpeuT47ydOwxtrXkCCD4Y7Y2bB0/WlxuddDoan8g2/GWfzWBSkKRvaip8xIl3AJ92O+DszXy2ed5fULHLO0RLO1NTQh8YzD1C9KrD5nXbfnLxDfuubzwxYu6lEqesG+eslRUwyL7YDqdS10AcRnfcSH9U/rwqKQ7kVqj7T0Twmv4ZufDN9/R/Hc64rwD8wksyDw39qNSAns+Bwek+BGmdZGehhbiXEz7ogidi0Az4heCxnXr34crWcfYOpmSPY9gPEKAz8Xb6gkcaNZ68qXauNAXAWZ5wix7NZF8zsyMRQWQjQR3LkIfpqL9ury1maKD4MWMbVlAU0+KwumXTHy2/1+1dIN/PCPoizro0QieJTx8BvGxzZrgS138300iVpXqem4g1CoGgYA1MhdrxfEWKvJ+jYwZ9LBGJeQE=', '562db9be-1e0c9cc6-66569a1b'),
 ('ea70bb3b-276c22c5-12e6a688', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoC3DMmu/5EhmNZ1TKHoSm/ZXocIBNmXP65mQOxLmzZpa5sXWXKcAH4uaouxpt3LEktH2XDa5nW6hNeXFGmR74D0Zyw62m8XKyk5DiT8BPnn7f+csNwCBAx85y7g1DQnuzMaCIcaqvczYUWJq8M53F/qMIZ9bS2b5v3QJOaIM70PKMfSqW5sjh3dAofXdCwdrc3Z2EDXdctmEaIg06mITbcnDFvirhbkEYoP0CiHbgoG1VoYxAYykp06FVK74bUdeSlAzpaNVWKaHVGTJNKVNtdRErlBdhxeblrmuYKQX/H/TwWBw0efD4QKvUMvSFiB47/5bPOJNG7kMCexbHTD9//+xrGx/ofpPQRlrpwPZnjq6z6vdEG5Wvm1W45VtxVEfFu9ze6tPY0+gbJn6WIVOS66TcbwSUuz84hVXY4dim4XXG16nuQpk73nWtBYBZHokK+EH9qUs+I46CrVe1NxnKBLAS8Rz1byI1hSgxHVYSbBCvgLLUittphBJuSqXsGwt4S0x7/t+DoUuWIBab1eB0Zte6O94t/502BTr2LyBAulNtJr8UyW8Pumifo2aRuJgtDZmBfBwl/cv5NHOIy/66QWJlZBnZUQ==', 'WiJ3wtdMlykixwlEhzwyoPn6TeXTA5YoAnG42+vALALCeQ3JFZSU7pDEXo1MtkHPpmAnn6ivYZ+Hqk3gTsxe/YOouG07yaok/lCpM65JZaQVVHZvmDTRIQZ11Iz92HWYlpH1XJhkrFzM+NsJwSF9191m8iAARWu4cMCyfM2jR1MgIbKXb7/+gKMuZ47vrOdI4j8WVrsgxPa8ViyKh7m6r8U8N1FqzPeHwofEDQBegEsgOUgbxbm/I2O2gQW4FVUQx+gLykbQ3EVXvbVPel5p34l0MYIdHvHh9C+/dt5QYoKCAkFuHWZCeRp6rDJeytrexFmdLHyyVPDLS2dsTMryFqaiMuK2hR9zyuHKFOYCnFAfVQmwYR1n/dxvECrsN/a4HnHu3dcflvWp3bVFGeuFvVTV4hkEfmi0lJy6pJWI1/U9LzjfG2Sbv6fiJjPchgp5zBPTleOfilL10cnqaJ8Y30XDWZ5uW5wswEnRqkkBed6p302qHDnNQpgOizj3TyM6jzMmYno4bift5Yf55Odxpy5lf+XOKhQabD8tx9+9kUrQPgfZ5stPZfnGEOkd4v0EFDPvDiZlzUJjF8ZK3WMv42aZnlzNptg3Fq+3aDgl1c4=', '7540f518-84b36801-ec034014');
 
@@ -2376,78 +2409,78 @@ ALTER TABLE `movie`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- Ràng buộc đối với các bảng kết xuất
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Ràng buộc cho bảng `account_roles`
+-- Các ràng buộc cho bảng `account_roles`
 --
 ALTER TABLE `account_roles`
   ADD CONSTRAINT `FK70s9enq5d1oywl7v8vis5ke5w` FOREIGN KEY (`roles_id`) REFERENCES `role` (`id`),
   ADD CONSTRAINT `FKtp61eta5i06bug3w1qr6286uf` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`);
 
 --
--- Ràng buộc cho bảng `booking`
+-- Các ràng buộc cho bảng `booking`
 --
 ALTER TABLE `booking`
   ADD CONSTRAINT `FKp55px829kiwjglwaj12kw22vx` FOREIGN KEY (`show_id`) REFERENCES `cinema_show` (`id`),
   ADD CONSTRAINT `FKsx5vxi7ox6ss3udb20motr3b5` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`);
 
 --
--- Ràng buộc cho bảng `booking_seats`
+-- Các ràng buộc cho bảng `booking_seats`
 --
 ALTER TABLE `booking_seats`
   ADD CONSTRAINT `FKiafqjbiteckjb95679jbqwona` FOREIGN KEY (`booking_id`) REFERENCES `booking` (`id`),
   ADD CONSTRAINT `FKl40e41jsn0gds92yihw1khgan` FOREIGN KEY (`seats_id`) REFERENCES `show_seat` (`id`);
 
 --
--- Ràng buộc cho bảng `cinema_seat`
+-- Các ràng buộc cho bảng `cinema_seat`
 --
 ALTER TABLE `cinema_seat`
   ADD CONSTRAINT `FK5w9hs8k9ucvwukhb939nybsew` FOREIGN KEY (`cinemahall_id`) REFERENCES `cinema_hall` (`id`);
 
 --
--- Ràng buộc cho bảng `cinema_show`
+-- Các ràng buộc cho bảng `cinema_show`
 --
 ALTER TABLE `cinema_show`
   ADD CONSTRAINT `FK4f9b292igihvnhtki8hu8s4gp` FOREIGN KEY (`cinema_hall_id`) REFERENCES `cinema_hall` (`id`),
   ADD CONSTRAINT `FKn39s5216u9gxkw3h3odvc531n` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`);
 
 --
--- Ràng buộc cho bảng `comment`
+-- Các ràng buộc cho bảng `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `FKj6owqni09n6r5rspfx1xtfu23` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`),
   ADD CONSTRAINT `FKn84216vj612qs1eg5goe6n2lj` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`);
 
 --
--- Ràng buộc cho bảng `movie_genre`
+-- Các ràng buộc cho bảng `movie_genre`
 --
 ALTER TABLE `movie_genre`
   ADD CONSTRAINT `FK86p3roa187k12avqfl28klp1q` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`id`),
   ADD CONSTRAINT `FKp6vjabv2e2435at1hnuxg64yv` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`);
 
 --
--- Ràng buộc cho bảng `payment`
+-- Các ràng buộc cho bảng `payment`
 --
 ALTER TABLE `payment`
   ADD CONSTRAINT `FKqewrl4xrv9eiad6eab3aoja65` FOREIGN KEY (`booking_id`) REFERENCES `booking` (`id`);
 
 --
--- Ràng buộc cho bảng `show_seat`
+-- Các ràng buộc cho bảng `show_seat`
 --
 ALTER TABLE `show_seat`
   ADD CONSTRAINT `FKiy4ciakwup12wqhalym9gibqe` FOREIGN KEY (`show_id`) REFERENCES `cinema_show` (`id`),
   ADD CONSTRAINT `FKnet31xfrflvyr2mv56tyixieq` FOREIGN KEY (`cinema_seat_id`) REFERENCES `cinema_seat` (`id`);
 
 --
--- Ràng buộc cho bảng `spam_user`
+-- Các ràng buộc cho bảng `spam_user`
 --
 ALTER TABLE `spam_user`
   ADD CONSTRAINT `FKlju5m05cupqrofn0h5cxqf0fa` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`);
 
 --
--- Ràng buộc cho bảng `token`
+-- Các ràng buộc cho bảng `token`
 --
 ALTER TABLE `token`
   ADD CONSTRAINT `FKcmaeto5oi5o878gndh99ryn8q` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`);
