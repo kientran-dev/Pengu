@@ -162,9 +162,8 @@ public class CinemaShowServiceImpl implements CinemaShowService {
 	@Override
 	public List<ShowSeatResponse> getAllShowSeats(String showID) {
 		List<ShowSeatResponse> seatsInfo = new ArrayList<>();
-		
-		List<ShowSeat> seats = showSeatREPO.findByShowId(showID);
-		for (ShowSeat seat : seats) {
+
+		List<ShowSeat> seats = showSeatREPO.findAllByCinemaShowIdSorted(showID);		for (ShowSeat seat : seats) {
 			ShowSeatResponse info = new ShowSeatResponse(seat);
 			seatsInfo.add(info);
 		}
