@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/odometer.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/jquery.animatedheadline.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+
+    <title>Pengu Admin - Statistics</title>
+
+    <style>
+        /* Biến màu sắc DARK MODE */
+        :root {
+            /* Màu chủ đạo */
+            --primary-color: #4e73df;
+            --success-color: #1cc88a;
+            --info-color: #36b9cc;
+            --warning-color: #f6c23e;
+
+            /* Màu nền thẻ: Xanh đen sẫm */
+            --card-bg: #151f30;
+
+            /* Màu chữ */
+            --text-main: #ffffff;
+            --text-muted: #b7b9cc;
+
+            /* Màu đường kẻ mờ */
+            --border-color: #2c3e50;
+        }
+
+        /* Dashboard Title */
+        .dashboard-title {
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* --- STATS CARDS --- */
+        .stat-card {
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            position: relative; /* Để icon có thể canh chỉnh tốt hơn */
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            border-color: #4e73df;
+        }
+
+        .stat-card .card-body {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 2; /* Đảm bảo nội dung nằm trên */
+            position: relative;
+        }
+
+        /* Nội dung text bên trái */
+        .stat-content {
+            z-index: 2;
+        }
+
+        .stat-content h6 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .stat-content h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-main);
+        }
+
+        /* Icon bên phải - ĐÃ CHỈNH SỬA: Nhỏ lại và mờ đi */
+        .stat-icon {
+            font-size: 3rem; /* Đặt kích thước cố định, không dùng fa-2x nữa */
+            opacity: 0.3;    /* Mờ đi để không tranh chấp với chữ */
+            transform: rotate(-15deg); /* Nghiêng nhẹ tạo kiểu */
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        .stat-card:hover .stat-icon {
+            transform: rotate(0deg) scale(1.1); /* Hiệu ứng khi hover */
+            opacity: 0.5;
+        }
+
+        /* --- MÀU SẮC RIÊNG CHO TỪNG CARD --- */
+        .card-primary { border-left: 4px solid var(--primary-color); }
+        .card-primary .stat-content h6 { color: #8fa6eb; }
+        .card-primary .stat-icon { color: var(--primary-color); }
+
+        .card-success { border-left: 4px solid var(--success-color); }
+        .card-success .stat-content h6 { color: #7debc3; }
+        .card-success .stat-icon { color: var(--success-color); }
+
+        .card-info { border-left: 4px solid var(--info-color); }
+        .card-info .stat-content h6 { color: #8ce1eb; }
+        .card-info .stat-icon { color: var(--info-color); }
+
+        .card-warning { border-left: 4px solid var(--warning-color); }
+        .card-warning .stat-content h6 { color: #ffeea8; }
+        .card-warning .stat-icon { color: var(--warning-color); }
+
+
+        /* --- CHART CONTAINERS --- */
+        .chart-container-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(0, 0, 0, 0.2);
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+        }
+
+        .chart-header h5 {
+            margin: 0;
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 1.1rem;
+        }
+
+        .chart-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .chart-canvas-wrapper {
+            height: 400px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+<div class="preloader">
+    <div class="preloader-inner">
+        <div class="preloader-icon">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+<div class="overlay"></div>
+<a href="#0" class="scrollToTop">
+    <i class="fas fa-angle-up"></i>
+</a>
+<header class="header-section">
+    <div class="container">
+        <div class="header-wrapper">
+            <div class="logo">
+                <a href="/statistics.html">
+                    <img src="assets/images/logo/logo.png" alt="logo">
+                </a>
+            </div>
+            <ul class="menu">
+                <li><a href="statistics.html" class="active">Statistics</a></li>
+                <li><a href="index.html">Users</a></li>
+                <li><a href="hall.html">Halls</a></li>
+                <li><a href="genre.html">Genres</a></li>
+                <li><a href="movie.html">Movies</a></li>
+                <li><a href="booking.html">Bookings</a></li>
+
+            </ul>
+            <div class="header-bar d-lg-none">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="statistics-section padding-top padding-bottom">
+    <div class="container">
+
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h2 class="dashboard-title">Dashboard Tổng Quan</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card card-primary">
+                    <div class="card-body">
+                        <div class="stat-content">
+                            <h6>Tổng Doanh Thu</h6>
+                            <h3 id="total-revenue">Loading...</h3>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card card-success">
+                    <div class="card-body">
+                        <div class="stat-content">
+                            <h6>Vé Đã Bán</h6>
+                            <h3 id="tickets-sold">0</h3>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card card-info">
+                    <div class="card-body">
+                        <div class="stat-content">
+                            <h6>Khách Hàng</h6>
+                            <h3 id="total-customers">0</h3>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card card-warning">
+                    <div class="card-body">
+                        <div class="stat-content">
+                            <h6>Phim Đang Chiếu</h6>
+                            <h3 id="total-movies">0</h3>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-7 mb-4">
+                <div class="chart-container-box">
+                    <div class="chart-header">
+                        <h5><i class="fas fa-chart-area me-2"></i> Xu Hướng Doanh Thu</h5>
+                    </div>
+                    <div class="chart-body">
+                        <div class="chart-canvas-wrapper">
+                            <canvas id="revenue-trend-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 mb-4">
+                <div class="chart-container-box">
+                    <div class="chart-header">
+                        <h5><i class="fas fa-chart-pie me-2"></i> Top Phim Bán Chạy</h5>
+                    </div>
+                    <div class="chart-body">
+                        <div class="chart-canvas-wrapper" style="padding: 10px;">
+                            <canvas id="top-movies-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/js/jquery.cookie.min.js"></script>
+<script src="assets/js/sweetalert2.min.js"></script>
+<script src="assets/js/modernizr-3.6.0.min.js"></script>
+<script src="assets/js/plugins.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/heandline.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/magnific-popup.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/countdown.min.js"></script>
+<script src="assets/js/odometer.min.js"></script>
+<script src="assets/js/viewport.jquery.js"></script>
+<script src="assets/js/nice-select.js"></script>
+<script src="assets/js/js.cookie.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="assets/js/requestAPI.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/statistics.js"></script>
+</body>
+
+</html>

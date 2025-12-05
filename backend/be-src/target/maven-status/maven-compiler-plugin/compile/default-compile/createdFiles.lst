@@ -23,11 +23,13 @@ cinema\ticket\booking\repository\CinemaShowRepository.class
 cinema\ticket\booking\response\CommentResponse.class
 cinema\ticket\booking\response\ExceptionResponse.class
 cinema\ticket\booking\repository\UserTempRepository.class
+cinema\ticket\booking\service\StatisticService.class
 cinema\ticket\booking\service\impl\BookingServiceImpl.class
 cinema\ticket\booking\request\AddCommentRequest.class
 cinema\ticket\booking\model\enumModel\ESeatStatus.class
 cinema\ticket\booking\response\SeatsResponse.class
 cinema\ticket\booking\model\enumModel\ERole.class
+cinema\ticket\booking\service\impl\StatisticServiceImpl.class
 cinema\ticket\booking\request\PaymentRequest.class
 cinema\ticket\booking\model\Genre.class
 cinema\ticket\booking\model\JWTToken.class
@@ -61,6 +63,7 @@ cinema\ticket\booking\controller\MovieController.class
 cinema\ticket\booking\model\enumModel\PaymentStatus.class
 cinema\ticket\booking\response\MovieInfoResponse.class
 cinema\ticket\booking\repository\CinemaHallRepository.class
+cinema\ticket\booking\config\WebConfig.class
 cinema\ticket\booking\repository\RoleRepository.class
 cinema\ticket\booking\service\impl\CinemaHallImpl.class
 cinema\ticket\booking\service\MovieService.class
@@ -106,6 +109,7 @@ cinema\ticket\booking\controller\PaymentController.class
 cinema\ticket\booking\response\TicketDetail.class
 cinema\ticket\booking\request\CinemaHallRequest.class
 cinema\ticket\booking\service\impl\CinemaSeatServiceImpl.class
+cinema\ticket\booking\controller\StatisticController.class
 cinema\ticket\booking\utils\DateUtils.class
 cinema\ticket\booking\service\impl\EmailServiceImpl.class
 cinema\ticket\booking\model\Comment.class

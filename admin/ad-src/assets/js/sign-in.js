@@ -4,7 +4,7 @@ $(async function() {
     $("#username").val(username)
 
     if (await TokenIsVaild())
-        window.location.href = ('/')
+        window.location.href = ('/statistics.html')
 
     $('.preloader').fadeOut(1000);
 })
@@ -56,6 +56,6 @@ $(".account-form").on( "submit", async function( event ) {
     if (redirect && redirect !== 'null' && redirect.startsWith(window.location.origin)) {
         window.location.href = redirect;
     } else {
-        window.location.href = '/';
+        window.location.href = '/statistics.html';
     }
 });

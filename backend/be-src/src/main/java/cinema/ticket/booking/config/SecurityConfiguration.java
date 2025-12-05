@@ -24,17 +24,18 @@ public class SecurityConfiguration {
 	
 	@Autowired
 	private JwtAuthenticationFilter jwtAuthFilter;
-	
-//	private AuthenticationProvider authenticationProvider;
-//	private BCryptPasswordEncoder passwordEncoder;
-//	private UserDetailsService userDetailService;
+
 	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
+				.cors()
+				.and()
 			.csrf()
 	        .disable()
 	        .authorizeHttpRequests()
+				.requestMatchers("/api/auth/**", "/api/statistics/**") // Thêm endpoint statistics vào đây cho rõ ràng
+				.permitAll()
 			.requestMatchers("/api/auth/**")
 				.permitAll()
 			.anyRequest()
@@ -58,6 +59,3 @@ public class SecurityConfiguration {
 	}
 }
 
-//.authenticated()
-//permitAll()
-//.hasAnyAuthority("ROLE_USER")

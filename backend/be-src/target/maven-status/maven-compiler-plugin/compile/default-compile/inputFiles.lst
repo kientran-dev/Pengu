@@ -33,6 +33,7 @@ C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\jav
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\controller\AuthenticationController.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\controller\BookingController.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\response\AccountSummaryResponse.java
+C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\config\WebConfig.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\model\enumModel\ESeat.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\service\BookingService.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\service\impl\UserServiceImpl.java
@@ -42,6 +43,8 @@ C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\jav
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\controller\CommentController.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\response\PaymentResponse.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\utils\CustomUUIDGenerator.java
+C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\service\StatisticService.java
+C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\controller\StatisticController.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\request\ShowRequest.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\response\MyApiResponse.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\response\MovieInfoResponse.java
@@ -72,6 +75,7 @@ C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\jav
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\controller\MovieController.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\exception\CustomAccessDeniedHandler.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\service\impl\AuthenticationServiceImpl.java
+C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\service\impl\StatisticServiceImpl.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\config\SecurityConfiguration.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\model\AccountTemp.java
 C:\Users\PC\OneDrive\Documents\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\response\ShowInfoResponse.java

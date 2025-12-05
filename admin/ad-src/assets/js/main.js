@@ -4,40 +4,48 @@
   $(window).on('load',async function () {
       $('.menu').html(`
       <li>
-        <a href="/">Users</a>
+        <a href="statistics.html">Statistics</a>
       </li>
       <li>
-        <a href="/halls">Halls</a>
+        <a href="index.html">Users</a>
       </li>
       <li>
-        <a href="/genres">Genres</a>
+        <a href="hall.html">Halls</a>
       </li>
       <li>
-        <a href="/movies">Movies</a>
+        <a href="genre.html">Genres</a>
       </li>
       <li>
-        <a href="/shows">Shows</a>
+        <a href="movie.html">Movies</a>
       </li>
       <li>
-        <a href="/booking">Bookings</a>
+        <a href="show.html">Shows</a>
       </li>
+      <li>
+        <a href="booking.html">Bookings</a>
+      </li>
+
       <li class="header-button pr-0" id="login-btn">
-          <a href="/login">Đăng nhập</a>
+          <a href="sign-in.html">Đăng nhập</a>
       </li>
       `);
       let path =  window.location.pathname.split("/").at(-1)
+      if (path === '' || path === 'ad-src') {
+          path = 'index.html';
+      }
       $(`.menu > li > a[href="${path}"]`).addClass('active')
       $('.footer-section').html(` `)
 
       if (await TokenIsVaild())  {
         if (!await CheckRole("ADMIN")) 
-          window.location.href = ("/logout")
+          window.location.href = "sign-out.html";
 
-        $("#login-btn").find("a").attr("href", "/logout")
-        $("#login-btn").find("a").text("Đăng xuất")
+        $("#login-btn").find("a").attr("href", "sign-out.html");
+        $("#login-btn").find("a").text("Đăng xuất");
       }
-      else if (window.location.pathname != '/login')
-        window.location.href = ("/login")
+      else if (window.location.pathname.indexOf('sign-in.html') === -1) {
+        window.location.href = "sign-in.html";
+      }
 
       var img = $('.bg_img');
       img.css('background-image', function () {

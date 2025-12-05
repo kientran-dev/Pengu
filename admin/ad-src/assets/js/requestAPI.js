@@ -107,3 +107,24 @@ const CheckRole = async function(role) {
   let roles = await GetRoles()
   return roles.indexOf(role) != -1
 }
+
+function sendRequest(path, method, body, handle) {
+  let options = {};
+  if (body) {
+    options.body = body;
+  }
+
+  PenguRequestAPI(method, path, options, { 'Content-Type': 'application/json' }, true)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Network response was not ok.');
+      })
+      .then(data => {
+        handle(data);
+      })
+      .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+      });
+}
