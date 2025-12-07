@@ -46,7 +46,7 @@ public class BookingController {
 	})
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> getBookingByID(Principal principal,
-			@Valid @PathVariable(value = "booking_id") String booking_id) {
+											@Valid @PathVariable(value = "booking_id") String booking_id) {
 		return ResponseEntity.ok().body(bookingSER.getBookingFromID(principal.getName(), booking_id));
 	}
 
@@ -88,7 +88,7 @@ public class BookingController {
 	})
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> deleteBookingByID(Principal principal,
-			@Valid @PathVariable(value = "booking_id") String booking_id) {
+											   @Valid @PathVariable(value = "booking_id") String booking_id) {
 		return ResponseEntity.ok().body(bookingSER.cancleBooking(principal.getName(), booking_id));
 	}
 
@@ -104,6 +104,18 @@ public class BookingController {
 		return ResponseEntity.ok().body(bookingSER.listOfBooking(username));
 	}
 
+	// NEW ENDPOINT: Lấy toàn bộ booking hệ thống
+	@GetMapping("/admin/getall-system")
+	@Operation(summary = "Get All Bookings System (Admin is required)", responses = {
+			@ApiResponse(responseCode = "200", description = "Get all list of booking information sorted by date", content = @Content(mediaType = "application/json", schema = @Schema(implementation = BookingResponse.class))),
+	}, parameters = {
+			@Parameter(name = "Authorication", in = ParameterIn.HEADER, schema = @Schema(type = "string"), example = "Bearer <token>", required = true)
+	})
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> getAllBookingsSystem() {
+		return ResponseEntity.ok().body(bookingSER.getAllBookings());
+	}
+
 	@GetMapping("/user/{username}/{booking_id}")
 	@Operation(summary = "Get Booking From ID User (Admin is required)", responses = {
 			@ApiResponse(responseCode = "200", description = "Get booking from id user information", content = @Content(mediaType = "application/json", schema = @Schema(implementation = BookingResponse.class))),
@@ -115,7 +127,7 @@ public class BookingController {
 	)
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> getBookingsByIDFromUser(@Valid @PathVariable(value = "username") String username,
-			@Valid @PathVariable(value = "booking_id") String booking_id) {
+													 @Valid @PathVariable(value = "booking_id") String booking_id) {
 		return ResponseEntity.ok().body(bookingSER.getBookingFromID(username, booking_id));
 	}
 
@@ -131,8 +143,8 @@ public class BookingController {
 	)
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> setBookingStatusFromUsername(@Valid @PathVariable(value = "username") String username,
-			@Valid @PathVariable(value = "booking_id") String booking_id,
-			@RequestParam("value") @Valid String status) {
+														  @Valid @PathVariable(value = "booking_id") String booking_id,
+														  @RequestParam("value") @Valid String status) {
 		return ResponseEntity.ok().body(bookingSER.setBookingStatus(username, booking_id, status));
 	}
 }

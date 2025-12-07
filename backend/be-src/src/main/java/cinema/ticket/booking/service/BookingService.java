@@ -12,9 +12,12 @@ import cinema.ticket.booking.response.BookingResponse;
 public interface BookingService {
 	public BookingResponse createBooking(String username, BookingRequest bookingReq);
 	public MyApiResponse cancleBooking(String username, String booking_id);
-	
+
 	public BookingResponse getBookingFromID(String username, String booking_id);
 	public List<BookingResponse> listOfBooking(String username);
-	
+
+	// API mới dành cho Admin lấy tất cả booking
+	public List<BookingResponse> getAllBookings();
+
 	public MyApiResponse setBookingStatus(String username, String booking_id, String status);
 }

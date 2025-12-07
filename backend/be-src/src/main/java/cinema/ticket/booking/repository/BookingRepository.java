@@ -35,4 +35,7 @@ public interface BookingRepository extends JpaRepository<Booking, String> {
 			"GROUP BY m.title " + // Sửa group by theo m.title
 			"ORDER BY tickets_sold DESC LIMIT 5", nativeQuery = true)
 	List<Map<String, Object>> findTopMovies();
+
+	@Query("SELECT b FROM Booking b ORDER BY b.create_at DESC")
+	List<Booking> findAllOrderedByDateDesc();
 }

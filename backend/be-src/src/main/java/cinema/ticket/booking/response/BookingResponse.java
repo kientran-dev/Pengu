@@ -8,6 +8,7 @@ public class BookingResponse {
 	
 	private String id;
 	private String showId;
+	private String username;
 	private String fullname;
 	private double price;
 	private List<String> seats;
@@ -20,13 +21,14 @@ public class BookingResponse {
 	public BookingResponse(Booking booking) {
 		this.id = booking.getId();
 		this.showId = booking.getShow().getId().toString();
+		this.username = booking.getUser().getUsername();
 		this.fullname = booking.getUser().getFullname();
 		this.price = booking.getPriceFromListSeats();
 		this.seats = booking.getNameOfSeats();
 		this.movieName = booking.getShow().getMovie().getTitle();
 		this.hallName = booking.getShow().getCinemaHall().getName();
 		this.startTime = booking.getShow().getStartTime().toString();
-		this.create_at = booking.getShow().getCreateAt().toString();
+		this.create_at = booking.getCreateAt().toString();
 		this.status = booking.getStatus().name();
 	}
 	
@@ -36,6 +38,10 @@ public class BookingResponse {
 
 	public String getShowId() {
 		return this.showId;
+	}
+
+	public String getUsername() {
+		return this.username;
 	}
 	
 	public String getFullname() {

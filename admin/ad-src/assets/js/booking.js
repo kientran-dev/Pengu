@@ -1,19 +1,7 @@
 var bookingList = []
-var username 
+
 $(async () => {
-
-    let result = await Swal.fire({
-        title: 'Mã đặt chỗ của người dùng',
-        input: 'text',
-        inputLabel: 'Username',
-        inputPlaceholder: 'Username'
-    })
-      
-   if (result)
-        username = result.value
-
     $('.preloader').fadeIn(100);
-    
     await GetList()
     $('.preloader').fadeOut(1000);
 })
@@ -24,16 +12,13 @@ $('#search-val').on('input', function() {
     RenderBookingList();
 });
 
-
-
-
 $("#body-container").on("click", "tr #booking-edit", async (e) => {
     let div = $(e.currentTarget).closest('tr')
     let id = div.find("#booking-id").text()
+    let username = div.data("username");
 
-    let booking = await PenguRequestAPI( 'GET','api/booking/' + encodeURIComponent(id), {},  {},  true) .then(r => r.json()).catch(error => {console.log(error); return false})
+    let booking = await PenguRequestAPI( 'GET',`api/booking/user/${encodeURIComponent(username)}/${encodeURIComponent(id)}`, {},  {},  true) .then(r => r.json()).catch(error => {console.log(error); return false})
     if (!booking) return;
-
 
     const { value: status } = await Swal.fire({
         title: 'Thông tin trạng thái',
@@ -42,18 +27,16 @@ $("#body-container").on("click", "tr #booking-edit", async (e) => {
             'PENDING': 'Đang xử lý',
             'BOOKED': 'Đặt thành công',
             'CANCLED': 'Hủy'
-          },
+        },
         focusConfirm: false,
         showCloseButton: true
     })
-    
-    
-    if (!status) return 
+
+    if (!status) return
 
     let response = await PenguRequestAPI( 'PUT',`api/booking/user/${encodeURIComponent(username)}/${encodeURIComponent(id)}/setstatus?value=${encodeURIComponent(status)}`, {}, {}, true) .then(r => r.json()).catch(error => {console.log(error); return false})
 
-    if (!response)
-        return
+    if (!response) return
 
     Swal.fire({
         position: 'top-end',
@@ -61,25 +44,15 @@ $("#body-container").on("click", "tr #booking-edit", async (e) => {
         backdrop : false,
         showConfirmButton: false,
         timer: 3000
-      })
+    })
 
     await GetList()
 })
 
-async function GetList() {  
-    if (!username) return
-    
-    let list = await PenguRequestAPI( 'GET',`api/booking/user/${encodeURIComponent(username)}/getall`, {},  {},  true) .then(r => r.json()).catch(error => {console.log(error); return false})
-    if (list && list.message && list.message ==  "User is not found") {
-        await Swal.fire({
-            icon: 'error',
-            title: 'Thông báo',
-            text: 'Người dùng không tồn tại',
-        })
-        
-        return location.reload();
-    }
-
+async function GetList() {
+    let list = await PenguRequestAPI('GET', `api/booking/admin/getall-system`, {}, {}, true)
+        .then(r => r.json())
+        .catch(error => { console.log(error); return false });
 
     if (list)
         bookingList = list;
@@ -92,7 +65,14 @@ function RenderBookingList() {
     const container = $("#body-container")
     container.empty()
 
-    let data = bookingList.filter((m) => m.id.indexOf($('#search-val').val()) != -1)
+    let keyword = $('#search-val').val().toLowerCase().trim();
+
+    let data = bookingList.filter((m) => {
+        let idMatch = m.id && m.id.toString().toLowerCase().indexOf(keyword) != -1;
+        let userMatch = m.username && m.username.toLowerCase().indexOf(keyword) != -1;
+        let nameMatch = m.fullname && m.fullname.toLowerCase().indexOf(keyword) != -1;
+        return idMatch || userMatch || nameMatch;
+    })
 
     for (let i = 0; i < data.length; i++) {
         let booking = data[i]
@@ -101,32 +81,64 @@ function RenderBookingList() {
             let item = $(`
             <tr>
                 <th scope="row" id="booking-id"></th>
+                <td id="booking-user" style="font-weight:bold; color: #ebf6fa;"></td>
                 <td id="booking-movie"></td>
                 <td id="booking-hall"></td>
                 <td id="booking-show"></td>
                 <td id="booking-seat"></td>
                 <td id="booking-price"></td>
                 <td id="booking-status"></td>
-                <td id="booking-time"></td>
-                <td> <button type="button" class="btn btn-info" id="booking-edit">Status</button> </td>
+                <td id="booking-time" style="color: #ffff00;"></td> <td> <button type="button" class="btn btn-info" id="booking-edit">Status</button> </td>
             </tr>
             `)
 
+            item.data("username", booking.username);
+
             item.find("#booking-id").text(booking.id)
-            item.find("#booking-movie").text(booking.movieName)
+
+            let userDisplay = booking.username;
+            if (booking.fullname) userDisplay += ` (${booking.fullname})`;
+            item.find("#booking-user").text(userDisplay);
+
+            // Hiển thị tên phim kèm Giờ chiếu để Admin tiện tra cứu
+            let movieInfo = booking.movieName;
+            if (booking.startTime) {
+                movieInfo += ` [${GetTimeFormat(new Date(booking.startTime), false)}]`;
+            }
+            item.find("#booking-movie").text(movieInfo)
+
             item.find("#booking-hall").text(booking.hallName)
             item.find("#booking-show").text(booking.showId)
             item.find("#booking-seat").text(booking.seats.join(", "))
-            item.find("#booking-price").text(booking.price)
+            item.find("#booking-price").text(booking.price.toLocaleString() + ' đ') // Format tiền tệ
             item.find("#booking-status").text(booking.status)
-            item.find("#booking-time").text(GetTimeFormat(new Date(booking.startTime)))
+
+            // SỬA: Hiển thị Ngày Đặt (createAt) thay vì StartTime
+            // booking.createAt khớp với phương thức getCreateAt() trong Java
+            if (booking.createAt) {
+                item.find("#booking-time").text(GetTimeFormat(new Date(booking.createAt), true))
+            } else {
+                item.find("#booking-time").text("N/A");
+            }
+
             container.append(item)
-            
         }
     }
 }
 
+// Hàm format time: isFullDate = true sẽ hiện cả ngày tháng năm đầy đủ
+function GetTimeFormat(time, isFullDate = true) {
+    if (isNaN(time.getTime())) return ""; // Check invalid date
 
-function GetTimeFormat(time) {
-    return `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')} - ${time.getDate().toString().padStart(2, '0')}/${(time.getMonth() + 1).toString().padStart(2, '0')}`
+    let hours = time.getHours().toString().padStart(2, '0');
+    let minutes = time.getMinutes().toString().padStart(2, '0');
+    let day = time.getDate().toString().padStart(2, '0');
+    let month = (time.getMonth() + 1).toString().padStart(2, '0');
+    let year = time.getFullYear();
+
+    if (isFullDate) {
+        return `${hours}:${minutes} - ${day}/${month}/${year}`;
+    } else {
+        return `${hours}:${minutes}`; // Chỉ hiện giờ (dùng cho cột Movie)
+    }
 }
