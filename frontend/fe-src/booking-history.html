@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <link rel="stylesheet" href="assets/css/flaticon.css">
+  <link rel="stylesheet" href="assets/css/magnific-popup.css">
+  <link rel="stylesheet" href="assets/css/odometer.css">
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="assets/css/nice-select.css">
+  <link rel="stylesheet" href="assets/css/jquery.animatedheadline.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+
+  <title>Pengu Ticket</title>
+</head>
+
+<body>
+<div class="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-icon">
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</div>
+<div class="overlay"></div>
+<a href="#0" class="scrollToTop">
+  <i class="fas fa-angle-up"></i>
+</a>
+<header class="header-section">
+  <div class="container">
+    <div class="header-wrapper">
+      <div class="logo">
+        <a href="/">
+          <img src="assets/images/logo/logo.png" alt="logo">
+        </a>
+      </div>
+      <ul class="menu">
+        <li>
+          <a href="index.html">Trang chủ</a>
+        </li>
+        <li>
+          <a href="movie-grid.html">Đặt vé</a>
+        </li>
+        <li>
+          <a href="booking-history.html" class="active">Lịch sử đặt vé</a>
+        </li>
+        <li class="header-button pr-0">
+          <a href="sign-in.html">Tham gia ngay</a>
+        </li>
+      </ul>
+      <div class="header-bar d-lg-none">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+</header>
+<section class="details-banner hero-area bg_img bg-fixed" data-background="./assets/images/banner/banner04.jpg">  <div class="container">
+    <div class="details-banner-wrapper">
+      <div class="details-banner-content">
+        <h3 class="title">Lịch sử đặt vé</h3>
+        <div class="tags">
+          <a href="#0">Theo dõi thông tin chi tiết các vé xem phim đã đặt</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="movie-section padding-top padding-bottom">
+  <div class="container">
+    <div class="row flex-wrap-reverse justify-content-center">
+      <div class="col-lg-12 mb-50 mb-lg-0">
+        <div class="filter-tab tab">
+          <div class="section-header-2">
+            <div class="left">
+              <h2 class="title" id="customer-info" style="color: #31d7a9; font-size: 24px;">Khách hàng: Đang tải...</h2>
+              <p style="font-size: 20px">Danh sách vé khách hàng đã đặt </p>
+            </div>
+          </div>
+
+          <div class="tab-area">
+            <div class="tab-item active">
+              <div class="movie-area mb-10">
+                <table class="table table-dark table-hover" style="background: #032055; border-radius: 10px; overflow: hidden;">
+                  <thead>
+                  <tr style="color: #31d7a9; border-bottom: 2px solid #11326f;">
+                    <th scope="col" style="width: 15%;">Mã vé</th>
+                    <th scope="col" style="width: 20%;">Phim</th>
+                    <th scope="col" style="width: 15%;">Rạp / Phòng</th>
+                    <th scope="col" style="width: 15%;">Ghế</th>
+                    <th scope="col" style="width: 15%;">Suất chiếu</th>
+                    <th scope="col" style="width: 10%;">Ngày đặt</th> <th scope="col" style="width: 10%;">Tổng tiền</th>
+                  </tr>
+                  </thead>
+                  <tbody id="history-container">
+                  </tbody>
+                </table>
+                <div id="empty-msg" class="text-center" style="display:none; padding: 20px;">
+                  <h5>Bạn chưa có vé nào được đặt thành công.</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer-section">
+  <div class="container">
+    <div class="footer-top">
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets/images/footer/footer-logo.png" alt="footer">
+        </a>
+      </div>
+      <ul class="social-icons">
+        <li><a href="#0"><i class="fab fa-facebook-f"></i></a></li>
+        <li><a href="#0"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#0"><i class="fab fa-pinterest-p"></i></a></li>
+        <li><a href="#0"><i class="fab fa-google"></i></a></li>
+        <li><a href="#0"><i class="fab fa-instagram"></i></a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-area">
+        <div class="left">
+          <p>Copyright © 2020.All Rights Reserved By <a href="#0">Boleto </a></p>
+        </div>
+        <ul class="links">
+          <li><a href="#0">About</a></li>
+          <li><a href="#0">Terms Of Use</a></li>
+          <li><a href="#0">Privacy Policy</a></li>
+          <li><a href="#0">FAQ</a></li>
+          <li><a href="#0">Feedback</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/js/modernizr-3.6.0.min.js"></script>
+<script src="assets/js/plugins.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/heandline.js"></script>
+<script src="assets/js/isotope.pkgd.min.js"></script>
+<script src="assets/js/magnific-popup.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/wow.min.js"></script>
+<script src="assets/js/countdown.min.js"></script>
+<script src="assets/js/odometer.min.js"></script>
+<script src="assets/js/viewport.jquery.js"></script>
+<script src="assets/js/nice-select.js"></script>
+<script src="assets/js/jquery.cookie.min.js"></script>
+<script src="assets/js/js.cookie.min.js"></script>
+<script src="assets/js/requestAPI.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script src="assets/js/booking-history.js"></script>
+</body>
+
+</html>

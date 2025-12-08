@@ -9,12 +9,28 @@
       <li>
         <a href="/movies">Đặt vé</a>
       </li>
+      <li>
+        <a href="/booking-history">Lịch sử đặt vé</a>
+    </li>
       <li class="header-button pr-0" id="login-btn">
           <a href="/login">Đăng nhập</a>
       </li>
       `);
-      let path =  window.location.pathname.split("/").at(-1)
-      $(`.menu > li > a[href="${path}"]`).addClass('active')
+// 2. LOGIC ACTIVE MENU (Sửa lại chuẩn hơn)
+      // Lấy đường dẫn hiện tại (ví dụ: "/booking-history")
+      let currentPath = window.location.pathname;
+
+      // Xóa tất cả class active cũ (nếu có)
+      $('.menu > li > a').removeClass('active');
+
+      // Tìm thẻ <a> có href khớp với đường dẫn hiện tại và thêm class active
+      if (currentPath === "/" || currentPath === "/index.html") {
+          $(`.menu > li > a[href="/"]`).addClass('active');
+      } else {
+          // So sánh tương đối để bắt dính (ví dụ /movies cũng active cho /movies/detail...)
+          // Tuy nhiên với menu đơn giản này, so sánh chính xác href là đủ
+          $(`.menu > li > a[href="${currentPath}"]`).addClass('active');
+      }
       $('.footer-section').html(`
         <div class="container">
             <div class="footer-top">
@@ -74,7 +90,7 @@
   $(document).ready(function () {
     // Nice Select
     $('.select-bar').niceSelect();
-    // Lightcase 
+    // Lightcase
     $('.video-popup').magnificPopup({
         type: 'iframe',
     });
@@ -104,7 +120,7 @@
         element.siblings('.faq-item').find('.faq-content').slideUp(300, "swing");
       }
     });
-    
+
     //MenuBar
     $('.header-bar').on('click', function () {
         $(".menu").toggleClass("active");
@@ -144,7 +160,7 @@
         element.siblings('li').find('ul').slideUp(300, "swing");
       }
     })
-    // Scroll To Top 
+    // Scroll To Top
     var scrollTop = $(".scrollToTop");
     $(window).on('scroll', function () {
       if ($(this).scrollTop() < 500) {
@@ -362,7 +378,7 @@
       nav:false,
       responsive:{
           0:{
-              items:1,                
+              items:1,
           },
           576:{
               items:2
@@ -389,7 +405,7 @@
     //     book = 0;
     //   }
     // });
-    // var bookTwo = 1;  
+    // var bookTwo = 1;
     // $(".seat-free-two img").on('click', function(e) {
     //   if(bookTwo == 0) {
     //     $(this).attr("src","./assets/images/movie/seat02-free.png");
@@ -473,7 +489,7 @@
       offset: +2,
       day: 'Day',
       days: 'Days'
-    }, 
+    },
     function () {
         console.log('Done!');
     });
@@ -530,7 +546,7 @@ function getParam(param){
 
 
 function GetTimeString(minute) {
-  if (minute < 60) 
+  if (minute < 60)
       return `${minute} phút`
 
   return `${Math.floor(minute/60)} giờ ${minute%60} phút`
