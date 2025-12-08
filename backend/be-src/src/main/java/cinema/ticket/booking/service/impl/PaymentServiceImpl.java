@@ -166,16 +166,59 @@ public class PaymentServiceImpl implements PaymentService {
 	private void sendPaymentViaMail() {
 		while (this.sendEmail.size() != 0) {
 			PaymentResponse data = this.sendEmail.poll();
-			String info = "Payment ID " + data.getId() + "\n" +
-							"Total amount: " + data.getPrice()  + "\n" +
-							"Create at: " + data.getCreateOn() + "\n" +
-							"Movie name: " + data.getDetai().getMovieName() + "\n" +
-							"Hall name: " + data.getDetai().getHallName() + "\n" +
-							"Start time: " + data.getDetai().getStartTime() + "\n" +
-							"Seats: " + String.join(", ", data.getDetai().getSeats());
-			String subject = "Movie Project: Payment infomation";
-			emailSER.sendMail(data.getEmail(), subject, info);
+
+			// Tạo nội dung HTML
+			String htmlContent = buildHtmlEmail(data);
+
+			String subject = "Xác nhận thanh toán vé xem phim thành công!";
+
+			// Gọi hàm gửi mail HTML vừa viết ở Bước 1
+			emailSER.sendHtmlMail(data.getEmail(), subject, htmlContent);
 		}
+	}
+
+	// Hàm phụ trợ để xây dựng giao diện HTML
+	private String buildHtmlEmail(PaymentResponse data) {
+		return "<!DOCTYPE html>"
+				+ "<html>"
+				+ "<head>"
+				+ "<style>"
+				+ "body {font-family: Arial, sans-serif; line-height: 1.6; color: #333;}"
+				+ ".container {width: 100%; max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;}"
+				+ ".header {background-color: #4CAF50; color: white; padding: 20px; text-align: center;}"
+				+ ".content {padding: 20px;}"
+				+ ".info-table {width: 100%; border-collapse: collapse; margin-top: 10px;}"
+				+ ".info-table td {padding: 8px; border-bottom: 1px solid #eee;}"
+				+ ".info-table td:first-child {font-weight: bold; width: 40%;}"
+				+ ".footer {background-color: #f4f4f4; text-align: center; padding: 10px; font-size: 12px; color: #777;}"
+				+ ".total-price {color: #e91e63; font-weight: bold; font-size: 18px;}"
+				+ "</style>"
+				+ "</head>"
+				+ "<body>"
+				+ "<div class='container'>"
+				+ "  <div class='header'>"
+				+ "    <h2>Thanh Toán Thành Công!</h2>"
+				+ "  </div>"
+				+ "  <div class='content'>"
+				+ "    <p>Xin chào,</p>"
+				+ "    <p>Cảm ơn bạn đã đặt vé. Dưới đây là thông tin chi tiết vé của bạn:</p>"
+				+ "    <table class='info-table'>"
+				+ "      <tr><td>Mã thanh toán:</td><td>" + data.getId() + "</td></tr>"
+				+ "      <tr><td>Phim:</td><td>" + data.getDetai().getMovieName() + "</td></tr>"
+				+ "      <tr><td>Rạp:</td><td>" + data.getDetai().getHallName() + "</td></tr>"
+				+ "      <tr><td>Thời gian:</td><td>" + data.getDetai().getStartTime() + "</td></tr>"
+				+ "      <tr><td>Ghế:</td><td>" + String.join(", ", data.getDetai().getSeats()) + "</td></tr>"
+				+ "      <tr><td>Tổng tiền:</td><td class='total-price'>" + data.getPrice() + " VND</td></tr>"
+				+ "      <tr><td>Ngày đặt:</td><td>" + data.getCreateOn() + "</td></tr>"
+				+ "    </table>"
+				+ "    <p>Vui lòng đưa mã thanh toán hoặc email này cho nhân viên tại quầy vé.</p>"
+				+ "  </div>"
+				+ "  <div class='footer'>"
+				+ "    <p>&copy; 2024 Cinema Booking System. All rights reserved.</p>"
+				+ "  </div>"
+				+ "</div>"
+				+ "</body>"
+				+ "</html>";
 	}
 
 	@Override
