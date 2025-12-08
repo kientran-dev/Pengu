@@ -1,5 +1,6 @@
 package cinema.ticket.booking.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -136,12 +137,40 @@ public class Booking {
 			names.add(seat.getCinemaSeat().getName());
 		return names;
 	}
-	
+
 	public double getPriceFromListSeats() {
-		double res = 0;
-		for (ShowSeat seat : this.seats)
-			res += seat.getCinemaSeat().getPrice();
-		return res;
+		double totalPrice = 0;
+
+		// 1. Lấy thông tin
+		Movie movie = this.show.getMovie();
+
+		// SỬA Ở ĐÂY: Dùng LocalDateTime thay vì Date
+		LocalDateTime startTime = this.show.getStartTime();
+
+		// 2. Hệ số Phim
+		double movieFactor = movie.getPriceCoefficient();
+		if (movieFactor <= 0) movieFactor = 1.0;
+
+		// 3. Hệ số Giờ chiếu
+		double timeFactor = 1.0;
+
+		// SỬA Ở ĐÂY: Dùng .getHour() thay vì .getHours()
+		int hour = startTime.getHour();
+
+		if (hour >= 18 && hour <= 22) {
+			timeFactor = 1.1;
+		} else if (hour < 10) {
+			timeFactor = 0.9;
+		}
+
+		// 4. Tính toán (giữ nguyên)
+		for (ShowSeat seat : this.seats) {
+			double seatPrice = seat.getCinemaSeat().getPrice();
+			double finalSeatPrice = seatPrice * movieFactor * timeFactor;
+			totalPrice += finalSeatPrice;
+		}
+
+		return Math.round(totalPrice * 100.0) / 100.0;
 	}
 }
 

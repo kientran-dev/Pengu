@@ -4,7 +4,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.ManyToMany;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class MovieRequest {
 	
 	
@@ -41,67 +45,11 @@ public class MovieRequest {
 	
 	@JsonProperty("actors")
 	private String actors;
-	
-	public String getTrailer() {
-		return trailer;
-	}
-	public void setTrailer(String trailer) {
-		this.trailer = trailer;
-	}
-	public String getActors() {
-		return actors;
-	}
-	public void setActors(String actors) {
-		this.actors = actors;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public int getDurationInMins() {
-		return durationInMins;
-	}
-	public void setDurationInMins(int durationInMins) {
-		this.durationInMins = durationInMins;
-	}
-	public String getLanguage() {
-		return language;
-	}
-	public void setLanguage(String language) {
-		this.language = language;
-	}
-	public String getReleaseDate() {
-		return releaseDate;
-	}
-	public void setReleaseDate(String releaseDate) {
-		this.releaseDate = releaseDate;
-	}
-	public String getCountry() {
-		return country;
-	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	public List<String> getGenre() {
-		return genre;
-	}
-	public void setGenre(List<String> genre) {
-		this.genre = genre;
-	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
+
+	@JsonProperty("priceCoefficient")
+	private double priceCoefficient = 1.0;
+
+
 	public String getLargeImage() {
 		return this.large_image;
 	}

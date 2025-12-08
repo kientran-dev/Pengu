@@ -3,6 +3,9 @@ package cinema.ticket.booking.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -27,7 +30,8 @@ import jakarta.persistence.UniqueConstraint;
 @Table(name = "Movie",
 	uniqueConstraints = { @UniqueConstraint(columnNames = { "title" ,"id"})
 	})
-
+@Getter
+@Setter
 public class Movie{
 	
 	@Id
@@ -60,6 +64,9 @@ public class Movie{
 	
 	@Column(name = "country")
 	private String country;
+
+	@Column(name = "price_coefficient")
+	private double priceCoefficient = 1.0;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)	
 	@JoinTable(name = "Movie_Genre", 
@@ -100,93 +107,7 @@ public class Movie{
 		this.country = req.getCountry();
 		this.image = req.getImage();
 		this.large_image = req.getLargeImage();
-	}
-	
-	public String getTrailer() {
-		return trailer;
-	}
-	
-	public void setTrailer(String trailer) {
-		this.trailer = trailer;
-	}
-	
-	public String getActors() {
-		return actors;
-	}
-	public void setActors(String actors) {
-		this.actors = actors;
-	}
-
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	public String getTitle() {
-		return title;
-	}
-	
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-	
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	public int getDurationInMins() {
-		return durationInMins;
-	}
-	
-	public void setDurationInMins(int durationInMins) {
-		this.durationInMins = durationInMins;
-	}
-	
-	public String getLanguage() {
-		return language;
-	}
-	
-	public void setLanguage(String language) {
-		this.language = language;
-	}
-	
-	public String getReleaseDate() {
-		return releaseDate;
-	}
-	
-	public void setReleaseDate(String releaseDate) {
-		this.releaseDate = releaseDate;
-	}
-	
-	public String getCountry() {
-		return country;
-	}
-	
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	
-	public List<Genre> getGenres() {
-		return genres;
-	}
-	
-	public void setGenres(List<Genre> genre) {
-		this.genres = genre;
-	}
-	
-	public String getImage() {
-		return image;
-	}
-	
-	public void setImage(String image) {
-		this.image = image;
+		this.priceCoefficient = req.getPriceCoefficient();
 	}
 
 	public String getLargeImage() {
@@ -195,14 +116,6 @@ public class Movie{
 	
 	public void setLargeImage(String image) {
 		this.large_image = image;
-	}
-	
-	public List<Comment> getComments() {
-		return this.comments;
-	}
-	
-	public void setComments(List<Comment> c) {
-		this.comments = c;
 	}
 	
 	public void addComment(Comment comment) {

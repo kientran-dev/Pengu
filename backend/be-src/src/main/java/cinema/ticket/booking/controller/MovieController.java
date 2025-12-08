@@ -16,9 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import cinema.ticket.booking.exception.MyNotFoundException;
 import cinema.ticket.booking.model.Movie;
-import cinema.ticket.booking.response.MyApiResponse;
+import cinema.ticket.booking.repository.MovieRepo;
+import cinema.ticket.booking.request.MovieRequest;
+import cinema.ticket.booking.response.ErrorResponse;
 import cinema.ticket.booking.response.MovieInfoResponse;
+import cinema.ticket.booking.response.MyApiResponse;
 import cinema.ticket.booking.service.MovieService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -29,23 +33,23 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
-import cinema.ticket.booking.response.ErrorResponse;
-
 @RestController
 @Tag(name = "5. Movie Endpoint")
-
 @RequestMapping("/api/movie")
 public class MovieController {
 
 	@Autowired
 	private MovieService mService;
 
+	@Autowired
+	private MovieRepo mRepo;
+
 	@GetMapping("/getall")
 	@Operation(summary = "Get All Movie Service", responses = {
 			@ApiResponse(responseCode = "200", description = "Movie's information.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MovieInfoResponse.class))),
 	})
 	public ResponseEntity<List<MovieInfoResponse>> getMovies(@RequestParam(defaultValue = "0") Integer pageNumber,
-			@RequestParam(defaultValue = "100000") @Valid Integer pageSize) {
+															 @RequestParam(defaultValue = "100000") @Valid Integer pageSize) {
 		return new ResponseEntity<List<MovieInfoResponse>>(mService.getMovies(pageNumber, pageSize), HttpStatus.OK);
 	}
 
@@ -55,8 +59,8 @@ public class MovieController {
 			@ApiResponse(responseCode = "400", description = "Ticket is not found.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
 	})
 	public ResponseEntity<List<MovieInfoResponse>> getMovieName(@RequestParam @Valid String key,
-			@RequestParam(defaultValue = "0") @Valid Integer pageNumber,
-			@RequestParam(defaultValue = "50") @Valid Integer pageSize) {
+																@RequestParam(defaultValue = "0") @Valid Integer pageNumber,
+																@RequestParam(defaultValue = "50") @Valid Integer pageSize) {
 		return new ResponseEntity<List<MovieInfoResponse>>(mService.getMatchingName(key, pageNumber, pageSize),
 				HttpStatus.OK);
 	}
@@ -76,8 +80,8 @@ public class MovieController {
 			@ApiResponse(responseCode = "400", description = "Data containt illegal character.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
 	})
 	public ResponseEntity<?> getMovieGenre(@RequestParam @Valid String key,
-			@RequestParam(defaultValue = "0") @Valid Integer pageNumber,
-			@RequestParam(defaultValue = "50") @Valid Integer pageSize) {
+										   @RequestParam(defaultValue = "0") @Valid Integer pageNumber,
+										   @RequestParam(defaultValue = "50") @Valid Integer pageSize) {
 		return new ResponseEntity<>(mService.getMatchingGenre(key, pageSize, pageSize), HttpStatus.OK);
 	}
 
@@ -91,7 +95,27 @@ public class MovieController {
 			@Parameter(name = "Authorication", in = ParameterIn.HEADER, schema = @Schema(type = "string"), example = "Bearer <token>", required = true)
 	})
 	@PreAuthorize("hasRole('ADMIN')")
-	public Movie saveMovie(@RequestBody @Valid Movie movie) {
+	public Movie saveMovie(@RequestBody @Valid MovieRequest movieReq) {
+		Movie movie = new Movie();
+
+		// --- MAP DATA TỪ REQUEST SANG ENTITY ---
+		movie.setTitle(movieReq.getTitle());
+		movie.setDescription(movieReq.getDescription());
+		movie.setDurationInMins(movieReq.getDurationInMins());
+		movie.setLanguage(movieReq.getLanguage());
+		movie.setReleaseDate(movieReq.getReleaseDate());
+		movie.setCountry(movieReq.getCountry());
+		movie.setImage(movieReq.getImage());
+		movie.setCountry(movieReq.getCountry());
+		movie.setLanguage(movieReq.getLanguage());
+		movie.setReleaseDate(movieReq.getReleaseDate());
+		movie.setActors(movieReq.getActors());
+		movie.setDescription(movieReq.getDescription());
+		movie.setTrailer(movieReq.getTrailer());
+
+		// CÁC THUỘC TÍNH MỚI:
+		movie.setPriceCoefficient(movieReq.getPriceCoefficient());
+
 		return mService.saveMovie(movie);
 	}
 
@@ -114,7 +138,28 @@ public class MovieController {
 	})
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Movie> updateMovie(@PathVariable(name = "id") @Valid Long id,
-			@RequestBody @Valid Movie movie) {
+											 @RequestBody @Valid MovieRequest movieReq) {
+
+		Movie movie = mRepo.findById(id).orElseThrow(() -> new MyNotFoundException("Movie not found"));
+
+		// --- CẬP NHẬT DỮ LIỆU ---
+		movie.setTitle(movieReq.getTitle());
+		movie.setDescription(movieReq.getDescription());
+		movie.setDurationInMins(movieReq.getDurationInMins());
+		movie.setLanguage(movieReq.getLanguage());
+		movie.setReleaseDate(movieReq.getReleaseDate());
+		movie.setCountry(movieReq.getCountry());
+		movie.setImage(movieReq.getImage());
+		movie.setCountry(movieReq.getCountry());
+		movie.setLanguage(movieReq.getLanguage());
+		movie.setReleaseDate(movieReq.getReleaseDate());
+		movie.setActors(movieReq.getActors());
+		movie.setDescription(movieReq.getDescription());
+		movie.setTrailer(movieReq.getTrailer());
+
+		// CÁC THUỘC TÍNH MỚI:
+		movie.setPriceCoefficient(movieReq.getPriceCoefficient());
+
 		return new ResponseEntity<Movie>(mService.updateMovie(movie), HttpStatus.OK);
 	}
 
