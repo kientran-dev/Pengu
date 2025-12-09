@@ -65,12 +65,21 @@ $(async function() {
             item.data('seat-id', seat.seatId)
             item.data('seat-price', seat.price)
             item.find(".sit-num").text(seat.name)
-            if (seatFree) {
+            if (seat.status === "AVAILABLE") {
+                // Trạng thái ghế trống: Hiển thị màu xanh, thêm class để click được
                 item.addClass("seat-free")
                 item.find("img").attr("src", "assets/images/movie/seat01-free.png")
             }
-            else
+            else if (seat.status === "PENDING") {
+                // Trạng thái đang giữ chỗ (15p): Hiển thị màu cam, xóa số ghế, KHÔNG click được
+                item.find("img").attr("src", "assets/images/movie/seat01-pending.png")
                 item.find(".sit-num").remove()
+            }
+            else {
+                // Các trạng thái còn lại (BOOKED, UNAVAILABLE): Hiển thị màu mặc định (đã bán), xóa số ghế
+                // Mặc định thẻ img src="assets/images/movie/seat01.png" (ghế đã đặt) nên không cần set lại src nếu không muốn đổi ảnh khác
+                item.find(".sit-num").remove()
+            }
 
             div.find(".seats").append(item)
         }

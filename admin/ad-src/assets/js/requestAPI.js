@@ -50,8 +50,7 @@ const PenguRequestAPI = async function (method = 'GET', path = 'api', _opti = {}
 }
 
 
-const TokenCookieName = "pengu_token"
-
+const TokenCookieName = "pengu_admin_token"
 const GetToken = function() {
   return $.cookie(TokenCookieName)
 }
