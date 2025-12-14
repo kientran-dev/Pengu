@@ -16,6 +16,13 @@
 
 ---
 
+## 🌐 Demo
+
+- **User App:** [https://pengu-frontend.onrender.com](https://pengu-frontend.onrender.com)
+- **Admin App:** [https://pengu-backend.onrender.com](https://pengu-backend.onrender.com)
+
+---
+
 ## 🗂️ Cấu trúc thư mục
 
 ```text
@@ -197,4 +204,4 @@ Phần mềm được phân phối theo giấy phép MIT. Xem tệp [LICENSE](./
 
 ---
 
-Made with ❤️ by Nhóm 7 - Đồ án chuyên ngành
+Made with ❤️ by Tran Trung Kien
