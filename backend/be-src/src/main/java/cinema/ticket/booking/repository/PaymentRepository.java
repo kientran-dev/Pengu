@@ -20,6 +20,6 @@ public interface PaymentRepository extends JpaRepository<Payment, String> {
     @Query("SELECT SUM(p.amount) FROM Payment p WHERE p.status = cinema.ticket.booking.model.enumModel.PaymentStatus.PAID")
     Double findTotalRevenue();
 
-    @Query(value = "SELECT DATE(p.create_at) as date, SUM(p.amount) as revenue FROM payment p WHERE p.status = 'PAID' AND p.create_at >= CURDATE() - INTERVAL 7 DAY GROUP BY DATE(p.create_at) ORDER BY DATE(p.create_at)", nativeQuery = true)
+    @Query(value = "SELECT DATE(p.create_at) as date, SUM(p.amount) as revenue FROM payment p WHERE p.status = 'PAID' AND p.create_at >= CURDATE() - INTERVAL 12 DAY GROUP BY DATE(p.create_at) ORDER BY DATE(p.create_at)", nativeQuery = true)
     List<Map<String, Object>> findRevenueByDate();
 }

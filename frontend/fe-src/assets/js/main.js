@@ -91,9 +91,19 @@
     // Nice Select
     $('.select-bar').niceSelect();
     // Lightcase
-    $('.video-popup').magnificPopup({
-        type: 'iframe',
-    });
+      $('.popup-video').magnificPopup({
+          type: 'iframe',
+          iframe: {
+              patterns: {
+                  youtube: {
+                      index: 'youtube.com/',
+                      id: 'v=',
+                      // Tự động chuyển link watch?v= thành embed/
+                      src: 'https://www.youtube.com/embed/%id%?autoplay=1'
+                  }
+              }
+          }
+      });
     $("body").each(function () {
       $(this).find(".img-pop").magnificPopup({
           type: "image",
