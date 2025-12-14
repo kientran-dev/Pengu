@@ -1,4 +1,5 @@
-const localIP = 'http://localhost:9595'
+// Thay link này bằng link Backend trên Render của bạn
+const localIP = 'https://pengu-backend.onrender.com'
 
 const GetIP = function() {
   return localIP

@@ -33,14 +33,36 @@ public class VNPay extends HttpServlet {
 
     private static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     private static String vnp_Version = "2.1.0";
-    private static String vnp_TmnCode = "K2HAGWZO";
-    private static String vnp_HashSecret = "F51NP6JCH16I0X6S584KR9CNJFZPTN5J";
-    // private static String vnp_Returnurl = "https://coderlod.xyz/order-complete";
-    private static String vnp_Returnurl = "http://localhost/order-complete";
+
+    // Lấy Key từ biến môi trường (nếu có), nếu không thì dùng key test mặc định
+    private static String vnp_TmnCode = System.getenv("VNP_TMN_CODE") != null ? System.getenv("VNP_TMN_CODE") : "K2HAGWZO";
+    private static String vnp_HashSecret = System.getenv("VNP_HASH_SECRET") != null ? System.getenv("VNP_HASH_SECRET") : "F51NP6JCH16I0X6S584KR9CNJFZPTN5J";
+
+    // Tự động chọn URL: Nếu trên Render thì lấy FRONTEND_URL, nếu local thì dùng localhost
+    private static String getReturnUrl() {
+        String appUrl = System.getenv("FRONTEND_URL");
+
+        // --- THÊM DÒNG NÀY ĐỂ SOI LỖI TRÊN LOG RENDER ---
+        System.out.println("DEBUG VNPAY - FRONTEND_URL IS: " + appUrl);
+        // ------------------------------------------------
+
+        if (appUrl == null || appUrl.isEmpty()) {
+            System.out.println("DEBUG VNPAY - Fallback to LOCALHOST");
+            return "http://localhost/order-complete";
+        }
+        return appUrl.replaceAll("/$", "") + "/order-complete";
+    }
+    private static String vnp_Returnurl = getReturnUrl();
+
     private static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
 
     public static String createPay(Payment payment, String bankCode, String ip_addr)
             throws ServletException, IOException {
+        // --- THÊM LOG VÀO ĐÂY ---
+        System.out.println("DEBUG: Dang tao link thanh toan...");
+        System.out.println("DEBUG: vnp_ReturnUrl hien tai la: " + vnp_Returnurl);
+        // ------------------------
+
         String vnp_Command = "pay";
 
         long amount = Math.round(payment.getAmount() * 100);

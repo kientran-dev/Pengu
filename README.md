@@ -102,6 +102,23 @@ Mẹo:
 
 ---
 
+## 🧪 Tài khoản test
+
+| Username           | Password     | Role        |
+|--------------------|--------------|-------------|
+| super_admin.1234   | 3Mt^tmM85YUL | Super Admin |
+| admin.1234         | TiNkErBeLl   | Admin       |
+| user_1             | k9G*Ni91r!   | User        |
+| user_2             | hS5f%1*8V1   | User        |
+
+## 💳 Thông tin thanh toán test (VNPAY)
+
+| Ngân hàng | Số thẻ              | Tên chủ thẻ  | Ngày phát hành | Mật khẩu OTP |
+|-----------|---------------------|--------------|----------------|--------------|
+| NCB       | 9704198526191432198 | NGUYEN VAN A | 07/15          | 123456       |
+
+---
+
 ## 💻 Phát triển cục bộ (không dùng Docker)
 
 Do monorepo có nhiều thành phần, bạn có thể chạy từng phần riêng:
