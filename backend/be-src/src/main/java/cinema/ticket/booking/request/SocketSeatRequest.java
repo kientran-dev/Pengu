@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
 public class SocketSeatRequest {
     String showId;
-    Long seatId;
+    String seatId;
     String status;
     String userId;
 }

@@ -154,12 +154,12 @@ $(async function() {
 
         // [WEBSOCKET] Gửi thông báo cho Server
         if (stompClient) {
-            let action = !isBooked ? "SELECT" : "UNSELECT"; // Đảo ngược logic: Nếu vừa bấm -> là chọn
+            let status = !isBooked ? "SELECT" : "UNSELECT"; // Đảo ngược logic: Nếu vừa bấm -> là chọn
             let payload = {
                 showId: showId,
                 seatId: div.data('seat-id'),
                 userId: currentUserId, // Gửi ID người dùng hiện tại
-                action: action
+                status: status
             };
 
             // Gửi lên endpoint: /app/select-seat
@@ -307,7 +307,7 @@ function connectWebSocket(showId) {
     var backendUrl = GetIP();
 
     // Nếu đang chạy local mà GetIP() trả về sai, bạn có thể set cứng tạm thời:
-    // var backendUrl = 'http://localhost:9595';
+    //var backendUrl = 'http://localhost:9595';
 
     var socket = new SockJS(backendUrl + '/ws-cinema');
     stompClient = Stomp.over(socket);
@@ -340,7 +340,7 @@ function handleSocketMessage(data) {
     console.log("Socket Update:", data);
 
     // 3. Cập nhật giao diện dựa trên hành động của người khác
-    if (data.action === "SELECT") {
+    if (data.status === "SELECT") {
         // Người khác chọn -> Chuyển sang màu PENDING (xám/cam)
         seatElement.removeClass("seat-free"); // Xóa class này để không click được nữa
         seatElement.find("img").attr("src", "assets/images/movie/seat01-pending.png");
@@ -357,7 +357,7 @@ function handleSocketMessage(data) {
             Toast.fire({ icon: 'info', title: 'Ghế bạn chọn đã bị người khác đặt!' })
         }
 
-    } else if (data.action === "UNSELECT") {
+    } else if (data.status === "UNSELECT") {
         // Người khác bỏ chọn -> Trả lại màu Available (trắng/xanh)
         seatElement.addClass("seat-free");
         seatElement.find("img").attr("src", "assets/images/movie/seat01-free.png");
