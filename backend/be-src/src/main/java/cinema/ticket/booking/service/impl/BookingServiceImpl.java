@@ -1,7 +1,6 @@
 package cinema.ticket.booking.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 import java.time.Duration;
 import java.util.Date;
 import java.time.LocalDateTime;
@@ -9,14 +8,11 @@ import java.util.ArrayList;
 import java.time.ZoneId;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Sort;
 
-import cinema.ticket.booking.exception.MyAccessDeniedException;
 import cinema.ticket.booking.exception.MyBadRequestException;
 import cinema.ticket.booking.exception.MyConflictExecption;
 import cinema.ticket.booking.exception.MyLockedException;
@@ -95,7 +91,7 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	private void cancleBookingFromID(Booking booking) {
-		this.setStatusForBookingAndSeats(booking, BookingStatus.CANCLED, ESeatStatus.AVAILABLE);
+		this.setStatusForBookingAndSeats(booking, BookingStatus.CANCELED, ESeatStatus.AVAILABLE);
 	}
 
 	private String[] removeDuplicate(List<String> array) {
@@ -141,7 +137,7 @@ public class BookingServiceImpl implements BookingService {
 		if (!user.getId().equals(booking.getUser().getId()))
 			throw new MyConflictExecption("This ticket does not belong to user " + user.getUsername());
 
-		if (booking.getStatus().equals(BookingStatus.CANCLED) || booking.getStatus().equals(BookingStatus.BOOKED))
+		if (booking.getStatus().equals(BookingStatus.CANCELED) || booking.getStatus().equals(BookingStatus.BOOKED))
 			throw new MyBadRequestException("This ticket can not be cancled");
 
 		this.cancleBookingFromID(booking);
@@ -220,17 +216,17 @@ public class BookingServiceImpl implements BookingService {
 				}
 				break;
 
-			case "CANCLED":
-				// Logic: Hủy vé -> Set Booking CANCLED, Ghế AVAILABLE
+			case "CANCELED":
+				// Logic: Hủy vé -> Set Booking CANCELED, Ghế AVAILABLE
 				// Không gọi this.cancleBooking() vì nó chặn hủy vé đã BOOKED.
 				// Admin có quyền hủy vé đã BOOKED (ví dụ hoàn tiền).
-				this.setStatusForBookingAndSeats(booking, BookingStatus.CANCLED, ESeatStatus.AVAILABLE);
+				this.setStatusForBookingAndSeats(booking, BookingStatus.CANCELED, ESeatStatus.AVAILABLE);
 
-				// Nếu cần: Xử lý Payment thành CANCLED hoặc REFUNDED (tùy logic Payment)
+				// Nếu cần: Xử lý Payment thành CANCELED hoặc REFUNDED (tùy logic Payment)
 				List<Payment> pCancels = paymentREPO.findAllByBookingId(booking.getId());
 				if (!pCancels.isEmpty()) {
 					Payment p = pCancels.get(0);
-					p.setStatus(PaymentStatus.CANCLED); // Đánh dấu thanh toán đã hủy
+					p.setStatus(PaymentStatus.CANCELED); // Đánh dấu thanh toán đã hủy
 					paymentREPO.save(p);
 				}
 				break;
@@ -301,7 +297,7 @@ public class BookingServiceImpl implements BookingService {
 							paymentREPO.save(payment);
 						}
 						else if (paid == 2) {
-							payment.setStatus(PaymentStatus.CANCLED);
+							payment.setStatus(PaymentStatus.CANCELED);
 							paymentREPO.save(payment);
 						}
 					} catch (Exception e) {

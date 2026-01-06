@@ -1,3 +1,4 @@
+C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\controller\SeatWebSocketController.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\utils\DateUtils.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\service\impl\JWTTokenServiceImpl.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\model\Payment.java
@@ -22,12 +23,14 @@ C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\repository\ShowSeatRepository.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\model\Booking.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\request\NewPasswordRequest.java
+C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\request\SocketSeatRequest.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\service\StatisticService.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\response\ShowSeatResponse.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\response\CommentResponse.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\exception\ApiException.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\model\enumModel\BookingStatus.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\response\SeatsResponse.java
+C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\config\WebSocketConfig.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\model\Comment.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\response\AuthenticationResponse.java
 C:\Users\PC\OneDrive\Documents\A_Ki_1_Nam4\DoAnChuyenNganh\Pengu\backend\be-src\src\main\java\cinema\ticket\booking\service\impl\EmailServiceImpl.java

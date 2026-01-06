@@ -48,6 +48,7 @@ services:
     ports:
       - 9595:9595
     environment:
+      #- SPRING_PROFILES_ACTIVE=local  #de no chay file app.properties local
       - DB_HOST=db
       - DB_NAME=cinemaDB
       - DB_USER=root

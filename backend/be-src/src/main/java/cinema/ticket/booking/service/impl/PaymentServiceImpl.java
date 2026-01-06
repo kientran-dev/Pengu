@@ -80,7 +80,7 @@ public class PaymentServiceImpl implements PaymentService {
 		try {
 			res = VNPay.createPay(payment, bankCode, ip_addr);
 		} catch (Exception e) {
-			payment.setStatus(PaymentStatus.CANCLED);
+			payment.setStatus(PaymentStatus.CANCELED);
 			System.out.println("Lỗi tạo thanh toán: " + e.toString());
 		}
 
@@ -123,7 +123,7 @@ public class PaymentServiceImpl implements PaymentService {
 					return new MyApiResponse("Ticket is paid. You will receive this email", "PAID");
 				}
 				else if (paid == 2) {
-					payment.setStatus(PaymentStatus.CANCLED);
+					payment.setStatus(PaymentStatus.CANCELED);
 					paymentREPO.save(payment);
 					return new MyApiResponse("Ticket is unpaid", "UNPAID");
 				}

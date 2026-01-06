@@ -5,5 +5,5 @@ public enum ESeatStatus {
 	AVAILABLE,
 	PENDING,
 	BOOKED,
-	CANCLED
+	CANCELED
 }

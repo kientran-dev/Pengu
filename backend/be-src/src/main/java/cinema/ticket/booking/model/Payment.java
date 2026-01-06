@@ -94,7 +94,7 @@ public class Payment {
 	
 	
 	public void canclePayment() {
-		this.status = PaymentStatus.CANCLED;
+		this.status = PaymentStatus.CANCELED;
 	}
 	
 	public void returnPayment() {
